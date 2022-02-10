@@ -1,0 +1,30 @@
+{
+  "name": "calorie-tracking-app",
+  "version": "1.0.0",
+  "description": "Simple calorie tracking app",
+  "main": "src/index.js",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build",
+    "compile": "sass --watch --no-source-map src/main.scss src/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/richieAiello/calorie-tracking-app.git"
+  },
+  "keywords": [],
+  "author": "Richard Aiello",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/richieAiello/calorie-tracking-app/issues"
+  },
+  "homepage": "https://github.com/richieAiello/calorie-tracking-app#readme",
+  "devDependencies": {
+    "parcel": "^2.3.1"
+  },
+  "dependencies": {
+    "chart.js": "^3.7.0",
+    "sass": "^1.49.7"
+  }
+}
