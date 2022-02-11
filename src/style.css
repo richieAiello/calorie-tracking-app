@@ -3,3 +3,51 @@
 *::after {
   box-sizing: border-box;
 }
+
+.app {
+  margin: 0;
+  font: 400 1.5rem/1.6 "Poppins", sans-serif;
+}
+
+.container {
+  width: min(80%, 75em);
+  margin-inline: auto;
+  border: 1px solid black;
+}
+
+.flex {
+  display: flex;
+}
+.flex--food {
+  justify-content: space-around;
+}
+.flex--form {
+  flex-direction: column;
+  align-items: flex-start;
+}
+.flex--macros {
+  flex-flow: row wrap;
+  align-items: flex-end;
+}
+
+.food__form {
+  width: 20%;
+}
+.food__name {
+  width: 100%;
+  font: inherit;
+}
+.food__label {
+  width: 75%;
+}
+.food__grams {
+  width: 25%;
+  text-align: right;
+  font: inherit;
+  margin-top: 2em;
+}
+
+.pantry {
+  width: 60%;
+  border: 1px solid black;
+}

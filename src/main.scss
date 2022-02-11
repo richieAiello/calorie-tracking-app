@@ -3,3 +3,66 @@
 *::after {
     box-sizing: border-box;
 }
+
+// base styles
+.app {
+    margin: 0;
+    font: 400 1.5rem/1.6 'Poppins', sans-serif;
+}
+
+.container {
+    width: min(80%, 75em); 
+    margin-inline: auto;
+    // padding
+    // border for development only
+    border: 1px solid black;
+}
+
+.flex {
+    display: flex;
+
+    &--food {
+        justify-content: space-around;
+    }
+    
+    &--form {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    &--macros {
+        flex-flow: row wrap;
+        align-items: flex-end;
+        // justify-content: space-between;
+    }
+}
+
+
+// section.food
+.food {
+
+    &__form {
+        width: 20%;
+    }
+
+    &__name {
+        width: 100%;
+        font: inherit;
+    }
+
+    &__label {
+        width: 75%;
+    }
+
+    &__grams {
+        width: 25%;
+        text-align: right;
+        font: inherit;
+        margin-top: 2em;
+    }
+}
+
+.pantry {
+    width: 60%;
+    border: 1px solid black;
+}
