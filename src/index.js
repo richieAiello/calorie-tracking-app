@@ -1,5 +1,6 @@
 // Ensure form values clear upon sumbit
 // Create eventListeners for both forms working with fetch and the REST API
+// Install snackbar in future for notifications
 
 // BaseURL* https://firestore.googleapis.com/v1/projects/calorie-tracking-app-d89d9/databases/(default)/documents/${endpoint}
 import FetchWrapper from "./fetch-wrapper.js";
@@ -35,3 +36,40 @@ const displayFood = (name, carbs, protein, fat) => {
             </div>
         </li>`);
 }
+
+const clearForm = () => {
+    name.value = "";
+    carbs.value = "";
+    protein.value = "";
+    fat.value = "";
+}
+
+// eventListeners
+
+// tests if the endpoint is valid, sets endpoint (if valid) for later use
+// empties pantry, injects pantry with fetch data, clears form
+pantryForm.addEventListener('submit', event => {
+    event.preventDefault();
+
+    list.innerHTML = "";
+    pantryName.textContent = "";
+    
+    API.get(tailor(pantryId.value))
+        .then(data => {
+            console.log(data.documents);
+            data.documents.forEach(doc => {
+                displayFood(
+                    doc.fields.name.stringValue,
+                    doc.fields.carbs.integerValue,
+                    doc.fields.protein.integerValue,
+                    doc.fields.fat.integerValue
+                );
+            });
+            endpoint = tailor(pantryId.value);
+            pantryName.textContent = capitalize(endpoint);
+        })
+        .catch(error => console.error(error))
+        .finally(() => {
+            pantryId.value = "";
+        });
+});
