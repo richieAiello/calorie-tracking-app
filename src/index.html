@@ -28,7 +28,7 @@
                 <form class="access-pantry">
                     <label for="access-pantry__name" class="access-pantry__label">Name your pantry</label>
                     <input type="text" id="access-pantry__name" class="access-pantry__name" placeholder="enter the name of your pantry" required>
-                    <input type="submit" value="Access" class="btn btn--access-pantry">
+                    <input type="submit" value="Show Pantry" class="btn btn--pantry">
                     <p class="access-pantry__text">*Write down the name of your pantry to access your food on a later visit!*</p>
                 </form>
 
@@ -60,11 +60,11 @@
                             <label for="fat" class="food__label">Fat:</label>
                             <input type="number" id="fat" class="food__grams" min="0" max="200" placeholder="0g" required>
                         </div>
-                        <input type="submit" value="Add" class="btn btn--add-food">
+                        <input type="submit" value="Add Meal" class="btn btn--add-food">
                     </form>
                     
                     <div class="pantry">
-                        <h3 class="pantry__head"></h3>
+                        <h3 class="pantry__heading"></h3>
                         <ul class="pantry__list"></ul>
                         <!-- clear button/ listen for click event/ list.innerHTML = "" && delete stored API data with fetch<-->
                         <!-- <button class="btn btn--clear"></button> -->
