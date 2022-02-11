@@ -1,8 +1,9 @@
-// Implement a function to display food items in the pantry
+// Ensure form values clear upon sumbit
 // Create eventListeners for both forms working with fetch and the REST API
 
 // BaseURL* https://firestore.googleapis.com/v1/projects/calorie-tracking-app-d89d9/databases/(default)/documents/${endpoint}
-import FetchWrapper from "./fetch-wrapper";
+import FetchWrapper from "./fetch-wrapper.js";
+import { capitalize, tailor } from "./helpers.js";
 
 const API = new FetchWrapper(`https://firestore.googleapis.com/v1/projects/calorie-tracking-app-d89d9/databases/(default)/documents/`);
 
@@ -18,3 +19,19 @@ const list = document.querySelector('.pantry__list');
 const calories = document.querySelector('.calories__total');
 
 let endpoint;
+
+const displayFood = (name, carbs, protein, fat) => {
+    list.insertAdjacentHTML(
+        'beforeend',
+        `<li>
+            <div class="card">
+                <h4 class="card__head">${capitalize(name)}</h4>
+                <p class="card__text">${0} calories</p>
+                <ul class="card__list flex flex--card">
+                    <li class="card__carbs">Carbs<br>${carbs}g</li>
+                    <li class="card__protein">Protein<br>${protein}g</li>
+                    <li class="card__fat">Fat<br>${fat}g</li>
+                </ul>
+            </div>
+        </li>`);
+}
