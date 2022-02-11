@@ -1,10 +1,8 @@
-// Ensure form values clear upon sumbit
-// Create eventListeners for both forms working with fetch and the REST API
 // Install snackbar in future for notifications
 
 // BaseURL* https://firestore.googleapis.com/v1/projects/calorie-tracking-app-d89d9/databases/(default)/documents/${endpoint}
 import FetchWrapper from "./fetch-wrapper.js";
-import { capitalize, tailor } from "./helpers.js";
+import { tailor, displayName } from "./helpers.js";
 
 const API = new FetchWrapper(`https://firestore.googleapis.com/v1/projects/calorie-tracking-app-d89d9/databases/(default)/documents/`);
 
@@ -26,7 +24,7 @@ const displayFood = (name, carbs, protein, fat) => {
         'beforeend',
         `<li>
             <div class="card">
-                <h4 class="card__head">${capitalize(name)}</h4>
+                <h4 class="card__heading">${name}</h4>
                 <p class="card__text">${0} calories</p>
                 <ul class="card__list flex flex--card">
                     <li class="card__carbs">Carbs<br>${carbs}g</li>
@@ -57,7 +55,7 @@ pantryForm.addEventListener('submit', event => {
     API.get(tailor(pantryId.value))
         .then(data => {
             console.log(data.documents);
-            data.documents.forEach(doc => {
+            data.documents?.forEach(doc => {
                 displayFood(
                     doc.fields.name.stringValue,
                     doc.fields.carbs.integerValue,
@@ -66,10 +64,39 @@ pantryForm.addEventListener('submit', event => {
                 );
             });
             endpoint = tailor(pantryId.value);
-            pantryName.textContent = capitalize(endpoint);
+            pantryName.textContent = displayName(endpoint);
         })
         .catch(error => console.error(error))
         .finally(() => {
             pantryId.value = "";
         });
+});
+
+// uses fetch post to create data in the API with the endpoint variable
+// injects pantry with food card representing your chosen meal
+// run clearForm() on submit
+foodForm.addEventListener('submit', event => {
+    event.preventDefault();
+
+    API.post(endpoint, {
+        fields :{
+            name: { stringValue: name.value },
+            carbs: { integerValue: carbs.value },
+            protein: { integerValue: protein.value },
+            fat: { integerValue: fat.value }
+        }
+    })
+        .then(data => {
+            console.log(data);
+            displayFood(
+                name.value,
+                carbs.value,
+                protein.value,
+                fat.value
+            );
+        })
+        .catch(error => console.error(error))
+        .finally(() => {
+            clearForm();
+        });    
 });
