@@ -4,10 +4,91 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script type="module" src="index.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>Calorie Tracking App</title>
 </head>
-<body>
+<body class="app">
+    <!-- Implement nav with animated logo and hamburger bar -->
+    <!-- <nav class="nav"></nav> -->
+
+    <header class="hero">
+        <h1 class="first-heading">Calorie Tracker</h1>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <section class="food">
+
+                <h2 class="sub-heading">Create or access your pantry</h2>
+                <form class="access-pantry">
+                    <label for="access-pantry__name" class="access-pantry__label">Name your pantry</label>
+                    <input type="text" id="access-pantry__name" class="access-pantry__name" placeholder="enter the name of your pantry" required>
+                    <input type="submit" value="Access" class="btn btn--access-pantry">
+                    <p class="access-pantry__text">*Write down the name of your pantry to access your food on a later visit!*</p>
+                </form>
+
+                <h2 class="sub-heading">Manage your meals</h2>
+                <div class="flex flex--food">   
+                    <form class="food__form flex flex--form">
+                        <label for="food__name">Choose your food:</label>
+                        <select id="food__name" class="food__name" required>
+                            <option value="">Select Food</option>
+                            <option value="eggs">Eggs</option>
+                            <option value="bacon">Bacon</option>
+                            <option value="oatmeal">Oatmeal</option>
+                            <option value="porkchops">Porkchops</option>
+                            <option value="chicken-thighs">Chicken Thighs</option>
+                            <option value="salmon">Salmon</option>
+                            <option value="ground-beef">Ground Beef</option>
+                            <option value="rice">Rice</option>
+                            <option value="fruit">Fruit</option>
+                            <option value="pizza">Vegetables</option>
+                        </select>
+                        
+                        <div class="food__macros flex flex--macros">
+                            <label for="carbs" class="food__label">Carbs:</label>
+                            <input type="number" id="carbs" class="food__grams" min="0" max="200" placeholder="0g" required>
+                            
+                            <label for="protein" class="food__label">Protein:</label>
+                            <input type="number" id="protein" class="food__grams" min="0" max="200" placeholder="0g" required>
+                            
+                            <label for="fat" class="food__label">Fat:</label>
+                            <input type="number" id="fat" class="food__grams" min="0" max="200" placeholder="0g" required>
+                        </div>
+                        <input type="submit" value="Add" class="btn btn--add-food">
+                    </form>
+                    
+                    <div class="pantry">
+                        <h3 class="pantry__head"></h3>
+                        <ul class="pantry__list"></ul>
+                        <!-- clear button/ listen for click event/ list.innerHTML = "" && delete stored API data with fetch<-->
+                        <!-- <button class="btn btn--clear"></button> -->
+                    </div>
+                </div>    
+            </section>
+
+            <!-- food chart -->
+            <section class="stats">
+                <h2 class="sub-heading">Delicious Statistics</h2>
+
+                <!-- total calories logged -->
+                <div class="calories">
+                    <p class="calories__text">Total calories logged: <span class="calories__total">0</span></p>
+                </div>
+
+                <!-- <canvas class="stats__chart" width="100%"></canvas> -->
+            </section>
+        </div> 
+    </main>
+
+
+    <!-- Implement footer. Make sure footer stays locked to bottom of page. -->
+    <!-- min-height: 100vh, display: flex or grid, etc. -->
+    <!-- <footer></footer> -->
 </body>
 </html>
