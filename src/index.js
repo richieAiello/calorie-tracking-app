@@ -1,13 +1,11 @@
 // Install snackbar in future for notifications
 // Update calories by combining all calories from all macros in pantry
 // 1g carbs = 4 calories, 1g protein = 4 calories, 1g fat = 9 calories
-// create a class to avoid DRY in calorie calculations
-// class must store caloric data in an [] for the entire pantry
-// implement totalcarbs(), totalProtein(), totalFat(), totalCalories()
 // Import and implement chart.js to display results
 
 // BaseURL* https://firestore.googleapis.com/v1/projects/calorie-tracking-app-d89d9/databases/(default)/documents/${endpoint}
 import FetchWrapper from "./fetch-wrapper.js";
+import MacroData from "./macro-data.js";
 import { tailor, displayName } from "./helpers.js";
 
 const API = new FetchWrapper(`https://firestore.googleapis.com/v1/projects/calorie-tracking-app-d89d9/databases/(default)/documents/`);
@@ -21,11 +19,14 @@ const protein = document.querySelector('#protein');
 const fat = document.querySelector('#fat');
 const pantryName = document.querySelector('.pantry__heading');
 const list = document.querySelector('.pantry__list');
+
+const macroData = new MacroData();
 const calories = document.querySelector('.calories__total');
 
 let endpoint;
 
 const displayFood = (name, carbs, protein, fat) => {
+    macroData.addFood(carbs, protein, fat);
     list.insertAdjacentHTML(
         'beforeend',
         `<li>
