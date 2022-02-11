@@ -4,3 +4,4 @@
 // Store necessary elements from the DOM in variables
 // Implement a function to display food items in the pantry
 // Create eventListeners for both forms working with fetch and the REST API
+import FetchWrapper from "./fetch-wrapper";
