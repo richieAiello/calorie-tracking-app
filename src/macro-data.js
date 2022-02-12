@@ -29,7 +29,7 @@ export default class MacroData {
         }, 0);
     }
 
-    totalCaloies() {
-        return (totalCarbs() * 4) + (totalProtein() * 4) + (totalFat() * 9);
+    totalCalories() {
+        return (this.totalCarbs() * 4) + (this.totalProtein() * 4) + (this.totalFat() * 9);
     }
 }

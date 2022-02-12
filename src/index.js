@@ -1,7 +1,6 @@
 // Install snackbar in future for notifications
-// Update calories by combining all calories from all macros in pantry
 // 1g carbs = 4 calories, 1g protein = 4 calories, 1g fat = 9 calories
-// Import and implement chart.js to display results
+// Create a function to recalculate macros and update chart
 
 // BaseURL* https://firestore.googleapis.com/v1/projects/calorie-tracking-app-d89d9/databases/(default)/documents/${endpoint}
 import FetchWrapper from "./fetch-wrapper.js";
@@ -29,7 +28,7 @@ const context = document.querySelector('.stats__chart').getContext('2d');
 let foodChart = null;
 
 // Implementing a chart
-// create initChart()
+// Learn how to make bigger labels
 const initChart = () => {
     foodChart?.destroy();
     
@@ -88,6 +87,29 @@ const initChart = () => {
     return foodChart;
 }
 
+// updates chart
+// still broken
+const updateChart = () => {
+    // This part works
+    foodChart.data.labels = [
+        `Carbs: ${macroData.totalCarbs()}`,
+        `Protein: ${macroData.totalProtein()}`,
+        `Fat: ${macroData.totalFat()}`
+    ];
+    // Find a way to recalculate these values in the charts dataset
+    foodChart.data.datasets.data = [
+        macroData.totalCarbs(),
+        macroData.totalProtein(),
+        macroData.totalFat()
+    ];
+    // foodChart.update();
+}
+
+// Displays the totalCalories from the pantry
+const showTotalCalories = () => {
+    calories.textContent = macroData.totalCalories();
+}
+
 // Renders food items in the pantry
 const displayFood = (name, carbs, protein, fat) => {
     macroData.addFood(carbs, protein, fat);
@@ -120,9 +142,9 @@ const clearForm = () => {
 pantryForm.addEventListener('submit', event => {
     event.preventDefault();
 
+    macroData.food.length = 0;
     list.innerHTML = "";
     pantryName.textContent = "";
-    macroData.food.length = 0; 
     
     API.get(tailor(pantryId.value))
         .then(data => {
@@ -142,6 +164,7 @@ pantryForm.addEventListener('submit', event => {
         .finally(() => {
             pantryId.value = "";
             initChart();
+            showTotalCalories();
         });
 });
 
@@ -170,6 +193,8 @@ foodForm.addEventListener('submit', event => {
         .catch(error => console.error(error))
         .finally(() => {
             clearForm();
-            foodChart.update();
+            // Implement a way to update foodChart
+            // updateChart();
+            showTotalCalories();
         });    
 });
