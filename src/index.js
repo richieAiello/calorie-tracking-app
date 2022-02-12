@@ -88,21 +88,19 @@ const initChart = () => {
 }
 
 // updates chart
-// still broken
 const updateChart = () => {
-    // This part works
     foodChart.data.labels = [
         `Carbs: ${macroData.totalCarbs()}`,
         `Protein: ${macroData.totalProtein()}`,
         `Fat: ${macroData.totalFat()}`
     ];
-    // Find a way to recalculate these values in the charts dataset
-    foodChart.data.datasets.data = [
+    // Must access datasets[0]
+    foodChart.data.datasets[0].data = [
         macroData.totalCarbs(),
         macroData.totalProtein(),
         macroData.totalFat()
     ];
-    // foodChart.update();
+    foodChart.update();
 }
 
 // Displays the totalCalories from the pantry
@@ -128,6 +126,7 @@ const displayFood = (name, carbs, protein, fat) => {
         </li>`);
 }
 
+// clears foodForm
 const clearForm = () => {
     name.value = "";
     carbs.value = "";
@@ -193,8 +192,7 @@ foodForm.addEventListener('submit', event => {
         .catch(error => console.error(error))
         .finally(() => {
             clearForm();
-            // Implement a way to update foodChart
-            // updateChart();
+            updateChart();
             showTotalCalories();
         });    
 });
