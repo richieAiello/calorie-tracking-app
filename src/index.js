@@ -5,10 +5,14 @@
 
 // BaseURL* https://firestore.googleapis.com/v1/projects/calorie-tracking-app-d89d9/databases/(default)/documents/${endpoint}
 import FetchWrapper from "./fetch-wrapper.js";
+import Chart from 'chart.js/auto';
 import MacroData from "./macro-data.js";
 import { tailor, displayName } from "./helpers.js";
 
 const API = new FetchWrapper(`https://firestore.googleapis.com/v1/projects/calorie-tracking-app-d89d9/databases/(default)/documents/`);
+let endpoint = null;
+
+const macroData = new MacroData();
 
 const pantryForm = document.querySelector('.access-pantry');
 const pantryId = document.querySelector('#access-pantry__name');
@@ -20,11 +24,71 @@ const fat = document.querySelector('#fat');
 const pantryName = document.querySelector('.pantry__heading');
 const list = document.querySelector('.pantry__list');
 
-const macroData = new MacroData();
 const calories = document.querySelector('.calories__total');
+const context = document.querySelector('.stats__chart').getContext('2d');
+let foodChart = null;
 
-let endpoint;
+// Implementing a chart
+// create initChart()
+const initChart = () => {
+    foodChart?.destroy();
+    
+    foodChart = new Chart(context, {
+        type: 'bar',
+        data: {
+            labels: [
+                `Carbs: ${macroData.totalCarbs()}`,
+                `Protein: ${macroData.totalProtein()}`,
+                `Fat: ${macroData.totalFat()}`
+            ],
+            datasets: [{
+                label: 'Macro Nutrients',
+                data: [
+                    macroData.totalCarbs(),
+                    macroData.totalProtein(),
+                    macroData.totalFat()
+                ],
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 206, 86)'
+                ]
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        display: false
+                    },
+                    grid: {
+                        display: false
+                    },
+                    position: 0
+                },
+                x: {
+                    grid: {
+                        display: false
+                    },
+                    position: "top"
+                },
+            },
+            plugins: {
+                title: {
+                    display: false
+                },
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+    return foodChart;
+}
 
+// Renders food items in the pantry
 const displayFood = (name, carbs, protein, fat) => {
     macroData.addFood(carbs, protein, fat);
     list.insertAdjacentHTML(
@@ -47,7 +111,7 @@ const clearForm = () => {
     carbs.value = "";
     protein.value = "";
     fat.value = "";
-}
+} 
 
 // eventListeners
 
@@ -58,6 +122,7 @@ pantryForm.addEventListener('submit', event => {
 
     list.innerHTML = "";
     pantryName.textContent = "";
+    macroData.food.length = 0; 
     
     API.get(tailor(pantryId.value))
         .then(data => {
@@ -76,12 +141,12 @@ pantryForm.addEventListener('submit', event => {
         .catch(error => console.error(error))
         .finally(() => {
             pantryId.value = "";
+            initChart();
         });
 });
 
 // uses fetch post to create data in the API with the endpoint variable
-// injects pantry with food card representing your chosen meal
-// run clearForm() on submit
+// updates foodChart
 foodForm.addEventListener('submit', event => {
     event.preventDefault();
 
@@ -105,5 +170,6 @@ foodForm.addEventListener('submit', event => {
         .catch(error => console.error(error))
         .finally(() => {
             clearForm();
+            foodChart.update();
         });    
 });
