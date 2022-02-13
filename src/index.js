@@ -201,19 +201,7 @@ foodForm.addEventListener('submit', event => {
 
 // Finding away to remove all food items from the chosen pantry
 // fetch data with get then loop through data and delete each doc with fetch individually
-clearBtn.addEventListener('click', event => {
-    API.get(endpoint)
-        .then(data => {
-            console.log(data.documents)
-            data.documents.forEach(document => {
-                API.delete(endpoint, document)
-                    .then(data => {
-                        console.log(data);
-                    })
-            })
-        })
-        .catch(error => console.error(error))
-        .finally(() => {
-            list.innerHTML = "";
-        })
-});
+// Learning how to delete Firetstore collections with calluable functions
+// clearBtn.addEventListener('click', event => {
+    
+// });
