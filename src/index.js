@@ -22,6 +22,7 @@ const protein = document.querySelector('#protein');
 const fat = document.querySelector('#fat');
 const pantryName = document.querySelector('.pantry__heading');
 const list = document.querySelector('.pantry__list');
+const clearBtn = document.querySelector('.btn.btn--clear');
 
 const calories = document.querySelector('.calories__total');
 const context = document.querySelector('.stats__chart').getContext('2d');
@@ -147,13 +148,14 @@ pantryForm.addEventListener('submit', event => {
     
     API.get(tailor(pantryId.value))
         .then(data => {
+            console.log(data);
             console.log(data.documents);
-            data.documents?.forEach(doc => {
+            data.documents?.forEach(document => {
                 displayFood(
-                    doc.fields.name.stringValue,
-                    doc.fields.carbs.integerValue,
-                    doc.fields.protein.integerValue,
-                    doc.fields.fat.integerValue
+                    document.fields.name.stringValue,
+                    document.fields.carbs.integerValue,
+                    document.fields.protein.integerValue,
+                    document.fields.fat.integerValue
                 );
             });
             endpoint = tailor(pantryId.value);
@@ -195,4 +197,23 @@ foodForm.addEventListener('submit', event => {
             updateChart();
             showTotalCalories();
         });    
+});
+
+// Finding away to remove all food items from the chosen pantry
+// fetch data with get then loop through data and delete each doc with fetch individually
+clearBtn.addEventListener('click', event => {
+    API.get(endpoint)
+        .then(data => {
+            console.log(data.documents)
+            data.documents.forEach(document => {
+                API.delete(endpoint, document)
+                    .then(data => {
+                        console.log(data);
+                    })
+            })
+        })
+        .catch(error => console.error(error))
+        .finally(() => {
+            list.innerHTML = "";
+        })
 });

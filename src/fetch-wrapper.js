@@ -20,8 +20,14 @@ export default class FetchWrapper {
         return this._send(endpoint, "patch", body);
     }
 
-    delete(endpoint, body) {
-        return this._send(endpoint, "delete", body);
+    delete(endpoint, document) {
+        return fetch(`${this.baseURL}${endpoint}/${document}`, {
+            method: "delete",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: null
+        }).then(response => response.json());
     }
 
     _send(endpoint, method, body) {

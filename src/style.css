@@ -71,3 +71,7 @@
 .calories > p:last-child {
   margin-top: 0;
 }
+
+.btn--clear {
+  align-self: center;
+}
