@@ -22,7 +22,8 @@ const protein = document.querySelector('#protein');
 const fat = document.querySelector('#fat');
 const pantryName = document.querySelector('.pantry__heading');
 const list = document.querySelector('.pantry__list');
-const clearBtn = document.querySelector('.btn.btn--clear');
+const removeBtns = document.querySelectorAll('.btn.btn--remove');
+// const clearBtn = document.querySelector('.btn.btn--clear');
 
 const calories = document.querySelector('.calories__total');
 const context = document.querySelector('.stats__chart').getContext('2d');
@@ -110,6 +111,7 @@ const showTotalCalories = () => {
 }
 
 // Renders food items in the pantry
+// Added new button to each food item.
 const displayFood = (name, carbs, protein, fat) => {
     macroData.addFood(carbs, protein, fat);
     list.insertAdjacentHTML(
@@ -123,6 +125,7 @@ const displayFood = (name, carbs, protein, fat) => {
                     <li class="card__protein">Protein<br>${protein}g</li>
                     <li class="card__fat">Fat<br>${fat}g</li>
                 </ul>
+                <button class="btn btn--remove">Remove</button>
             </div>
         </li>`);
 }
@@ -199,9 +202,28 @@ foodForm.addEventListener('submit', event => {
         });    
 });
 
-// Finding away to remove all food items from the chosen pantry
+// This showed the emptying of objects in the console but did not remove items from firestore
 // fetch data with get then loop through data and delete each doc with fetch individually
-// Learning how to delete Firetstore collections with calluable functions
+
 // clearBtn.addEventListener('click', event => {
-    
+//     API.get(endpoint)
+//         .then(data => {
+//             console.log(data.documents)
+//             data.documents.forEach(document => {
+//                 API.delete(endpoint, document)
+//                     .then(data => {
+//                         console.log(data);
+//                     })
+//             })
+//         })
+//         .catch(error => console.error(error))
+//         .finally(() => {
+//             list.innerHTML = "";
+//         })
 // });
+
+// Working on adding a button to each food item to remove them individually
+// Access each button indivually by looping through the NodeList with forEach()
+// Then addEventListener to each button
+
+
