@@ -16,12 +16,6 @@ export default class FetchWrapper {
         return this._send(endpoint, "post", body);
     }
 
-    patch(endpoint, body) {
-        return this._send(endpoint, "patch", body);
-    }
-
-    // Implent a fetch with method: "delete"
-
     _send(endpoint, method, body) {
         return fetch(this.baseURL + endpoint, {
             method,

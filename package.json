@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "chart.js": "^3.7.0",
+    "firebase": "^9.6.6",
     "sass": "^1.49.7"
   }
 }
