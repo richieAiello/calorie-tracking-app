@@ -1,12 +1,11 @@
 // Install snackbar in future for notifications
+// Notify users when fppd is added to scroll down and view the food chart
 // 1g carbs = 4 calories, 1g protein = 4 calories, 1g fat = 9 calories
-// Create a function to recalculate macros and update chart
 
-// BaseURL* https://firestore.googleapis.com/v1/projects/calorie-tracking-app-d89d9/databases/(default)/documents/${endpoint}
 import FetchWrapper from "./fetch-wrapper.js";
 import Chart from 'chart.js/auto';
 import MacroData from "./macro-data.js";
-import { tailor, displayName } from "./helpers.js";
+import { tailor, displayName, cardCalories } from "./helpers.js";
 
 const API = new FetchWrapper(`https://firestore.googleapis.com/v1/projects/calorie-tracking-app-d89d9/databases/(default)/documents/`);
 let endpoint = null;
@@ -119,7 +118,7 @@ const displayFood = (name, carbs, protein, fat) => {
         `<li>
             <div class="card">
                 <h4 class="card__heading">${name}</h4>
-                <p class="card__text">${0} calories</p>
+                <p class="card__text">${cardCalories(carbs, protein, fat)} calories</p>
                 <ul class="card__list flex flex--card">
                     <li class="card__carbs">Carbs<br>${carbs}g</li>
                     <li class="card__protein">Protein<br>${protein}g</li>
