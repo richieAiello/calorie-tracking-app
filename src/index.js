@@ -105,6 +105,9 @@ const updateChart = () => {
     foodChart.update();
 }
 
+// clears the chart
+
+
 // Displays the totalCalories from the pantry
 const showTotalCalories = () => {
     calories.textContent = macroData.totalCalories();
@@ -172,40 +175,43 @@ pantryForm.addEventListener('submit', event => {
         });
 });
 
-// uses fetch post to create data in the API with the endpoint variable
-// updates foodChart
+// uses fetch post to create data in the API with the endpoint variable only if endpoint is truthy
+// updates foodChart and displays total calories
 foodForm.addEventListener('submit', event => {
     event.preventDefault();
 
-    API.post(endpoint, {
-        fields :{
-            name: { stringValue: name.value },
-            carbs: { integerValue: carbs.value },
-            protein: { integerValue: protein.value },
-            fat: { integerValue: fat.value }
-        }
-    })
-        .then(data => {
-            console.log(data);
-            displayFood(
-                name.value,
-                carbs.value,
-                protein.value,
-                fat.value
-            );
+    if (endpoint) {
+        API.post(endpoint, {
+            fields :{
+                name: { stringValue: name.value },
+                carbs: { integerValue: carbs.value },
+                protein: { integerValue: protein.value },
+                fat: { integerValue: fat.value }
+            }
         })
-        .catch(error => console.error(error))
-        .finally(() => {
-            clearForm();
-            updateChart();
-            showTotalCalories();
-        });    
+            .then(data => {
+                console.log(data);
+                displayFood(
+                    name.value,
+                    carbs.value,
+                    protein.value,
+                    fat.value
+                );
+                updateChart();
+                showTotalCalories();
+            })
+            .catch(error => console.error(error))  
+    } else {
+        // Replace with a snackbar pop-up
+        console.log("invalid endpoint");
+    }
+    clearForm();
 });
 
 
 // fetch data with get then loop through data and delete each doc with fetch individually
+// empties macroData and list, then updates the chart and total calories displayed 
 // working on possibly refactoring, this algorithim gets worse as food items are added
-// still needs to update graph upon completion
 clearBtn.addEventListener('click', event => {
     API.get(endpoint)
         .then(data => {
@@ -222,7 +228,10 @@ clearBtn.addEventListener('click', event => {
         })
         .catch(error => console.error(error))
         .finally(() => {
+            macroData.food.length = 0;
             list.innerHTML = "";
+            updateChart();
+            showTotalCalories();
         })
 });
 
