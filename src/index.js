@@ -105,9 +105,6 @@ const updateChart = () => {
     foodChart.update();
 }
 
-// clears the chart
-
-
 // Displays the totalCalories from the pantry
 const showTotalCalories = () => {
     calories.textContent = macroData.totalCalories();
@@ -139,7 +136,13 @@ const clearForm = () => {
     carbs.value = "";
     protein.value = "";
     fat.value = "";
-} 
+}
+
+// clears list and macroData
+const clearFood = () => {
+    macroData.food.length = 0;
+    list.innerHTML = "";
+}
 
 // eventListeners
 
@@ -148,10 +151,8 @@ const clearForm = () => {
 pantryForm.addEventListener('submit', event => {
     event.preventDefault();
 
-    macroData.food.length = 0;
-    list.innerHTML = "";
-    pantryName.textContent = "";
-    
+    clearFood();
+
     API.get(tailor(pantryId.value))
         .then(data => {
             console.log(data);
@@ -199,40 +200,41 @@ foodForm.addEventListener('submit', event => {
                 );
                 updateChart();
                 showTotalCalories();
+                clearForm();
             })
+            // Replace with a snackbar pop-up 
             .catch(error => console.error(error))  
     } else {
         // Replace with a snackbar pop-up
-        console.log("invalid endpoint");
+        console.log("Please enter a valid pantry name!");
     }
-    clearForm();
 });
 
 
-// fetch data with get then loop through data and delete each doc with fetch individually
+// fetch data with get, then loop through data and delete each document individually
 // empties macroData and list, then updates the chart and total calories displayed 
-// working on possibly refactoring, this algorithim gets worse as food items are added
+// Have button disabled then enable button once a pantry has been accessed
+// or toggle buttons display?
 clearBtn.addEventListener('click', event => {
     API.get(endpoint)
         .then(data => {
             console.log(data.documents)
             data.documents.forEach(document => {
-                console.log(document.name);
+                // console.log(document.name);
                 API.delete(document.name)
                     .then(data => {
-                        console.log(data);
+                        // console.log(data);
                         console.log("Document deleted");
                     })
+                    // Replace with a snackbar pop-up
                     .catch(error => console.error(error));
             })
-        })
-        .catch(error => console.error(error))
-        .finally(() => {
-            macroData.food.length = 0;
-            list.innerHTML = "";
+            clearFood();
             updateChart();
             showTotalCalories();
         })
+        // Replace with a snackbar pop-up
+        .catch(error => console.error(error))
 });
 
 // Working on adding a button to each food item to remove them individually
