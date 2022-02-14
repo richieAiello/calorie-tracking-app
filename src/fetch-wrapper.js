@@ -16,6 +16,12 @@ export default class FetchWrapper {
         return this._send(endpoint, "post", body);
     }
 
+    delete(endpoint) {
+        return fetch("https://firestore.googleapis.com/v1/" + endpoint, {
+            method: "delete"
+        }).then(response => response.json());
+    }
+
     _send(endpoint, method, body) {
         return fetch(this.baseURL + endpoint, {
             method,

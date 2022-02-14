@@ -7,22 +7,6 @@ import FetchWrapper from "./fetch-wrapper.js";
 import Chart from 'chart.js/auto';
 import MacroData from "./macro-data.js";
 import { tailor, displayName } from "./helpers.js";
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-
-// My web app's Firebase configuration provided by Firebase
-const firebaseConfig = {
-    apiKey: "AIzaSyAJUj3zYw31Dw9fQy2lB7ibRrBft03_2wo",
-    authDomain: "calorie-tracking-app-d89d9.firebaseapp.com",
-    projectId: "calorie-tracking-app-d89d9",
-    storageBucket: "calorie-tracking-app-d89d9.appspot.com",
-    messagingSenderId: "76403093469",
-    appId: "1:76403093469:web:7006524646e9f057b91034"
-  };
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore();
-
 
 const API = new FetchWrapper(`https://firestore.googleapis.com/v1/projects/calorie-tracking-app-d89d9/databases/(default)/documents/`);
 let endpoint = null;
@@ -38,8 +22,8 @@ const protein = document.querySelector('#protein');
 const fat = document.querySelector('#fat');
 const pantryName = document.querySelector('.pantry__heading');
 const list = document.querySelector('.pantry__list');
-const removeBtns = document.querySelectorAll('.btn.btn--remove');
-// const clearBtn = document.querySelector('.btn.btn--clear');
+// const removeBtns = document.querySelectorAll('.btn.btn--remove');
+const clearBtn = document.querySelector('.btn.btn--clear');
 
 const calories = document.querySelector('.calories__total');
 const context = document.querySelector('.stats__chart').getContext('2d');
@@ -218,25 +202,29 @@ foodForm.addEventListener('submit', event => {
         });    
 });
 
-// This showed the emptying of objects in the console but did not remove items from firestore
-// fetch data with get then loop through data and delete each doc with fetch individually
 
-// clearBtn.addEventListener('click', event => {
-//     API.get(endpoint)
-//         .then(data => {
-//             console.log(data.documents)
-//             data.documents.forEach(document => {
-//                 API.delete(endpoint, document)
-//                     .then(data => {
-//                         console.log(data);
-//                     })
-//             })
-//         })
-//         .catch(error => console.error(error))
-//         .finally(() => {
-//             list.innerHTML = "";
-//         })
-// });
+// fetch data with get then loop through data and delete each doc with fetch individually
+// working on possibly refactoring, this algorithim gets worse as food items are added
+// still needs to update graph upon completion
+clearBtn.addEventListener('click', event => {
+    API.get(endpoint)
+        .then(data => {
+            console.log(data.documents)
+            data.documents.forEach(document => {
+                console.log(document.name);
+                API.delete(document.name)
+                    .then(data => {
+                        console.log(data);
+                        console.log("Document deleted");
+                    })
+                    .catch(error => console.error(error));
+            })
+        })
+        .catch(error => console.error(error))
+        .finally(() => {
+            list.innerHTML = "";
+        })
+});
 
 // Working on adding a button to each food item to remove them individually
 // Access each button indivually by looping through the NodeList with forEach()
@@ -244,6 +232,6 @@ foodForm.addEventListener('submit', event => {
 
 // removeBtns.forEach(btn => {
 //     btn.addEventListener('click', event => {
-//         API.delete(`${endpoint}/${}`)
+//         API.delete()
 //     })
 // })
