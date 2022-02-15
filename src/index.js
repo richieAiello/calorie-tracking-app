@@ -137,8 +137,16 @@ const displayFood = (name, carbs, protein, fat) => {
     // Adds eventListener to current button
     // On click removes the card from the food list. element.remove()
     // Next step is to implement fetch delete for this specific document
-    document.querySelector(`#remove-${foodId}`).addEventListener('click', event => {
-        console.log("finally");
+    const currentItem = document.querySelector(`#item-${foodId}`);
+    const currentBtn = document.querySelector(`#remove-${foodId}`);
+
+    currentBtn.addEventListener('click', event => {
+        // deletes current item
+        currentItem.remove()
+        // needs to delete with fetch the document from freibase corresponding to the current item
+        // fetch get
+        // loop data and find document name that matches current document
+        // delete that document  
     })
 }
 
