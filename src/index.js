@@ -108,20 +108,20 @@ const showTotalCalories = () => {
     calories.textContent = macroData.totalCalories();
 }
 
+// global food id for card items
+let foodId = 0;
+
 // Renders food items in the pantry
-// Added new button to each food item.
+// Adds new button to each food item to individually remove from list and deletes data from firebase.
 const displayFood = (name, carbs, protein, fat) => {
     macroData.addFood(carbs, protein, fat);
 
-    // find a way to apply a personal Id to each btn--remove
-    // then select that id from the dom after the card is created and apply eventListener
-    // find a way to push new list items to an array
-    // loop through the array and set the value of button id="[currentIndex]"
-    // pull this new id for each button to add individual event Listeners upon button creation
     // avoids having to loop a NodeList and repeatedly remove/add eventListeners
+    foodId++;
+    
     list.insertAdjacentHTML(
         'beforeend',
-        `<li class="pantry__item">
+        `<li id="item-${foodId}" class="pantry__item">
             <div class="card">
                 <h4 class="card__heading">${name}</h4>
                 <p class="card__text">${cardCalories(carbs, protein, fat)} calories</p>
@@ -130,9 +130,16 @@ const displayFood = (name, carbs, protein, fat) => {
                     <li class="card__protein">Protein<br>${protein}g</li>
                     <li class="card__fat">Fat<br>${fat}g</li>
                 </ul>
-                <button class="btn btn--remove btn--remove">Remove</button>
+                <button id="remove-${foodId}" class="btn btn--remove">Remove</button>
             </div>
-        </li>`);  
+        </li>`);
+    
+    // Adds eventListener to current button
+    // On click removes the card from the food list. element.remove()
+    // Next step is to implement fetch delete for this specific document
+    document.querySelector(`#remove-${foodId}`).addEventListener('click', event => {
+        console.log("finally");
+    })
 }
 
 // clears foodForm
