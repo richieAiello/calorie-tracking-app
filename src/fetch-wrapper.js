@@ -8,10 +8,6 @@ export default class FetchWrapper {
             .then(response => response.json());
     }
 
-    put(endpoint, body) {
-        return this._send(endpoint, "put", body);
-    }
-
     post(endpoint, body) {
         return this._send(endpoint, "post", body);
     }
