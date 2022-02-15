@@ -22,8 +22,8 @@ const fat = document.querySelector('#fat');
 const pantryName = document.querySelector('.pantry__heading');
 const list = document.querySelector('.pantry__list');
 const clearBtn = document.querySelector('.btn.btn--clear');
-
 const calories = document.querySelector('.calories__total');
+
 const context = document.querySelector('.stats__chart').getContext('2d');
 let foodChart = null;
 
@@ -115,6 +115,10 @@ const displayFood = (name, carbs, protein, fat) => {
 
     // find a way to apply a personal Id to each btn--remove
     // then select that id from the dom after the card is created and apply eventListener
+    // find a way to push new list items to an array
+    // loop through the array and set the value of button id="[currentIndex]"
+    // pull this new id for each button to add individual event Listeners upon button creation
+    // avoids having to loop a NodeList and repeatedly remove/add eventListeners
     list.insertAdjacentHTML(
         'beforeend',
         `<li class="pantry__item">
