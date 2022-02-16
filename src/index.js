@@ -111,6 +111,14 @@ const showTotalCalories = () => {
 // global eventId
 let eventId = 0;
 
+// ********************************
+
+// May need to bring back foodCards[] and personalId
+// Then with indexOf(personalId) I should be able to remove the corresponding food item from macroData.
+// And finally implement that process to the remove button as well
+
+// ********************************
+
 // Renders food items in the pantry
 // Adds new button to each food item to individually remove from list and deletes data from firebase.
 const displayFoodCard = (name, carbs, protein, fat) => {
@@ -144,35 +152,40 @@ const displayFoodCard = (name, carbs, protein, fat) => {
     const currentFat = Number.parseInt(fat, 10);
     
     currentBtn.addEventListener('click', event => {
+        
+        console.log(macroData.food);
+        console.log(currentItem);
+    //     API.get(endpoint)
+    //         .then(data => {
+    //             console.log(data.documents);
+    //             data.documents.forEach(document => {
 
-        API.get(endpoint)
-            .then(data => {
-                console.log(data.documents);
-                data.documents.forEach(document => {
+    //                 const docName = document.fields.name.stringValue;
+                    
+    //                 const fakeCarbs = document.fields.carbs.integerValue;
+    //                 const docCarbs = Number.parseInt(fakeCarbs, 10);
+                    
+    //                 const fakeProtein = document.fields.protein.integerValue;
+    //                 const docProtein = Number.parseInt(fakeProtein, 10);
 
-                    const docName = document.fields.name.stringValue;
+    //                 const fakeFat = document.fields.fat.integerValue;
+    //                 const docFat = Number.parseInt(fakeFat, 10);
                     
-                    const fakeCarbs = document.fields.carbs.integerValue;
-                    const docCarbs = Number.parseInt(fakeCarbs, 10);
-                    
-                    const fakeProtein = document.fields.protein.integerValue;
-                    const docProtein = Number.parseInt(fakeProtein, 10);
+    //                if (docName === currentName && docCarbs === currentCarbs &&  docProtein === currentProtein && docFat === currentFat) {
+    //                    API.delete(document.name)
+    //                     .then(data => {
+    //                         console.log("Document deleted");
+    //                         currentItem.remove();
 
-                    const fakeFat = document.fields.fat.integerValue;
-                    const docFat = Number.parseInt(fakeFat, 10);
-                    
-                   if (docName === currentName && docCarbs === currentCarbs &&  docProtein === currentProtein && docFat === currentFat) {
-                       API.delete(document.name)
-                        .then(data => {
-                            console.log("Document deleted");
-                            // deletes current item
-                            currentItem.remove(); 
-                        })
-                        .catch(error => console.error(error))
-                   }
-                })               
-            })
-            .catch(error => console.error(error)); 
+    //                         // Must remove the food item from macroData and then run these functions
+    //                         // updateChart();
+    //                         // showTotalCalories();
+    //                     })
+    //                     .catch(error => console.error(error))
+    //                }
+    //             })               
+    //         })
+    //         .catch(error => console.error(error)); 
     })
 }
 
