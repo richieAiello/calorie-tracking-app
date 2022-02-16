@@ -108,10 +108,8 @@ const showTotalCalories = () => {
     calories.textContent = macroData.totalCalories();
 }
 
-
-
 // global array for foodCards
-let foodCards = [];
+// let foodCards = [];
 // global eventId
 let eventId = 0;
 
@@ -122,12 +120,6 @@ const displayFoodCard = (name, carbs, protein, fat) => {
     macroData.addFood(carbs, protein, fat);
 
     eventId++;
-
-    let personalId = eventId;
-    console.log({personalId});
-    
-    foodCards.push(personalId);
-    console.log(foodCards);
 
     list.insertAdjacentHTML(
         'beforeend',
@@ -148,35 +140,41 @@ const displayFoodCard = (name, carbs, protein, fat) => {
     // Next step is to implement fetch delete for this specific document
     const currentItem = document.querySelector(`#itemId-${eventId}`);
     const currentBtn = document.querySelector(`#btnId-${eventId}`);
+    const currentName = name;
+    const currentCarbs = Number.parseInt(carbs, 10);
+    const currentProtein = Number.parseInt(protein, 10);
+    const currentFat = Number.parseInt(fat, 10);
     
     currentBtn.addEventListener('click', event => {
-        // needs to delete with fetch the document from firebase corresponding to the current item
-        // fetch get
-        // loop data and find document name that matches current document
-        // delete that document
-        const index = foodCards.indexOf(personalId);
 
-        console.log({index});
+        API.get(endpoint)
+            .then(data => {
+                console.log(data.documents);
+                data.documents.forEach(document => {
 
-        // API.get(endpoint)
-        //     .then(data => {
-        //         // console.log(data.documents);
-        //         const document = data.documents[index];
-                
-        //         // console.log(document.name);
-        //         // Implement snackbar notifications
-        //         API.delete(document.name)
-        //             .then(data => {
-        //                 console.log("Document deleted");
-        //                 // removes exact card from foodCards
-        //                 foodCards.splice(index, 1);
-        
-        //                 // deletes current item
-        //                 currentItem.remove(); 
-        //             })
-        //             .catch(error => console.error(error))
-        //     })
-        //     .catch(error => console.error(error)); 
+                    const docName = document.fields.name.stringValue;
+                    
+                    const fakeCarbs = document.fields.carbs.integerValue;
+                    const docCarbs = Number.parseInt(fakeCarbs, 10);
+                    
+                    const fakeProtein = document.fields.protein.integerValue;
+                    const docProtein = Number.parseInt(fakeProtein, 10);
+
+                    const fakeFat = document.fields.fat.integerValue;
+                    const docFat = Number.parseInt(fakeFat, 10);
+                    
+                   if (docName === currentName && docCarbs === currentCarbs &&  docProtein === currentProtein && docFat === currentFat) {
+                       API.delete(document.name)
+                        .then(data => {
+                            console.log("Document deleted");
+                            // deletes current item
+                            currentItem.remove(); 
+                        })
+                        .catch(error => console.error(error))
+                   }
+                })               
+            })
+            .catch(error => console.error(error)); 
     })
 }
 
@@ -205,8 +203,8 @@ pantryForm.addEventListener('submit', event => {
 
     API.get(tailor(pantryId.value))
         .then(data => {
-            foodCards.length = 0;
-            console.log(foodCards);
+            // foodCards.length = 0;
+            // console.log(foodCards);
             console.log(data);
             console.log(data.documents);
             data.documents?.forEach(document => {
@@ -231,13 +229,12 @@ pantryForm.addEventListener('submit', event => {
 
 // uses fetch post to create data in the API with the endpoint variable only if endpoint is truthy
 // updates foodChart and displays total calories
-// when a food card is added to array foodCards must sorted alphabettically from a-z. foodCards.sort()
 foodForm.addEventListener('submit', event => {
     event.preventDefault();
 
     if (endpoint) {
         API.post(endpoint, {
-            fields :{
+            fields: {
                 name: { stringValue: name.value },
                 carbs: { integerValue: carbs.value },
                 protein: { integerValue: protein.value },
@@ -288,8 +285,8 @@ clearBtn.addEventListener('click', event => {
             clearFood();
             updateChart();
             showTotalCalories();
-            foodCards.length = 0;
-            console.log(foodCards);
+            // foodCards.length = 0;
+            // console.log(foodCards);
         })
         // Replace with a snackbar pop-up
         .catch(error => console.error(error))
