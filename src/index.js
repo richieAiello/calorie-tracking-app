@@ -108,8 +108,6 @@ const showTotalCalories = () => {
     calories.textContent = macroData.totalCalories();
 }
 
-// global array for foodCards
-// let foodCards = [];
 // global eventId
 let eventId = 0;
 
@@ -203,8 +201,6 @@ pantryForm.addEventListener('submit', event => {
 
     API.get(tailor(pantryId.value))
         .then(data => {
-            // foodCards.length = 0;
-            // console.log(foodCards);
             console.log(data);
             console.log(data.documents);
             data.documents?.forEach(document => {
@@ -217,7 +213,6 @@ pantryForm.addEventListener('submit', event => {
             });
             endpoint = tailor(pantryId.value);
             pantryName.textContent = displayName(endpoint);
-            // console.log(endpoint);
         })
         .catch(error => console.error(error))
         .finally(() => {
@@ -249,7 +244,6 @@ foodForm.addEventListener('submit', event => {
                     protein.value,
                     fat.value
                 );
-                // find a way to resort the list
                 updateChart();
                 showTotalCalories();
                 clearForm();
@@ -285,8 +279,6 @@ clearBtn.addEventListener('click', event => {
             clearFood();
             updateChart();
             showTotalCalories();
-            // foodCards.length = 0;
-            // console.log(foodCards);
         })
         // Replace with a snackbar pop-up
         .catch(error => console.error(error))
