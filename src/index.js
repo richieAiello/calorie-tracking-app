@@ -1,6 +1,5 @@
 // Install snackbar in future for notifications
-// Notify users when fppd is added to scroll down and view the food chart
-// 1g carbs = 4 calories, 1g protein = 4 calories, 1g fat = 9 calories
+// Notify users when food is added to scroll down and view the food chart
 
 import FetchWrapper from "./fetch-wrapper.js";
 import Chart from 'chart.js/auto';
@@ -27,7 +26,7 @@ const calories = document.querySelector('.calories__total');
 const context = document.querySelector('.stats__chart').getContext('2d');
 let foodChart = null;
 
-// Implementing a chart
+// Implementing a chart from chart.js
 // Learn how to make bigger labels
 const initChart = () => {
     foodChart?.destroy();
@@ -108,16 +107,11 @@ const showTotalCalories = () => {
     calories.textContent = macroData.totalCalories();
 }
 
-// global eventId
+// global id for events
 let eventId = 0;
 
-// ********************************
-
-// May need to bring back foodCards[] and personalId
-// Then with indexOf(personalId) I should be able to remove the corresponding food item from macroData.
-// And finally implement that process to the remove button as well
-
-// ********************************
+// global array to work with foodId
+const foodData = [];
 
 // Renders food items in the pantry
 // Adds new button to each food item to individually remove from list and deletes data from firebase.
@@ -126,6 +120,10 @@ const displayFoodCard = (name, carbs, protein, fat) => {
     macroData.addFood(carbs, protein, fat);
 
     eventId++;
+
+    const foodId = eventId;
+
+    foodData.push(foodId);
 
     list.insertAdjacentHTML(
         'beforeend',
@@ -142,8 +140,6 @@ const displayFoodCard = (name, carbs, protein, fat) => {
             </div>
         </li>`);
     
-    // Adds eventListener to current button
-    // Next step is to implement fetch delete for this specific document
     const currentItem = document.querySelector(`#itemId-${eventId}`);
     const currentBtn = document.querySelector(`#btnId-${eventId}`);
     const currentName = name;
@@ -151,41 +147,43 @@ const displayFoodCard = (name, carbs, protein, fat) => {
     const currentProtein = Number.parseInt(protein, 10);
     const currentFat = Number.parseInt(fat, 10);
     
-    currentBtn.addEventListener('click', event => {
-        
-        console.log(macroData.food);
-        console.log(currentItem);
-    //     API.get(endpoint)
-    //         .then(data => {
-    //             console.log(data.documents);
-    //             data.documents.forEach(document => {
+    currentBtn.addEventListener('click', event => {        
+        API.get(endpoint)
+            .then(data => {
+                console.log(data.documents);
+                
+                data.documents.find(document => {
 
-    //                 const docName = document.fields.name.stringValue;
+                    const docName = document.fields.name.stringValue;
                     
-    //                 const fakeCarbs = document.fields.carbs.integerValue;
-    //                 const docCarbs = Number.parseInt(fakeCarbs, 10);
+                    const fakeCarbs = document.fields.carbs.integerValue;
+                    const docCarbs = Number.parseInt(fakeCarbs, 10);
                     
-    //                 const fakeProtein = document.fields.protein.integerValue;
-    //                 const docProtein = Number.parseInt(fakeProtein, 10);
+                    const fakeProtein = document.fields.protein.integerValue;
+                    const docProtein = Number.parseInt(fakeProtein, 10);
 
-    //                 const fakeFat = document.fields.fat.integerValue;
-    //                 const docFat = Number.parseInt(fakeFat, 10);
+                    const fakeFat = document.fields.fat.integerValue;
+                    const docFat = Number.parseInt(fakeFat, 10);
                     
-    //                if (docName === currentName && docCarbs === currentCarbs &&  docProtein === currentProtein && docFat === currentFat) {
-    //                    API.delete(document.name)
-    //                     .then(data => {
-    //                         console.log("Document deleted");
-    //                         currentItem.remove();
+                   if (docName === currentName && docCarbs === currentCarbs &&  docProtein === currentProtein && docFat === currentFat) {
+                       return API.delete(document.name)
+                        .then(data => {
+                            console.log("Document deleted");
+                        
+                            const foodIndex = foodData.indexOf(foodId);
 
-    //                         // Must remove the food item from macroData and then run these functions
-    //                         // updateChart();
-    //                         // showTotalCalories();
-    //                     })
-    //                     .catch(error => console.error(error))
-    //                }
-    //             })               
-    //         })
-    //         .catch(error => console.error(error)); 
+                            macroData.spliceFood(foodIndex);
+                            foodData.splice(foodIndex, 1);
+                            
+                            currentItem.remove();
+                            updateChart();
+                            showTotalCalories();
+                        })
+                        .catch(error => console.error(error));
+                   }
+                })               
+            })
+            .catch(error => console.error(error)); 
     })
 }
 
@@ -199,7 +197,8 @@ const clearForm = () => {
 
 // clears list and macroData
 const clearFood = () => {
-    macroData.food.length = 0;
+    macroData.empty();
+    foodData.length = 0;
     list.innerHTML = "";
 }
 
@@ -265,13 +264,13 @@ foodForm.addEventListener('submit', event => {
             .catch(error => console.error(error))  
     } else {
         // Replace with a snackbar pop-up
-        console.log("Please enter a valid pantry name!");
+        console.log("Please enter a valid pantry name before adding food!");
     }
 });
 
 
 // fetch data with get, then loop through data and delete each document individually
-// empties macroData and list, then updates the chart and total calories displayed 
+// runs clearFood(), then updates the chart and total calories displayed 
 // Have button disabled then enable button once a pantry has been accessed?
 // or toggle buttons display?
 clearBtn.addEventListener('click', event => {
