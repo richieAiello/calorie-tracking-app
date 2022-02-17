@@ -108,7 +108,7 @@ const showTotalCalories = () => {
     calories.textContent = macroData.totalCalories();
 }
 
-// global eventId
+// global id for events
 let eventId = 0;
 
 // global array to work with foodId
@@ -116,10 +116,16 @@ const foodData = [];
 
 // ********************************
 
-// Anytime data is pushed macroData, then push foodId to foodData
-// Anytime macroData is emptied, then empty foodData
-// Anytime a single food item is removed from the pantry, use foodData.indexOf(foodId)...
-// ...to remove the corresponding food item from macroData. And foodData???
+// Anytime macroData.addFood(), then push foodId to foodData
+// Anytime macroData.empty(), then foodData.length = 0
+// Anytime a single food item is removed from the pantry...
+// const foodIndex = foodData.indexOf(foodId);
+// macroData.spliceFood(foodIndex);
+// foodData.splice(foodIndex, 1);
+// Also make sure remove buttons only remove one food item...
+// ...if 2 identical items exist only delete the first item.
+
+
 
 // ********************************
 
@@ -127,11 +133,11 @@ const foodData = [];
 // Adds new button to each food item to individually remove from list and deletes data from firebase.
 const displayFoodCard = (name, carbs, protein, fat) => {
 
-    eventId++;
-
     macroData.addFood(carbs, protein, fat);
 
-    let foodId = foodData.length;
+    eventId++;
+
+    const foodId = eventId;
 
     foodData.push(foodId);
 
@@ -159,40 +165,43 @@ const displayFoodCard = (name, carbs, protein, fat) => {
     const currentProtein = Number.parseInt(protein, 10);
     const currentFat = Number.parseInt(fat, 10);
     
-    currentBtn.addEventListener('click', event => {
-        
-        console.log(macroData.food);
-    //     API.get(endpoint)
-    //         .then(data => {
-    //             console.log(data.documents);
-    //             data.documents.forEach(document => {
+    currentBtn.addEventListener('click', event => {        
+        API.get(endpoint)
+            .then(data => {
+                console.log(data.documents);
+                
+                data.documents.find(document => {
 
-    //                 const docName = document.fields.name.stringValue;
+                    const docName = document.fields.name.stringValue;
                     
-    //                 const fakeCarbs = document.fields.carbs.integerValue;
-    //                 const docCarbs = Number.parseInt(fakeCarbs, 10);
+                    const fakeCarbs = document.fields.carbs.integerValue;
+                    const docCarbs = Number.parseInt(fakeCarbs, 10);
                     
-    //                 const fakeProtein = document.fields.protein.integerValue;
-    //                 const docProtein = Number.parseInt(fakeProtein, 10);
+                    const fakeProtein = document.fields.protein.integerValue;
+                    const docProtein = Number.parseInt(fakeProtein, 10);
 
-    //                 const fakeFat = document.fields.fat.integerValue;
-    //                 const docFat = Number.parseInt(fakeFat, 10);
+                    const fakeFat = document.fields.fat.integerValue;
+                    const docFat = Number.parseInt(fakeFat, 10);
                     
-    //                if (docName === currentName && docCarbs === currentCarbs &&  docProtein === currentProtein && docFat === currentFat) {
-    //                    API.delete(document.name)
-    //                     .then(data => {
-    //                         console.log("Document deleted");
-    //                         currentItem.remove();
+                   if (docName === currentName && docCarbs === currentCarbs &&  docProtein === currentProtein && docFat === currentFat) {
+                       return API.delete(document.name)
+                        .then(data => {
+                            console.log("Document deleted");
+                        
+                            const foodIndex = foodData.indexOf(foodId);
 
-    //                         // Must remove the food item from macroData and then run these functions
-    //                         // updateChart();
-    //                         // showTotalCalories();
-    //                     })
-    //                     .catch(error => console.error(error))
-    //                }
-    //             })               
-    //         })
-    //         .catch(error => console.error(error)); 
+                            macroData.spliceFood(foodIndex);
+                            foodData.splice(foodIndex, 1);
+                            
+                            currentItem.remove();
+                            updateChart();
+                            showTotalCalories();
+                        })
+                        .catch(error => console.error(error));
+                   }
+                })               
+            })
+            .catch(error => console.error(error)); 
     })
 }
 

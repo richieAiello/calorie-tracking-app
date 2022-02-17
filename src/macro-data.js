@@ -11,6 +11,14 @@ export default class MacroData {
         });
     }
 
+    spliceFood(index) {
+        this.food.splice(index, 1);
+    }
+
+    empty() {
+        this.food.length = 0;
+    }
+
     totalCarbs() {
         return this.food.reduce((total, current) => {
             return total + current.carbs;
