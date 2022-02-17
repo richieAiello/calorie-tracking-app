@@ -1,6 +1,5 @@
 // Install snackbar in future for notifications
-// Notify users when fppd is added to scroll down and view the food chart
-// 1g carbs = 4 calories, 1g protein = 4 calories, 1g fat = 9 calories
+// Notify users when food is added to scroll down and view the food chart
 
 import FetchWrapper from "./fetch-wrapper.js";
 import Chart from 'chart.js/auto';
@@ -27,7 +26,7 @@ const calories = document.querySelector('.calories__total');
 const context = document.querySelector('.stats__chart').getContext('2d');
 let foodChart = null;
 
-// Implementing a chart
+// Implementing a chart from chart.js
 // Learn how to make bigger labels
 const initChart = () => {
     foodChart?.destroy();
@@ -114,21 +113,6 @@ let eventId = 0;
 // global array to work with foodId
 const foodData = [];
 
-// ********************************
-
-// Anytime macroData.addFood(), then push foodId to foodData
-// Anytime macroData.empty(), then foodData.length = 0
-// Anytime a single food item is removed from the pantry...
-// const foodIndex = foodData.indexOf(foodId);
-// macroData.spliceFood(foodIndex);
-// foodData.splice(foodIndex, 1);
-// Also make sure remove buttons only remove one food item...
-// ...if 2 identical items exist only delete the first item.
-
-
-
-// ********************************
-
 // Renders food items in the pantry
 // Adds new button to each food item to individually remove from list and deletes data from firebase.
 const displayFoodCard = (name, carbs, protein, fat) => {
@@ -156,8 +140,6 @@ const displayFoodCard = (name, carbs, protein, fat) => {
             </div>
         </li>`);
     
-    // Adds eventListener to current button
-    // Next step is to implement fetch delete for this specific document
     const currentItem = document.querySelector(`#itemId-${eventId}`);
     const currentBtn = document.querySelector(`#btnId-${eventId}`);
     const currentName = name;
@@ -215,7 +197,8 @@ const clearForm = () => {
 
 // clears list and macroData
 const clearFood = () => {
-    macroData.food.length = 0;
+    macroData.empty();
+    foodData.length = 0;
     list.innerHTML = "";
 }
 
@@ -281,13 +264,13 @@ foodForm.addEventListener('submit', event => {
             .catch(error => console.error(error))  
     } else {
         // Replace with a snackbar pop-up
-        console.log("Please enter a valid pantry name!");
+        console.log("Please enter a valid pantry name before adding food!");
     }
 });
 
 
 // fetch data with get, then loop through data and delete each document individually
-// empties macroData and list, then updates the chart and total calories displayed 
+// runs clearFood(), then updates the chart and total calories displayed 
 // Have button disabled then enable button once a pantry has been accessed?
 // or toggle buttons display?
 clearBtn.addEventListener('click', event => {
