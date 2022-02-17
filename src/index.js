@@ -111,12 +111,15 @@ const showTotalCalories = () => {
 // global eventId
 let eventId = 0;
 
+// global array to work with foodId
+const foodData = [];
+
 // ********************************
 
-// Successfully created new branch
-// May need to bring back foodCards[] and personalId
-// Then with indexOf(personalId) I should be able to remove the corresponding food item from macroData.
-// And finally implement that process to the remove button as well
+// Anytime data is pushed macroData, then push foodId to foodData
+// Anytime macroData is emptied, then empty foodData
+// Anytime a single food item is removed from the pantry, use foodData.indexOf(foodId)...
+// ...to remove the corresponding food item from macroData. And foodData???
 
 // ********************************
 
@@ -124,9 +127,13 @@ let eventId = 0;
 // Adds new button to each food item to individually remove from list and deletes data from firebase.
 const displayFoodCard = (name, carbs, protein, fat) => {
 
+    eventId++;
+
     macroData.addFood(carbs, protein, fat);
 
-    eventId++;
+    let foodId = foodData.length;
+
+    foodData.push(foodId);
 
     list.insertAdjacentHTML(
         'beforeend',
