@@ -113,6 +113,7 @@ let eventId = 0;
 
 // ********************************
 
+// Successfully created new branch
 // May need to bring back foodCards[] and personalId
 // Then with indexOf(personalId) I should be able to remove the corresponding food item from macroData.
 // And finally implement that process to the remove button as well
@@ -154,7 +155,6 @@ const displayFoodCard = (name, carbs, protein, fat) => {
     currentBtn.addEventListener('click', event => {
         
         console.log(macroData.food);
-        console.log(currentItem);
     //     API.get(endpoint)
     //         .then(data => {
     //             console.log(data.documents);
