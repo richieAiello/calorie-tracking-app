@@ -107,10 +107,32 @@ const showTotalCalories = () => {
     calories.textContent = macroData.totalCalories();
 }
 
+// ***************************************
+
+// Task: Refactor displayFoodCard()
+// global array- const storageData = [];
+// Everytime API.get(endpoint) with pantryForm- storageData.push(document.name); 
+// update the eventListener on foodForm
+// everytime a new food item is added after a successful post...
+// clearFood()
+// API.get(endpoint)- loop through documents and displayFoodCard()
+// storageData.push(document.name);
+// When all the above is working-
+// Completely refactor the currentBtn events to only delete the specfic document in foodStorage
+// document location - storageData[foodData.indexOf(foodId)]
+// Once document is deleted from firebase-
+// splice the index of foodId from storageData and macroData
+// then splice from fromData
+
+// ***************************************
+
+// global array for data stored in firebase
+const storageData = [];
+
 // global id for events
 let eventId = 0;
 
-// global array to work with foodId
+// global array to work with foodId. Acts as the middleman for storageData and macroData
 const foodData = [];
 
 // Renders food items in the pantry
@@ -142,43 +164,34 @@ const displayFoodCard = (name, carbs, protein, fat) => {
     
     const currentItem = document.querySelector(`#itemId-${eventId}`);
     const currentBtn = document.querySelector(`#btnId-${eventId}`);
-    const currentName = name;
-    const currentCarbs = Number.parseInt(carbs, 10);
-    const currentProtein = Number.parseInt(protein, 10);
-    const currentFat = Number.parseInt(fat, 10);
     
-    currentBtn.addEventListener('click', event => {        
-        API.get(endpoint)
-            .then(data => {
-                console.log(data.documents);
+    // No longer need to run API.get since we have storageData
+    currentBtn.addEventListener('click', event => {
+
+        const foodIndex = foodData.indexOf(foodId);
+
+        const document = storageData[foodIndex];
+
+        console.log(document);
+
+        console.log(macroData.food[foodIndex]);
+
+
+        // API.delete(document)
+        //     .then(data => {
+        //         console.log("Document deleted");
+
+        //         storageData.splice(foodIndex, 1);
+        //         macroData.spliceFood(foodIndex);
+        //         foodData.splice(foodIndex, 1);
                 
-                data.documents.find(document => {
-
-                    const docName = document.fields.name.stringValue;
-                    const docCarbs = Number.parseInt(document.fields.carbs.integerValue, 10);
-                    const docProtein = Number.parseInt(document.fields.protein.integerValue, 10);
-                    const docFat = Number.parseInt(document.fields.fat.integerValue, 10);
-                    
-                   if (docName === currentName && docCarbs === currentCarbs &&  docProtein === currentProtein && docFat === currentFat) {
-                       return API.delete(document.name)
-                        .then(data => {
-                            console.log("Document deleted");
-                        
-                            const foodIndex = foodData.indexOf(foodId);
-
-                            macroData.spliceFood(foodIndex);
-                            foodData.splice(foodIndex, 1);
-                            
-                            currentItem.remove();
-                            updateChart();
-                            showTotalCalories();
-                        })
-                        .catch(error => console.error(error));
-                   }
-                })               
-            })
-            .catch(error => console.error(error)); 
-    })
+        //         currentItem.remove();
+        //         updateChart();
+        //         showTotalCalories();
+        //     })
+        //     // snackbar notification
+        //     .catch(error => console.error(error));
+    })               
 }
 
 // clears foodForm
@@ -189,11 +202,12 @@ const clearForm = () => {
     fat.value = "";
 }
 
-// clears list and macroData
+// clears list, storageData, macroData, and foodData
 const clearFood = () => {
+    list.innerHTML = "";
+    storageData.length = 0;
     macroData.empty();
     foodData.length = 0;
-    list.innerHTML = "";
 }
 
 // eventListeners
@@ -210,7 +224,8 @@ pantryForm.addEventListener('submit', event => {
             // console.log(data);
             // console.log(data.documents);
             data.documents?.forEach(document => {
-                console.log(document.name);
+                // console.log(document.name);
+                storageData.push(document.name);
                 
                 displayFoodCard(
                     document.fields.name.stringValue,
@@ -222,6 +237,7 @@ pantryForm.addEventListener('submit', event => {
             endpoint = tailor(pantryId.value);
             pantryName.textContent = displayName(endpoint);
         })
+        // snackbar notification for invalid pantry name
         .catch(error => console.error(error))
         .finally(() => {
             pantryId.value = "";
@@ -235,33 +251,26 @@ pantryForm.addEventListener('submit', event => {
 foodForm.addEventListener('submit', event => {
     event.preventDefault();
 
-    if (endpoint) {
-        API.post(endpoint, {
-            fields: {
-                name: { stringValue: name.value },
-                carbs: { integerValue: carbs.value },
-                protein: { integerValue: protein.value },
-                fat: { integerValue: fat.value }
-            }
+    API.post(endpoint, {
+        fields: {
+            name: { stringValue: name.value },
+            carbs: { integerValue: carbs.value },
+            protein: { integerValue: protein.value },
+            fat: { integerValue: fat.value }
+        }
+    })
+        .then(data => {
+            console.log(data);
+            // API.get
+            // if get is successul- clearFood()
+            // and loop through documents- displayFoodCard() and storageData.push(document.name);
+            // after loop completes-
+            // updateChart();
+            // showTotalCalories();
+            clearForm();
         })
-            .then(data => {
-                console.log(data);
-                displayFoodCard(
-                    name.value,
-                    carbs.value,
-                    protein.value,
-                    fat.value
-                );
-                updateChart();
-                showTotalCalories();
-                clearForm();
-            })
-            // Replace with a snackbar pop-up 
-            .catch(error => console.error(error))  
-    } else {
-        // Replace with a snackbar pop-up
-        console.log("Please enter a valid pantry name before adding food!");
-    }
+        // snackbar pop-up please enter valid pantry name before adding food
+        .catch(error => console.error(error))  
 });
 
 
