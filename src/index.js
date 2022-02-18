@@ -86,14 +86,13 @@ const initChart = () => {
     return foodChart;
 }
 
-// updates chart
+// updates data in the chart
 const updateChart = () => {
     foodChart.data.labels = [
         `Carbs: ${macroData.totalCarbs()}`,
         `Protein: ${macroData.totalProtein()}`,
         `Fat: ${macroData.totalFat()}`
     ];
-    // Must access datasets[0]
     foodChart.data.datasets[0].data = [
         macroData.totalCarbs(),
         macroData.totalProtein(),
@@ -107,14 +106,21 @@ const showTotalCalories = () => {
     calories.textContent = macroData.totalCalories();
 }
 
-// global id for events
+// global array for data stored in firebase
+const storageData = [];
+
+// global id ensuring every event is unique
 let eventId = 0;
 
-// global array to work with foodId
+// global array to work with foodId. Acts as the middleman for storageData and macroData
 const foodData = [];
 
-// Renders food items in the pantry
-// Adds new button to each food item to individually remove from list and deletes data from firebase.
+// Pushes the data of current card to macroData.food.
+// Increments eventId by 1 and sets a new foodId equal to the current eventId, then pushes foodId to foodData.
+// Renders food items in the pantry and adds a new button to each food item, using a unique eventId.
+// Button individually removes food item from list and deletes data from firebase.
+// After a successful deletion- splice the indexOf(foodId) from storageData and macroData.
+// Then splice from foodData. Finally removes the current food item from the list and updates chart/total calories.
 const displayFoodCard = (name, carbs, protein, fat) => {
 
     macroData.addFood(carbs, protein, fat);
@@ -142,52 +148,31 @@ const displayFoodCard = (name, carbs, protein, fat) => {
     
     const currentItem = document.querySelector(`#itemId-${eventId}`);
     const currentBtn = document.querySelector(`#btnId-${eventId}`);
-    const currentName = name;
-    const currentCarbs = Number.parseInt(carbs, 10);
-    const currentProtein = Number.parseInt(protein, 10);
-    const currentFat = Number.parseInt(fat, 10);
     
-    currentBtn.addEventListener('click', event => {        
-        API.get(endpoint)
+    currentBtn.addEventListener('click', event => {
+
+        const foodIndex = foodData.indexOf(foodId);
+
+        const document = storageData[foodIndex];
+
+        API.delete(document)
             .then(data => {
-                console.log(data.documents);
-                
-                data.documents.find(document => {
+                console.log("Document deleted");
 
-                    const docName = document.fields.name.stringValue;
-                    
-                    const fakeCarbs = document.fields.carbs.integerValue;
-                    const docCarbs = Number.parseInt(fakeCarbs, 10);
-                    
-                    const fakeProtein = document.fields.protein.integerValue;
-                    const docProtein = Number.parseInt(fakeProtein, 10);
-
-                    const fakeFat = document.fields.fat.integerValue;
-                    const docFat = Number.parseInt(fakeFat, 10);
-                    
-                   if (docName === currentName && docCarbs === currentCarbs &&  docProtein === currentProtein && docFat === currentFat) {
-                       return API.delete(document.name)
-                        .then(data => {
-                            console.log("Document deleted");
-                        
-                            const foodIndex = foodData.indexOf(foodId);
-
-                            macroData.spliceFood(foodIndex);
-                            foodData.splice(foodIndex, 1);
-                            
-                            currentItem.remove();
-                            updateChart();
-                            showTotalCalories();
-                        })
-                        .catch(error => console.error(error));
-                   }
-                })               
+                storageData.splice(foodIndex, 1);
+                macroData.spliceFood(foodIndex);
+                foodData.splice(foodIndex, 1);
+               
+                currentItem.remove();
+                updateChart();
+                showTotalCalories();
             })
-            .catch(error => console.error(error)); 
-    })
+            // snackbar notification
+            .catch(error => console.error(error));
+    })               
 }
 
-// clears foodForm
+// clears all values of foodForm
 const clearForm = () => {
     name.value = "";
     carbs.value = "";
@@ -195,27 +180,35 @@ const clearForm = () => {
     fat.value = "";
 }
 
-// clears list and macroData
+// clears list, storageData, macroData, and foodData
 const clearFood = () => {
+    list.innerHTML = "";
+    storageData.length = 0;
     macroData.empty();
     foodData.length = 0;
-    list.innerHTML = "";
 }
 
-// eventListeners
-
-// tests if the endpoint is valid, sets endpoint (if valid) for later use
-// empties pantry, injects pantry with fetch data, clears form
+// If the endpoint is valid- clears all 3 food arrays and sets an endpoint for later use.
+// Displays the Pantry Name based on the endpoint.
+// Loops through the documents and pushes the document.name(string) to storageData.
+// Displays a food card based on the information received from each document.
+// Clears the pantry's value. Initializes a new chart and updates total calories.
 pantryForm.addEventListener('submit', event => {
     event.preventDefault();
 
-    clearFood();
-
     API.get(tailor(pantryId.value))
         .then(data => {
-            console.log(data);
-            console.log(data.documents);
+
+            clearFood();
+
+            endpoint = tailor(pantryId.value);
+
+            pantryName.textContent = displayName(endpoint);
+
             data.documents?.forEach(document => {
+            
+                storageData.push(document.name);
+                
                 displayFoodCard(
                     document.fields.name.stringValue,
                     document.fields.carbs.integerValue,
@@ -223,71 +216,81 @@ pantryForm.addEventListener('submit', event => {
                     document.fields.fat.integerValue
                 );
             });
-            endpoint = tailor(pantryId.value);
-            pantryName.textContent = displayName(endpoint);
-        })
-        .catch(error => console.error(error))
-        .finally(() => {
+
             pantryId.value = "";
             initChart();
             showTotalCalories();
-        });
+        })
+        // snackbar notification please enter a valid pantry name
+        .catch(error => console.error(error))
 });
 
-// uses fetch post to create data in the API with the endpoint variable only if endpoint is truthy
-// updates foodChart and displays total calories
+// Uses fetch post to create data in firebase only if endpoint is truthy.
+// Planning to notify user with a snackbar pop up when endpoint is invalid.
+// Fetch gets data from firebase. On a successful get-
+// Runs clearFood() to empty list and all arrays.
+// Then loops through the documents and pushes document.name(string) to storageData for each document.
+// Displays a food card for each document based on the data.
+// Updates foodChart and displays total calories.
 foodForm.addEventListener('submit', event => {
     event.preventDefault();
 
-    if (endpoint) {
-        API.post(endpoint, {
-            fields: {
-                name: { stringValue: name.value },
-                carbs: { integerValue: carbs.value },
-                protein: { integerValue: protein.value },
-                fat: { integerValue: fat.value }
-            }
+    API.post(endpoint, {
+        fields: {
+            name: { stringValue: name.value },
+            carbs: { integerValue: carbs.value },
+            protein: { integerValue: protein.value },
+            fat: { integerValue: fat.value }
+        }
+    })
+        .then(data => {
+            
+            clearForm();
+
+            API.get(endpoint)
+                .then(data => {
+
+                    clearFood();
+
+                    data.documents?.forEach(document => {
+                        
+                        storageData.push(document.name);
+                        
+                        displayFoodCard(
+                            document.fields.name.stringValue,
+                            document.fields.carbs.integerValue,
+                            document.fields.protein.integerValue,
+                            document.fields.fat.integerValue
+                        );
+                    });
+
+                    updateChart();
+                    showTotalCalories();
+                })
+                // snackbar notification
+                .catch(error => console.error(error))
         })
-            .then(data => {
-                console.log(data);
-                displayFoodCard(
-                    name.value,
-                    carbs.value,
-                    protein.value,
-                    fat.value
-                );
-                updateChart();
-                showTotalCalories();
-                clearForm();
-            })
-            // Replace with a snackbar pop-up 
-            .catch(error => console.error(error))  
-    } else {
-        // Replace with a snackbar pop-up
-        console.log("Please enter a valid pantry name before adding food!");
-    }
+        // snackbar pop-up please enter valid pantry name before adding food
+        .catch(error => console.error(error))  
 });
 
+// Fetch data with get, then loop through data and delete each document individually.
+// Runs clearFood(), then updates the chart and total calories displayed.
 
-// fetch data with get, then loop through data and delete each document individually
-// runs clearFood(), then updates the chart and total calories displayed 
 // Have button disabled then enable button once a pantry has been accessed?
-// or toggle buttons display?
 clearBtn.addEventListener('click', event => {
     API.get(endpoint)
         .then(data => {
             // console.log(data.documents)
             data.documents.forEach(document => {
-                // console.log(document.name);
+                
                 API.delete(document.name)
                     .then(data => {
-                        // console.log(data);
                         console.log("Document deleted");
                     })
                     // Replace with a snackbar pop-up
                     .catch(error => console.error(error));
             })
-            // Add snackbar for success?
             clearFood();
             updateChart();
             showTotalCalories();
