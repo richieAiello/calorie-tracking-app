@@ -155,15 +155,9 @@ const displayFoodCard = (name, carbs, protein, fat) => {
                 data.documents.find(document => {
 
                     const docName = document.fields.name.stringValue;
-                    
-                    const fakeCarbs = document.fields.carbs.integerValue;
-                    const docCarbs = Number.parseInt(fakeCarbs, 10);
-                    
-                    const fakeProtein = document.fields.protein.integerValue;
-                    const docProtein = Number.parseInt(fakeProtein, 10);
-
-                    const fakeFat = document.fields.fat.integerValue;
-                    const docFat = Number.parseInt(fakeFat, 10);
+                    const docCarbs = Number.parseInt(document.fields.carbs.integerValue, 10);
+                    const docProtein = Number.parseInt(document.fields.protein.integerValue, 10);
+                    const docFat = Number.parseInt(document.fields.fat.integerValue, 10);
                     
                    if (docName === currentName && docCarbs === currentCarbs &&  docProtein === currentProtein && docFat === currentFat) {
                        return API.delete(document.name)
@@ -213,9 +207,11 @@ pantryForm.addEventListener('submit', event => {
 
     API.get(tailor(pantryId.value))
         .then(data => {
-            console.log(data);
-            console.log(data.documents);
+            // console.log(data);
+            // console.log(data.documents);
             data.documents?.forEach(document => {
+                console.log(document.name);
+                
                 displayFoodCard(
                     document.fields.name.stringValue,
                     document.fields.carbs.integerValue,
