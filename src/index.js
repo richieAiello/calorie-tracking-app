@@ -217,14 +217,17 @@ const clearFood = () => {
 pantryForm.addEventListener('submit', event => {
     event.preventDefault();
 
-    clearFood();
-
     API.get(tailor(pantryId.value))
         .then(data => {
-            // console.log(data);
-            // console.log(data.documents);
+
+            clearFood();
+
+            endpoint = tailor(pantryId.value);
+
+            pantryName.textContent = displayName(endpoint);
+
             data.documents?.forEach(document => {
-                // console.log(document.name);
+               
                 storageData.push(document.name);
                 
                 displayFoodCard(
@@ -234,16 +237,13 @@ pantryForm.addEventListener('submit', event => {
                     document.fields.fat.integerValue
                 );
             });
-            endpoint = tailor(pantryId.value);
-            pantryName.textContent = displayName(endpoint);
-        })
-        // snackbar notification for invalid pantry name
-        .catch(error => console.error(error))
-        .finally(() => {
+
             pantryId.value = "";
             initChart();
             showTotalCalories();
-        });
+        })
+        // snackbar notification for invalid pantry name
+        .catch(error => console.error(error))
 });
 
 // uses fetch post to create data in the API with the endpoint variable only if endpoint is truthy
@@ -260,19 +260,35 @@ foodForm.addEventListener('submit', event => {
         }
     })
         .then(data => {
-            console.log(data);
-            // API.get
-            // if get is successul- clearFood()
-            // and loop through documents- displayFoodCard() and storageData.push(document.name);
-            // after loop completes-
-            // updateChart();
-            // showTotalCalories();
+            
             clearForm();
+
+            API.get(endpoint)
+                .then(data => {
+
+                    clearFood();
+
+                    data.documents?.forEach(document => {
+                        
+                        storageData.push(document.name);
+                        
+                        displayFoodCard(
+                            document.fields.name.stringValue,
+                            document.fields.carbs.integerValue,
+                            document.fields.protein.integerValue,
+                            document.fields.fat.integerValue
+                        );
+                    });
+
+                    updateChart();
+                    showTotalCalories();
+                })
+                // snackbar notification
+                .catch(error => console.error(error))
         })
         // snackbar pop-up please enter valid pantry name before adding food
         .catch(error => console.error(error))  
 });
-
 
 // fetch data with get, then loop through data and delete each document individually
 // runs clearFood(), then updates the chart and total calories displayed 
