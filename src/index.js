@@ -1,6 +1,3 @@
-// Install snackbar in future for notifications
-// Notify users when food is added to scroll down and view the food chart
-
 import FetchWrapper from "./fetch-wrapper.js";
 import Chart from 'chart.js/auto';
 import MacroData from "./macro-data.js";
@@ -8,6 +5,10 @@ import { tailor, displayName, cardCalories } from "./helpers.js";
 
 const API = new FetchWrapper(`https://firestore.googleapis.com/v1/projects/calorie-tracking-app-d89d9/databases/(default)/documents/`);
 let endpoint = null;
+
+const snackbar = require('snackbar');
+snackbar.duration = 2000;
+snackbar.gap = 500;
 
 const macroData = new MacroData();
 
@@ -98,6 +99,7 @@ const updateChart = () => {
         macroData.totalProtein(),
         macroData.totalFat()
     ];
+
     foodChart.update();
 }
 
@@ -157,7 +159,6 @@ const displayFoodCard = (name, carbs, protein, fat) => {
 
         API.delete(document)
             .then(data => {
-                console.log("Document deleted");
 
                 storageData.splice(foodIndex, 1);
                 macroData.spliceFood(foodIndex);
@@ -166,9 +167,12 @@ const displayFoodCard = (name, carbs, protein, fat) => {
                 currentItem.remove();
                 updateChart();
                 showTotalCalories();
+                snackbar.show('Scroll down to view your delicious statistics!');
             })
-            // snackbar notification
-            .catch(error => console.error(error));
+            .catch(error => {
+                console.error(error);
+                snackbar.show('Server communication error. Could not delete document. Refresh and try again.');
+            });
     })               
 }
 
@@ -205,6 +209,8 @@ pantryForm.addEventListener('submit', event => {
 
             pantryName.textContent = displayName(endpoint);
 
+            snackbar.show(`Successfully accessed pantry: ${displayName(endpoint)}!`);
+
             data.documents?.forEach(document => {
             
                 storageData.push(document.name);
@@ -221,8 +227,10 @@ pantryForm.addEventListener('submit', event => {
             initChart();
             showTotalCalories();
         })
-        // snackbar notification please enter a valid pantry name
-        .catch(error => console.error(error))
+        .catch(error => {
+            console.error(error);
+            snackbar.show('Please enter a valid pantry name!');
+        })
 });
 
 // Uses fetch post to create data in firebase only if endpoint is truthy.
@@ -252,7 +260,7 @@ foodForm.addEventListener('submit', event => {
 
                     clearFood();
 
-                    data.documents?.forEach(document => {
+                    data.documents.forEach(document => {
                         
                         storageData.push(document.name);
                         
@@ -266,12 +274,17 @@ foodForm.addEventListener('submit', event => {
 
                     updateChart();
                     showTotalCalories();
+                    snackbar.show('Scroll down to view your delicious statistics!');
                 })
-                // snackbar notification
-                .catch(error => console.error(error))
+                .catch(error => {
+                    console.error(error);
+                    snackbar.show('Server communication errror. Could not receive food item. Refresh and try again.');
+                });
         })
-        // snackbar pop-up please enter valid pantry name before adding food
-        .catch(error => console.error(error))  
+        .catch(error => {
+            console.error(error);
+            snackbar.show('Please access a pantry before adding food items!');
+        });  
 });
 
 // Fetch data with get, then loop through data and delete each document individually.
@@ -281,20 +294,24 @@ foodForm.addEventListener('submit', event => {
 clearBtn.addEventListener('click', event => {
     API.get(endpoint)
         .then(data => {
-            // console.log(data.documents)
             data.documents.forEach(document => {
                 
                 API.delete(document.name)
                     .then(data => {
                         console.log("Document deleted");
                     })
-                    // Replace with a snackbar pop-up
-                    .catch(error => console.error(error));
-            })
+                    .catch(error => {
+                        console.error(error);
+                        snackbar.show('Server communication error. Could not delete document. Refresh and try again.');
+                    });
+            });
             clearFood();
             updateChart();
             showTotalCalories();
+            snackbar.show(`Successfully emptied pantry: ${displayName(endpoint)}!`);
         })
-        // Replace with a snackbar pop-up
-        .catch(error => console.error(error))
+        .catch(error => {
+            console.error(error);
+            snackbar.show('Server communication error. Could not delete pantry. Refresh and try again!');
+        });
 });
