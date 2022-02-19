@@ -20,10 +20,9 @@
 }
 
 .container {
-    min-height:calc(100vh - 10vh);
     width: min(90%, 75em); 
     margin-inline: auto;
-    border: 1px solid black;
+    // border: 1px solid black;
 }
 
 .flex {
@@ -51,28 +50,32 @@
 
 
 // section.access
-
+.access {
+    min-height: 5vh;
+}
 
 // section.food
-// .food {
-
-
-// }
+.food {
+    min-height: 10vh;
+}
 
 // section.data
-.data {
-    // min-height: 50vh;
 
-    .pantry {
-        max-height: 50vh;
-        overflow-y: scroll;
-        border: 1px solid black;
-    }
-    
-    .stats {
-        position: relative;
-        height: 65vh;
-    }
+.data {
+    min-height: 75vh;
+}
+
+.pantry {
+    max-height: 50vh;
+    min-width: 45%;
+    overflow-y: scroll;
+    border: 1px solid black;
+}
+
+.stats {
+    position: relative;
+    height: 100%;
+    width: 45%;
 }
 
 // snackbar settings

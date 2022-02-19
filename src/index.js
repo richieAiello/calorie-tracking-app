@@ -89,11 +89,6 @@ const initChart = () => {
 
 // updates data in the chart
 const updateChart = () => {
-    // foodChart.data.labels = [
-    //     `Carbs: ${macroData.totalCarbs()}`,
-    //     `Protein: ${macroData.totalProtein()}`,
-    //     `Fat: ${macroData.totalFat()}`
-    // ];
     foodChart.data.datasets[0].data = [
         macroData.totalCarbs(),
         macroData.totalProtein(),

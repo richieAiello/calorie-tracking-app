@@ -18,10 +18,8 @@
 }
 
 .container {
-  min-height: 90vh;
   width: min(90%, 75em);
   margin-inline: auto;
-  border: 1px solid black;
 }
 
 .flex {
@@ -43,14 +41,29 @@
   justify-content: space-around;
 }
 
-.data .pantry {
+.access {
+  min-height: 5vh;
+}
+
+.food {
+  min-height: 10vh;
+}
+
+.data {
+  min-height: 75vh;
+}
+
+.pantry {
   max-height: 50vh;
+  min-width: 45%;
   overflow-y: scroll;
   border: 1px solid black;
 }
-.data .stats {
+
+.stats {
   position: relative;
-  height: 65vh;
+  height: 100%;
+  width: 45%;
 }
 
 .snackbar {
