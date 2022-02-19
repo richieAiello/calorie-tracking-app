@@ -5,75 +5,52 @@
 }
 
 .app {
+  min-height: 100vh;
   margin: 0;
   font: 400 1.5rem/1.6 "Poppins", sans-serif;
 }
 
+.hero {
+  min-height: 10vh;
+}
+.hero__heading {
+  margin: 0;
+}
+
 .container {
+  min-height: 90vh;
   width: min(90%, 75em);
   margin-inline: auto;
+  border: 1px solid black;
 }
 
 .flex {
   display: flex;
 }
+.flex--hero {
+  justify-content: center;
+  align-items: center;
+}
+.flex--access {
+  align-items: center;
+}
 .flex--food {
   justify-content: space-around;
+  align-items: center;
 }
-.flex--form {
-  flex-direction: column;
-  align-items: flex-start;
-}
-.flex--macros {
-  flex-flow: row wrap;
-  align-items: flex-end;
+.flex--data {
+  align-items: center;
+  justify-content: space-around;
 }
 
-.food__form {
-  width: 20%;
-}
-.food__name {
-  width: 100%;
-  font: inherit;
-}
-.food__label {
-  width: 75%;
-}
-.food__grams {
-  width: 25%;
-  text-align: right;
-  font: inherit;
-  margin-top: 2em;
-}
-
-.pantry {
-  width: 60%;
+.data .pantry {
+  max-height: 50vh;
+  overflow-y: scroll;
   border: 1px solid black;
 }
-
-.stats {
-  min-height: 100vh;
-}
-.stats__container {
+.data .stats {
   position: relative;
-  margin: auto;
-  height: calc(100vh - 10em);
-  width: 100%;
-}
-
-.calories {
-  text-align: center;
-  font-size: 2rem;
-}
-.calories > p:first-child {
-  margin-bottom: 0;
-}
-.calories > p:last-child {
-  margin-top: 0;
-}
-
-.btn--clear {
-  align-self: center;
+  height: 65vh;
 }
 
 .snackbar {

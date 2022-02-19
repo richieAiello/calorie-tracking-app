@@ -12,8 +12,8 @@ snackbar.gap = 500;
 
 const macroData = new MacroData();
 
-const pantryForm = document.querySelector('.access-pantry');
-const pantryId = document.querySelector('#access-pantry__name');
+const pantryForm = document.querySelector('.access__pantry');
+const pantryId = document.querySelector('#access__name');
 const foodForm = document.querySelector('.food__form');
 const name = document.querySelector('#food__name');
 const carbs = document.querySelector('#carbs');
@@ -21,7 +21,7 @@ const protein = document.querySelector('#protein');
 const fat = document.querySelector('#fat');
 const pantryName = document.querySelector('.pantry__heading');
 const list = document.querySelector('.pantry__list');
-const clearBtn = document.querySelector('.btn.btn--clear');
+const clearBtn = document.querySelector('.btn.btn--clear-pantry');
 const calories = document.querySelector('.calories__total');
 
 const context = document.querySelector('.stats__chart').getContext('2d');
@@ -33,12 +33,12 @@ const initChart = () => {
     foodChart?.destroy();
     
     foodChart = new Chart(context, {
-        type: 'bar',
+        type: 'doughnut',
         data: {
             labels: [
-                `Carbs: ${macroData.totalCarbs()}`,
-                `Protein: ${macroData.totalProtein()}`,
-                `Fat: ${macroData.totalFat()}`
+                "Carbs",
+                "Protein",
+                "Fat"
             ],
             datasets: [{
                 label: 'Macro Nutrients',
@@ -68,17 +68,17 @@ const initChart = () => {
                     position: 0
                 },
                 x: {
+                    ticks: {
+                        display: false
+                    },
                     grid: {
                         display: false
                     },
-                    position: "top"
+                    position: 0
                 },
             },
             plugins: {
                 title: {
-                    display: false
-                },
-                legend: {
                     display: false
                 }
             }
@@ -89,11 +89,11 @@ const initChart = () => {
 
 // updates data in the chart
 const updateChart = () => {
-    foodChart.data.labels = [
-        `Carbs: ${macroData.totalCarbs()}`,
-        `Protein: ${macroData.totalProtein()}`,
-        `Fat: ${macroData.totalFat()}`
-    ];
+    // foodChart.data.labels = [
+    //     `Carbs: ${macroData.totalCarbs()}`,
+    //     `Protein: ${macroData.totalProtein()}`,
+    //     `Fat: ${macroData.totalFat()}`
+    // ];
     foodChart.data.datasets[0].data = [
         macroData.totalCarbs(),
         macroData.totalProtein(),
@@ -133,6 +133,8 @@ const displayFoodCard = (name, carbs, protein, fat) => {
 
     foodData.push(foodId);
 
+    // Change btn--move to appear as "X" rather than say remove. Maybe even transistion to a trash icon?
+    // Or maybe just a trash icon?
     list.insertAdjacentHTML(
         'beforeend',
         `<li id="itemId-${eventId}" class="pantry__item">
@@ -144,7 +146,7 @@ const displayFoodCard = (name, carbs, protein, fat) => {
                     <li class="card__protein">Protein<br>${protein}g</li>
                     <li class="card__fat">Fat<br>${fat}g</li>
                 </ul>
-                <button id="btnId-${eventId}" class="btn btn--remove">Remove</button>
+                <button id="btnId-${eventId}" class="btn btn--delete">delete</button>
             </div>
         </li>`);
     
