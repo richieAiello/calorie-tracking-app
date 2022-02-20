@@ -6,15 +6,15 @@
 
 // base styles
 .app {
-    // min-height: 100vh;
     margin: 0;
     font: 400 1.5rem/1.6 'Poppins', sans-serif;
 }
 
 .hero {
-    min-height: 5vh;
+    height: 3em;
 
     &__heading {
+        text-align: center;
         margin: 0;
     }
 }
@@ -28,24 +28,24 @@
 .flex {
     display: flex;
 
-    &--hero {
-        justify-content: center;
+    &--forms {
         align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
     }
 
     &--access {
-        flex-direction: column;
         align-items: center;
     }
 
     &--food {
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
     }
 
     &--data {
-        align-items: flex-start;
-        justify-content: space-around;
+        // justify-content: space-around;
+        // align-items: flex-start;
     }
 
     &--pantry {
@@ -54,39 +54,42 @@
     }
 }
 
-// section.access
-.access {
-    // min-height: 15vh;
+
+
+// section.forms
+.forms {
+    text-align: center;
     border: 1px solid black;
 }
 
-// section.food
 .food {
-    min-height: 5vh;
+    width: 100%;
 }
 
-// section.data
 
+// section.data
 .data {
-    min-height: 75vh;
+    padding: 2em 0;
 }
 
 .pantry {
     min-height: 75vh;
-    width: 45%;
-    border: 1px solid #000000;
+    width: 40vw;
+    // border: 1px solid #000000;
     
     &__heading {
         text-align: center;
         text-transform: capitalize;
+        margin: 0;
     }
 
     &__top {
-        height: calc(100% - 60vh);
+        // display: none;
+        height: calc(100% - 65vh);
     }
 
     &__bottom {
-        height: 60vh;
+        height: 65vh;
         overflow-y: scroll;
     }
 }
@@ -98,8 +101,10 @@
 .stats {
     position: relative;
     min-height: 75vh;
-    width: 45%;
+    width: 50vw;
 }
+
+//buttons
 
 // snackbar settings
 .snackbar {
