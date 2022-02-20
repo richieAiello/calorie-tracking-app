@@ -21,72 +21,78 @@
     <main class="main">
         <div class="container">
 
-            <section class="access">
-                <form class="access__pantry flex flex--access">
-                    <label for="access__name" class="access__label">Pantry Name</label>
-                    <input type="text" id="access__name" class="access__name" placeholder="Enter pantry name..." required>
-                    <input type="submit" value="Show Pantry" class="btn btn--access">
-                    <!-- turn into a snackbar popup -->
-                    <!-- <p class="access-pantry__text">*Write down the name of your pantry to access your food on a later visit!*</p> -->
-                </form>
-            </section>
-
-            <section class="food">
-                <form class="food__form flex flex--food">
-                    <div class="food__selection">
-                        <label for="food__name">Choose your food:</label>
-                        <select id="food__name" class="food__name" required>
-                            <option value="">Select Food</option>
-                            <option value="eggs">Eggs</option>
-                            <option value="bacon">Bacon</option>
-                            <option value="oatmeal">Oatmeal</option>
-                            <option value="porkchops">Porkchops</option>
-                            <option value="chicken-thighs">Chicken Thighs</option>
-                            <option value="salmon">Salmon</option>
-                            <option value="ground-beef">Ground Beef</option>
-                            <option value="rice">Rice</option>
-                            <option value="fruit">Fruit</option>
-                            <option value="vegetables">Vegetables</option>
-                        </select>
-                    </div>
-                    
-                    <div class="food__macro">
-                        <label for="carbs" class="food__label">Carbs:</label>
-                        <input type="number" id="carbs" class="food__grams" min="0" max="200" placeholder="0g" required>
-                    </div>
-                    
-                    <div class="food__macro">
-                        <label for="protein" class="food__label">Protein:</label>
-                        <input type="number" id="protein" class="food__grams" min="0" max="200" placeholder="0g" required>
-                    </div>
-                    
-                    <div class="food__macro">
-                        <label for="fat" class="food__label">Fat:</label>
-                        <input type="number" id="fat" class="food__grams" min="0" max="200" placeholder="0g" required>
-                    </div>
-
-                    <input type="submit" value="Add Meal" class="btn btn--food">
-                </form>
-            </section>
+            <div class="forms">
+                <section class="access">
+                    <form class="access__pantry flex flex--access">
+                        <label for="access__name" class="access__label">Pantry Name</label>
+                        <input type="text" id="access__name" class="access__name" placeholder="Enter pantry name..." required>
+                        <input type="submit" value="Show Pantry" class="btn btn--access">
+                        <!-- turn into a snackbar popup -->
+                        <!-- *Write down the name of your pantry to access your food on a later visit!*-->
+                    </form>
+                </section>
+                <section class="food">
+                    <form class="food__form flex flex--food">
+                        <div class="food__selection">
+                            <label for="food__name">Choose your food:</label>
+                            <select id="food__name" class="food__name" required>
+                                <option value="">Select Food</option>
+                                <option value="eggs">Eggs</option>
+                                <option value="bacon">Bacon</option>
+                                <option value="oatmeal">Oatmeal</option>
+                                <option value="porkchops">Porkchops</option>
+                                <option value="chicken-thighs">Chicken Thighs</option>
+                                <option value="salmon">Salmon</option>
+                                <option value="ground-beef">Ground Beef</option>
+                                <option value="rice">Rice</option>
+                                <option value="fruit">Fruit</option>
+                                <option value="vegetables">Vegetables</option>
+                            </select>
+                        </div>
+                
+                        <div class="food__macro">
+                            <label for="carbs" class="food__label">Carbs:</label>
+                            <input type="number" id="carbs" class="food__grams" min="0" max="200" placeholder="0g" required>
+                        </div>
+                
+                        <div class="food__macro">
+                            <label for="protein" class="food__label">Protein:</label>
+                            <input type="number" id="protein" class="food__grams" min="0" max="200" placeholder="0g" required>
+                        </div>
+                
+                        <div class="food__macro">
+                            <label for="fat" class="food__label">Fat:</label>
+                            <input type="number" id="fat" class="food__grams" min="0" max="200" placeholder="0g" required>
+                        </div>
+                        <input type="submit" value="Add Meal" class="btn btn--food">
+                    </form>
+                </section>
+            </div>
 
             <!-- Make this a flex container -->
             <!-- add a placeholder image for chart before init -->
             <section class="data flex flex--data">
                 <div class="pantry">
-                    <!-- capitalize heading -->
-                    <h3 class="pantry__heading"></h3>
-                    <!-- capitalize card__heading -->
-                    <ul class="pantry__list"></ul>
-                    <button class="btn btn--clear-pantry">Clear Pantry</button>
+                    <div class="pantry__top">
+                        <h3 class="pantry__heading"></h3>
+                        <div class="pantry__console flex flex--pantry">
+                            <span class="calories">Calories<br><span class="calories__total">0</span></span>
+                            <button class="btn btn--clear-pantry">Clear Pantry</button>
+                        </div>
+                    </div>
+                   
+                    <div class="pantry__bottom">
+                        <ul class="pantry__list"></ul>
+                    </div>
                 </div>
 
                 <!-- Chart representing macro nutrients -->
                 <div class="stats">
-                    <canvas class="stats__chart"></canvas>  
+                    <canvas class="stats__chart" aria-label="Doughnut chart for food macro data" role="img">
+                        <!-- For accessability purposes -->
+                        <p>Doughnut chart displaying food macro data to appear here!</p>
+                    </canvas>
                 </div>
-
-                <!-- total calories logged -->
-                <!-- <p class="calories">Calories:<br><span class="calories__total">0</span></p> -->
             </section>
         </div> 
     </main>

@@ -5,13 +5,12 @@
 }
 
 .app {
-  min-height: 100vh;
   margin: 0;
   font: 400 1.5rem/1.6 "Poppins", sans-serif;
 }
 
 .hero {
-  min-height: 10vh;
+  min-height: 5vh;
 }
 .hero__heading {
   margin: 0;
@@ -30,6 +29,7 @@
   align-items: center;
 }
 .flex--access {
+  flex-direction: column;
   align-items: center;
 }
 .flex--food {
@@ -37,16 +37,20 @@
   align-items: center;
 }
 .flex--data {
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-around;
+}
+.flex--pantry {
+  justify-content: space-around;
+  align-items: center;
 }
 
 .access {
-  min-height: 5vh;
+  border: 1px solid black;
 }
 
 .food {
-  min-height: 10vh;
+  min-height: 5vh;
 }
 
 .data {
@@ -54,15 +58,29 @@
 }
 
 .pantry {
-  max-height: 50vh;
-  min-width: 45%;
+  min-height: 75vh;
+  width: 45%;
+  border: 1px solid #000000;
+}
+.pantry__heading {
+  text-align: center;
+  text-transform: capitalize;
+}
+.pantry__top {
+  height: calc(100% - 60vh);
+}
+.pantry__bottom {
+  height: 60vh;
   overflow-y: scroll;
-  border: 1px solid black;
+}
+
+.calories {
+  text-align: center;
 }
 
 .stats {
   position: relative;
-  height: 100%;
+  min-height: 75vh;
   width: 45%;
 }
 

@@ -24,11 +24,10 @@ const list = document.querySelector('.pantry__list');
 const clearBtn = document.querySelector('.btn.btn--clear-pantry');
 const calories = document.querySelector('.calories__total');
 
+// Implementing a doughnut chart with chart.js
 const context = document.querySelector('.stats__chart').getContext('2d');
 let foodChart = null;
 
-// Implementing a chart from chart.js
-// Learn how to make bigger labels
 const initChart = () => {
     foodChart?.destroy();
     
@@ -51,6 +50,16 @@ const initChart = () => {
                     'rgb(255, 99, 132)',
                     'rgb(54, 162, 235)',
                     'rgb(255, 206, 86)'
+                ],
+                hoverBackgroundColor: [
+                    'rgba(255, 99, 132, .75)',
+                    'rgba(54, 162, 235, .75)',
+                    'rgba(255, 206, 86, .75)'
+                ],
+                borderColor : [
+                    '#000',
+                    '#000',
+                    '#000'
                 ]
             }]
         },
@@ -80,10 +89,43 @@ const initChart = () => {
             plugins: {
                 title: {
                     display: false
+                },
+                legend: {
+                    labels: {
+                        font: {
+                            size: 26,
+                            weight: 400,
+                            style: 'italic'
+                        },
+                        color: '#000000'
+                    }
                 }
-            }
+            },
+            cutout: '35%',
+            radius: '100%',
+            animation: {
+                animateScale: true,
+                animateRotate: true
+            },
+            // circumference: 180
         }
     });
+
+    // Media query- changes chart circumference
+    const chartHalf = window.matchMedia('(max-width: 1240px)');
+
+    const windowDecrease = event => {
+        if (event.matches) {
+            foodChart.options.circumference = 180;
+        } else {
+            foodChart.options.circumference = 360;
+        }
+    }
+
+    chartHalf.addEventListener('change', windowDecrease);
+
+    windowDecrease(chartHalf);
+
     return foodChart;
 }
 
@@ -312,3 +354,15 @@ clearBtn.addEventListener('click', event => {
             snackbar.show('Server communication error. Could not delete pantry. Refresh and try again!');
         });
 });
+
+// MEDIA QUERIES
+
+
+
+// // Sets charts circumference to 360
+
+// const chartFull = window.matchMedia('(min-width: 1240px)');
+
+// const windowIncrease = event => {
+//     if (event.matches)
+// }
