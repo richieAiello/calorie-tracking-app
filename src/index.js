@@ -12,9 +12,9 @@ snackbar.gap = 500;
 
 const macroData = new MacroData();
 
-const pantryForm = document.querySelector('.access');
+const pantryForm = document.querySelector('.access__form');
 const pantryId = document.querySelector('#access__name');
-const foodForm = document.querySelector('.food');
+const foodForm = document.querySelector('.food__form');
 const name = document.querySelector('#food__name');
 const carbs = document.querySelector('#carbs');
 const protein = document.querySelector('#protein');

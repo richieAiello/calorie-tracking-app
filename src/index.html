@@ -13,79 +13,78 @@
     <title>Calorie Tracking App</title>
 </head>
 <body class="app">
-
-    <header class="hero">
-        <h1 class="hero__heading">Delicious Statistics</h1>
-    </header>
-
     <main class="app__container">
-        <div class="container">
 
-            <section class="forms flex flex--forms">
-                <form class="access">
-                    <label for="access__name" class="access__label">Pantry Name</label><br>
-                    <input type="text" id="access__name" class="access__name" placeholder="Enter pantry name..." required>
-                    <input type="submit" value="Show Pantry" class="btn btn--access">
-                    <!-- turn into a snackbar popup -->
-                    <!-- *Write down the name of your pantry to access your food on a later visit!*-->
-                </form>
+        <section class="hero">
+            <h1 class="hero__heading">Delicious Statistics</h1>
+        </section>
 
-                <form class="food flex flex--food">
-                    <div class="food__selection">
-                        <label for="food__name">Choose your food:</label><br>
-                        <select id="food__name" class="food__name" required>
-                            <option value="">Select Food</option>
-                            <option value="eggs">Eggs</option>
-                            <option value="bacon">Bacon</option>
-                            <option value="oatmeal">Oatmeal</option>
-                            <option value="porkchops">Porkchops</option>
-                            <option value="chicken-thighs">Chicken Thighs</option>
-                            <option value="salmon">Salmon</option>
-                            <option value="ground-beef">Ground Beef</option>
-                            <option value="rice">Rice</option>
-                            <option value="fruit">Fruit</option>
-                            <option value="vegetables">Vegetables</option>
-                        </select>
-                    </div>
-                    <div class="food__macro">
-                        <label for="carbs" class="food__label">Carbs:</label><br>
-                        <input type="number" id="carbs" class="food__grams" min="0" max="200" placeholder="0g" required>
-                    </div>
-                    <div class="food__macro">
-                        <label for="protein" class="food__label">Protein:</label><br>
-                        <input type="number" id="protein" class="food__grams" min="0" max="200" placeholder="0g" required>
-                    </div>
-                    <div class="food__macro">
-                        <label for="fat" class="food__label">Fat:</label><br>
-                        <input type="number" id="fat" class="food__grams" min="0" max="200" placeholder="0g" required>
-                    </div>
-                    <input type="submit" value="Add Meal" class="btn btn--food">
-                </form>
-            </section>
-            
-            <section class="data flex flex--data">
-                <div class="pantry">
-                    <div class="pantry__top">
-                        <h3 class="pantry__heading"></h3>
-                        <div class="pantry__console flex flex--pantry">
-                            <span class="calories">Calories<br><span class="calories__total">0</span></span>
-                            <button class="btn btn--clear-pantry">Clear Pantry</button>
-                        </div>
-                    </div>
-                
-                    <div class="pantry__bottom">
-                        <ul class="pantry__list"></ul>
-                    </div>
+        <section class="access">
+            <form class="access__form">
+                <label for="access__name" class="access__label">Pantry Name</label><br>
+                <input type="text" id="access__name" class="access__name" placeholder="Enter pantry name..." required>
+                <input type="submit" value="Show Pantry" class="btn btn--access">
+                <!-- turn into a snackbar popup -->
+                <!-- *Write down the name of your pantry to access your food on a later visit!*-->
+            </form>
+        </section>
+
+        <section class="food">
+            <form class="food__form flex flex--food">
+                <div class="food__selection">
+                    <label for="food__name">Choose your food:</label><br>
+                    <select id="food__name" class="food__name" required>
+                        <option value="">Select Food</option>
+                        <option value="eggs">Eggs</option>
+                        <option value="bacon">Bacon</option>
+                        <option value="oatmeal">Oatmeal</option>
+                        <option value="porkchops">Porkchops</option>
+                        <option value="chicken-thighs">Chicken Thighs</option>
+                        <option value="salmon">Salmon</option>
+                        <option value="ground-beef">Ground Beef</option>
+                        <option value="rice">Rice</option>
+                        <option value="fruit">Fruit</option>
+                        <option value="vegetables">Vegetables</option>
+                    </select>
                 </div>
-
-                <div class="stats">
-                    <canvas class="stats__chart" aria-label="Doughnut chart for food macro data" role="img">
-                        <!-- For accessability purposes -->
-                        <p>Doughnut chart displaying food macro data to appear here!</p>
-                    </canvas>
+                <div class="food__macro">
+                    <label for="carbs" class="food__label">Carbs:</label><br>
+                    <input type="number" id="carbs" class="food__grams" min="0" max="200" placeholder="0g" required>
                 </div>
-            </section>
-        </div> 
+                <div class="food__macro">
+                    <label for="protein" class="food__label">Protein:</label><br>
+                    <input type="number" id="protein" class="food__grams" min="0" max="200" placeholder="0g" required>
+                </div>
+                <div class="food__macro">
+                    <label for="fat" class="food__label">Fat:</label><br>
+                    <input type="number" id="fat" class="food__grams" min="0" max="200" placeholder="0g" required>
+                </div>
+                <input type="submit" value="Add Meal" class="btn btn--food">
+            </form>
+        </section>
+        
+    
+        <section class="pantry">
+            <div class="pantry__top">
+                <h3 class="pantry__heading"></h3>
+                <div class="pantry__console">
+                    <span class="calories">Calories<br><span class="calories__total">0</span></span>
+                    <button class="btn btn--clear-pantry">Clear Pantry</button>
+                </div>
+            </div>
+        
+            <div class="pantry__bottom">
+                <ul class="pantry__list"></ul>
+            </div>
+        </section>
+
+        <section class="stats">
+            <canvas class="stats__chart" aria-label="Doughnut chart for food macro data" role="img">
+                <!-- For accessability purposes -->
+                <p>Doughnut chart displaying food macro data to appear here!</p>
+            </canvas>
+        </section>
+       
     </main>
 </body>
 </html>

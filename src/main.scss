@@ -8,89 +8,84 @@
 .app {
     margin: 0;
     font: 400 1.5rem/1.6 'Poppins', sans-serif;
-}
 
-.hero {
-    height: 3em;
-
-    &__heading {
-        text-align: center;
-        margin: 0;
+    &__container {
+        height: 100vh;
+        width: 100vw;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto 1fr;
+        grid-template-areas: 
+            "hero hero"
+            "access food"
+            "pantry chart";
     }
 }
 
-.container {
-    width: min(90%, 75em); 
-    margin-inline: auto;
-    // border: 1px solid black;
+::-webkit-scrollbar {
+    width: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: red;
 }
 
 .flex {
     display: flex;
 
-    &--forms {
-        align-items: center;
-        justify-content: space-between;
-        flex-direction: column;
-    }
-
-    &--access {
-        align-items: center;
-    }
-
     &--food {
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    &--data {
-        // justify-content: space-around;
-        // align-items: flex-start;
-    }
-
-    &--pantry {
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
     }
 }
 
+.hero {
+    grid-area: hero;
+    background-color: red;
 
+    &__heading {
+        text-align: center;
+        margin: 0;
+        padding: 1em 0;
+    }
+}
 
-// section.forms
-.forms {
-    text-align: center;
-    border: 1px solid black;
+.access {
+    grid-area: access;
+    background-color: greenyellow;
 }
 
 .food {
-    width: 100%;
-}
-
-
-// section.data
-.data {
-    padding: 2em 0;
+    grid-area: food;
+    background-color: brown;
 }
 
 .pantry {
-    min-height: 75vh;
-    width: 40vw;
-    // border: 1px solid #000000;
+    grid-area: pantry;
+    min-height: 100%;
+    min-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+        "top"
+        "bottom";
     
+    background-color: blue;
+    
+    &__top {
+        grid-area: top;
+    }
+
+    &__bottom {
+        grid-area: bottom;
+        overflow-y: scroll;
+    }
+
     &__heading {
         text-align: center;
         text-transform: capitalize;
         margin: 0;
-    }
-
-    &__top {
-        // display: none;
-        height: calc(100% - 65vh);
-    }
-
-    &__bottom {
-        height: 65vh;
-        overflow-y: scroll;
     }
 }
 
@@ -99,9 +94,11 @@
 }
 
 .stats {
+    grid-area: chart;
+    background-color: orange;
     position: relative;
-    min-height: 75vh;
-    width: 50vw;
+    min-height: 100%;
+    min-width: 100%;
 }
 
 //buttons
