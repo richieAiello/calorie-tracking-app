@@ -12,17 +12,19 @@
   height: 100vh;
   width: 100vw;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto auto 1fr;
-  grid-template-areas: "hero hero" "access food" "pantry chart";
+  grid-template-areas: "hero hero hero hero" "access food food food" "pantry pantry chart chart";
 }
 
 ::-webkit-scrollbar {
-  width: 2px;
+  width: 0.2em;
+  height: 0;
 }
 
 ::-webkit-scrollbar-thumb {
   background: red;
+  border-radius: 100vw;
 }
 
 .flex {
@@ -31,6 +33,13 @@
 .flex--food {
   justify-content: center;
   align-items: center;
+}
+.flex--console {
+  align-items: center;
+  justify-content: space-around;
+}
+.flex--bottom {
+  flex-wrap: wrap;
 }
 
 .hero {
@@ -69,6 +78,7 @@
 .pantry__bottom {
   grid-area: bottom;
   overflow-y: scroll;
+  direction: rtl;
 }
 .pantry__heading {
   text-align: center;
@@ -99,11 +109,11 @@
   box-sizing: border-box;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   border-radius: 2px;
-  bottom: 1rem;
+  top: 2rem;
   left: 1rem;
   font-size: 90%;
   transition: visibility 0.3s, transform 0.3s;
-  transform: translateY(100px);
+  transform: translateY(-100px);
   visibility: hidden;
   will-change: transform;
 }

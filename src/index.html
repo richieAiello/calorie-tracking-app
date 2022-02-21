@@ -19,13 +19,12 @@
             <h1 class="hero__heading">Delicious Statistics</h1>
         </section>
 
+        <!-- Alter snackbar alert reminding to remember pantry name -->
         <section class="access">
             <form class="access__form">
                 <label for="access__name" class="access__label">Pantry Name</label><br>
                 <input type="text" id="access__name" class="access__name" placeholder="Enter pantry name..." required>
                 <input type="submit" value="Show Pantry" class="btn btn--access">
-                <!-- turn into a snackbar popup -->
-                <!-- *Write down the name of your pantry to access your food on a later visit!*-->
             </form>
         </section>
 
@@ -63,22 +62,26 @@
             </form>
         </section>
         
-    
+        <!-- Add a placeholder image while pantry is empty -->
+        <!-- Display none when food is added. Animate? -->
         <section class="pantry">
             <div class="pantry__top">
                 <h3 class="pantry__heading"></h3>
-                <div class="pantry__console">
+                <!-- Hide while pantry is empty -->
+                <div class="pantry__console  flex flex--console">
                     <span class="calories">Calories<br><span class="calories__total">0</span></span>
                     <button class="btn btn--clear-pantry">Clear Pantry</button>
                 </div>
             </div>
-        
+
             <div class="pantry__bottom">
-                <ul class="pantry__list"></ul>
+                <!-- Maybe change to grid -->
+                <ul class="pantry__list flex flex--bottom"></ul>
             </div>
         </section>
 
         <section class="stats">
+            <!-- Add a placeholder image when space is empty. Animate? -->
             <canvas class="stats__chart" aria-label="Doughnut chart for food macro data" role="img">
                 <!-- For accessability purposes -->
                 <p>Doughnut chart displaying food macro data to appear here!</p>
