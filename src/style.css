@@ -40,9 +40,6 @@
   align-items: center;
   justify-content: space-around;
 }
-.flex--card {
-  justify-content: center;
-}
 
 .container {
   width: min(90vw, 75em);
