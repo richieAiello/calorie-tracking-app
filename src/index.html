@@ -31,7 +31,7 @@
         <section class="food">
             <form class="food__form flex flex--food">
                 <div class="food__selection">
-                    <label for="food__name">Choose your food:</label><br>
+                    <label for="food__name">Food:</label><br>
                     <select id="food__name" class="food__name" required>
                         <option value="">Select Food</option>
                         <option value="eggs">Eggs</option>
@@ -69,17 +69,15 @@
                 <h3 class="pantry__heading"></h3>
                 <!-- Hide while pantry is empty -->
                 <div class="pantry__console  flex flex--console">
-                    <span class="calories">Calories<br><span class="calories__total">0</span></span>
+                    <span class="calories">Total calories<br><span class="calories__total">0</span></span>
                     <button class="btn btn--clear-pantry">Clear Pantry</button>
                 </div>
             </div>
-
             <div class="pantry__bottom">
                 <!-- Maybe change to grid -->
-                <ul class="pantry__list flex flex--bottom"></ul>
+                <ul class="pantry__list"></ul>
             </div>
         </section>
-
         <section class="stats">
             <!-- Add a placeholder image when space is empty. Animate? -->
             <canvas class="stats__chart" aria-label="Doughnut chart for food macro data" role="img">
@@ -87,7 +85,7 @@
                 <p>Doughnut chart displaying food macro data to appear here!</p>
             </canvas>
         </section>
-       
+    
     </main>
 </body>
 </html>

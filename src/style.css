@@ -2,15 +2,17 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 .app {
-  margin: 0;
   font: 400 1.5rem/1.6 "Poppins", sans-serif;
 }
 .app__container {
   height: 100vh;
-  width: 100vw;
+  width: min(90vw, 80em);
+  margin-inline: auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto auto 1fr;
@@ -23,7 +25,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: red;
+  background: #665555;
   border-radius: 100vw;
 }
 
@@ -38,28 +40,29 @@
   align-items: center;
   justify-content: space-around;
 }
-.flex--bottom {
-  flex-wrap: wrap;
+.flex--card {
+  justify-content: center;
+}
+
+.container {
+  width: min(90vw, 75em);
+  margin-inline: auto;
 }
 
 .hero {
   grid-area: hero;
-  background-color: red;
 }
 .hero__heading {
   text-align: center;
-  margin: 0;
   padding: 1em 0;
 }
 
 .access {
   grid-area: access;
-  background-color: greenyellow;
 }
 
 .food {
   grid-area: food;
-  background-color: brown;
 }
 
 .pantry {
@@ -70,20 +73,61 @@
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas: "top" "bottom";
-  background-color: blue;
 }
 .pantry__top {
   grid-area: top;
 }
-.pantry__bottom {
-  grid-area: bottom;
-  overflow-y: scroll;
-  direction: rtl;
-}
 .pantry__heading {
   text-align: center;
   text-transform: capitalize;
-  margin: 0;
+}
+.pantry__bottom {
+  grid-area: bottom;
+  padding: 1em 0;
+  overflow-y: scroll;
+}
+.pantry__list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 1em;
+}
+.card {
+  border: 1px solid black;
+  text-align: center;
+  border-radius: 2em;
+  margin: 0 1em;
+  box-shadow: 0 0 1rem #000;
+}
+.card__heading {
+  text-transform: capitalize;
+}
+.card__text {
+  margin: 0.5em 0;
+}
+.card__list {
+  list-style: none;
+  margin-bottom: 0.5em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.card__carbs {
+  margin-left: 0.5em;
+}
+.card__carbs .card__icon {
+  color: red;
+}
+.card__protein {
+  margin: 0 0.5em;
+}
+.card__protein .card__icon {
+  color: blue;
+}
+.card__fat {
+  margin-right: 0.5em;
+}
+.card__fat .card__icon {
+  color: yellow;
 }
 
 .calories {
@@ -92,10 +136,22 @@
 
 .stats {
   grid-area: chart;
-  background-color: orange;
   position: relative;
   min-height: 100%;
   min-width: 100%;
+  padding: 1em;
+}
+
+.btn {
+  border: initial;
+  font: inherit;
+}
+.btn--delete {
+  text-transform: uppercase;
+  margin-bottom: 0.5em;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.25em 0.5em;
 }
 
 .snackbar {

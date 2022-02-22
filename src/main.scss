@@ -2,16 +2,18 @@
 *::before,
 *::after {
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 // base styles
 .app {
-    margin: 0;
     font: 400 1.5rem/1.6 'Poppins', sans-serif;
 
     &__container {
         height: 100vh;
-        width: 100vw;
+        width: min(90vw, 80em);
+        margin-inline: auto;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-template-rows: auto auto 1fr;
@@ -28,7 +30,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: red;
+    background: #665555;
     border-radius: 100vw;
 }
 
@@ -45,32 +47,37 @@
         justify-content: space-around;
     }
 
-    &--bottom {
-        flex-wrap: wrap;
+    &--card {
+        justify-content: center;
     }
 }
 
+.container {
+    width: min(90vw, 75em);
+    margin-inline: auto;
+}
+
+// section.hero
 .hero {
     grid-area: hero;
-    background-color: red;
 
     &__heading {
         text-align: center;
-        margin: 0;
         padding: 1em 0;
     }
 }
 
+// section.access
 .access {
     grid-area: access;
-    background-color: greenyellow;
 }
 
+// section.food
 .food {
     grid-area: food;
-    background-color: brown;
 }
 
+// section.pantry
 .pantry {
     grid-area: pantry;
     min-height: 100%;
@@ -82,38 +89,116 @@
         "top"
         "bottom";
     
-    background-color: blue;
-    
     &__top {
         grid-area: top;
-    }
-
-    &__bottom {
-        grid-area: bottom;
-        overflow-y: scroll;
-        direction: rtl;
     }
 
     &__heading {
         text-align: center;
         text-transform: capitalize;
-        margin: 0;
     }
+
+    &__bottom {
+        grid-area: bottom;
+        padding: 1em 0;
+        overflow-y: scroll;
+        // border: 1px solid black;
+    }
+
+    &__list {
+        list-style: none;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        row-gap: 1em;
+        // place-items: center;
+    }
+
+    &__item {
+
+    }
+    
+}
+
+.card {
+    border: 1px solid black;
+    text-align: center;
+    border-radius: 2em;
+    margin: 0 1em;
+    box-shadow: 0 0 1rem #000;
+
+    &__heading {
+        text-transform: capitalize;
+    }
+
+    &__text {
+        margin: 0.5em 0;
+    }
+
+    &__list {
+        list-style: none;
+        margin-bottom: 0.5em;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    &__item {
+
+    }
+
+    &__carbs {
+        margin-left: 0.5em;
+
+        .card__icon {
+            color: red;
+        }
+    }
+
+    &__protein {
+        margin: 0 0.5em;
+
+        .card__icon {
+            color: blue;
+        }
+    }
+
+    &__fat {
+        margin-right: 0.5em;
+
+        .card__icon {
+            color: yellow;
+        }
+    }
+    
 }
 
 .calories {
     text-align: center;
 }
 
+
+// section.stats
 .stats {
     grid-area: chart;
-    background-color: orange;
     position: relative;
     min-height: 100%;
     min-width: 100%;
+    padding: 1em;
 }
 
 //buttons
+.btn {
+    border: initial;
+    // background: initial;
+    font: inherit;
+    
+    &--delete {
+        text-transform: uppercase;
+        margin-bottom: 0.5em;
+        font-size: 1rem;
+        font-weight: 700;
+        padding: 0.25em 0.5em;
+    }
+}
 
 // snackbar settings
 .snackbar {

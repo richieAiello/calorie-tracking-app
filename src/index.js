@@ -91,14 +91,16 @@ const initChart = () => {
                     display: false
                 },
                 legend: {
-                    labels: {
-                        font: {
-                            size: 26,
-                            weight: 400,
-                            style: 'italic'
-                        },
-                        color: '#000000'
-                    }
+                    display: false
+                    // labels: {
+                    //     font: {
+                    //         size: 26,
+                    //         weight: 400,
+                    //         style: 'italic'
+                    //     },
+                    //     color: '#000000',
+                    // },
+                    // position: 'left'
                 }
             },
             cutout: '35%',
@@ -176,12 +178,12 @@ const displayFoodCard = (name, carbs, protein, fat) => {
         'beforeend',
         `<li id="itemId-${eventId}" class="pantry__item">
             <div class="card">
-                <h4 class="card__heading">${name}</h4>
+                <h4 class="card__heading">${displayName(name)}</h4>
                 <p class="card__text">${cardCalories(carbs, protein, fat)} calories</p>
                 <ul class="card__list flex flex--card">
-                    <li class="card__carbs">Carbs<br>${carbs}g</li>
-                    <li class="card__protein">Protein<br>${protein}g</li>
-                    <li class="card__fat">Fat<br>${fat}g</li>
+                    <li class="card__item card__carbs">Carbs<br><i class="fas fa-bread-slice card__icon"></i><br>${carbs}g</li>
+                    <li class="card__item card__protein">Protein<br><i class="fas fa-drumstick-bite card__icon"></i><br>${protein}g</li>
+                    <li class="card__item card__fat">Fat<br><i class="fas fa-cheese card__icon"></i><br>${fat}g</li>
                 </ul>
                 <button id="btnId-${eventId}" class="btn btn--delete">delete</button>
             </div>
@@ -354,15 +356,3 @@ clearBtn.addEventListener('click', event => {
             snackbar.show('Server communication error. Could not delete pantry. Refresh and try again!');
         });
 });
-
-// MEDIA QUERIES
-
-
-
-// // Sets charts circumference to 360
-
-// const chartFull = window.matchMedia('(min-width: 1240px)');
-
-// const windowIncrease = event => {
-//     if (event.matches)
-// }
