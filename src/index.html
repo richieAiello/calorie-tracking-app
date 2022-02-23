@@ -23,15 +23,15 @@
         <section class="access">
             <form class="access__form">
                 <label for="access__name" class="access__label">Pantry Name</label><br>
-                <input type="text" id="access__name" class="access__name" placeholder="Enter pantry name..." required>
-                <input type="submit" value="Show Pantry" class="btn btn--access">
+                <input type="text" id="access__name" class="access__name" placeholder="Enter pantry name..." required><br>
+                <input type="submit" value="Access" class="btn btn--access">
             </form>
         </section>
 
         <section class="food">
             <form class="food__form flex flex--food">
                 <div class="food__selection">
-                    <label for="food__name">Food:</label><br>
+                    <label for="food__name">Food</label><br>
                     <select id="food__name" class="food__name" required>
                         <option value="">Select Food</option>
                         <option value="eggs">Eggs</option>
@@ -47,15 +47,15 @@
                     </select>
                 </div>
                 <div class="food__macro">
-                    <label for="carbs" class="food__label">Carbs:</label><br>
+                    <label for="carbs" class="food__label">Carbs</label><br>
                     <input type="number" id="carbs" class="food__grams" min="0" max="200" placeholder="0g" required>
                 </div>
                 <div class="food__macro">
-                    <label for="protein" class="food__label">Protein:</label><br>
+                    <label for="protein" class="food__label">Protein</label><br>
                     <input type="number" id="protein" class="food__grams" min="0" max="200" placeholder="0g" required>
                 </div>
                 <div class="food__macro">
-                    <label for="fat" class="food__label">Fat:</label><br>
+                    <label for="fat" class="food__label">Fat</label><br>
                     <input type="number" id="fat" class="food__grams" min="0" max="200" placeholder="0g" required>
                 </div>
                 <input type="submit" value="Add Meal" class="btn btn--food">
@@ -78,6 +78,7 @@
                 <ul class="pantry__list"></ul>
             </div>
         </section>
+
         <section class="stats">
             <!-- Add a placeholder image when space is empty. Animate? -->
             <canvas class="stats__chart" aria-label="Doughnut chart for food macro data" role="img">
@@ -85,7 +86,6 @@
                 <p>Doughnut chart displaying food macro data to appear here!</p>
             </canvas>
         </section>
-    
     </main>
 </body>
 </html>

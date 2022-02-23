@@ -32,8 +32,12 @@
 .flex {
   display: flex;
 }
+.flex--access {
+  justify-content: space-around;
+  align-items: center;
+}
 .flex--food {
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 .flex--console {
@@ -61,7 +65,6 @@
 .food {
   grid-area: food;
 }
-
 .pantry {
   grid-area: pantry;
   min-height: 100%;
@@ -88,6 +91,11 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   row-gap: 1em;
+}
+@media (max-width: 1350px) {
+  .pantry__list {
+    grid-template-columns: 1fr;
+  }
 }
 .card {
   border: 1px solid black;
@@ -138,17 +146,23 @@
   min-width: 100%;
   padding: 1em;
 }
+@media (max-width: 800px) {
+  .stats {
+    min-height: 65vw;
+  }
+}
 
 .btn {
   border: initial;
+  cursor: pointer;
   font: inherit;
+  padding: 0.25em 0.5em;
 }
 .btn--delete {
   text-transform: uppercase;
   margin-bottom: 0.5em;
   font-size: 1rem;
   font-weight: 700;
-  padding: 0.25em 0.5em;
 }
 
 .snackbar {
@@ -159,7 +173,6 @@
   min-height: 50px;
   min-width: 290px;
   padding: 16px 24px 12px;
-  box-sizing: border-box;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   border-radius: 2px;
   top: 2rem;
