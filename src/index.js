@@ -25,11 +25,18 @@ const clearBtn = document.querySelector('.btn.btn--clear-pantry');
 const calories = document.querySelector('.calories__total');
 
 // Implementing a doughnut chart with chart.js
-const context = document.querySelector('.stats__chart').getContext('2d');
+const chart = document.querySelector('.stats__chart');
+const context = chart.getContext('2d');
 let foodChart = null;
 
 const initChart = () => {
     foodChart?.destroy();
+
+    let circumference = 360;
+
+    if (window.innerWidth < 1241) {
+        circumference = 180;
+    }
     
     foodChart = new Chart(context, {
         type: 'doughnut',
@@ -92,15 +99,6 @@ const initChart = () => {
                 },
                 legend: {
                     display: false
-                    // labels: {
-                    //     font: {
-                    //         size: 26,
-                    //         weight: 400,
-                    //         style: 'italic'
-                    //     },
-                    //     color: '#000000',
-                    // },
-                    // position: 'left'
                 }
             },
             cutout: '35%',
@@ -109,31 +107,30 @@ const initChart = () => {
                 animateScale: true,
                 animateRotate: true
             },
-            // circumference: 180
+            circumference: circumference
         }
     });
 
     chartQuery1();
-
+    
     return foodChart;
 }
 
-// Media queries for chart
+// Responsive functions and media queries for chart
 const chartQuery1 = () => {
 
-    const chartHalf = window.matchMedia('(max-width: 1240px)');
+    const mediaQuery = window.matchMedia('(max-width: 1240px)');
 
-    const windowDecrease = event => {
+    const handleChange = event => {
         if (event.matches) {
-            foodChart.options.circumference = 180;
-        } else {
-            foodChart.options.circumference = 360;
+            return foodChart.options.circumference = 180;
         }
+        foodChart.options.circumference = 360;
     }
 
-    chartHalf.addEventListener('change', windowDecrease);
+    mediaQuery.addEventListener('change', handleChange);
 
-    windowDecrease(chartHalf);
+    handleChange(mediaQuery);
 }
 
 // updates data in the chart
