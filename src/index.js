@@ -113,7 +113,14 @@ const initChart = () => {
         }
     });
 
-    // Media query- changes chart circumference
+    chartQuery1();
+
+    return foodChart;
+}
+
+// Media queries for chart
+const chartQuery1 = () => {
+
     const chartHalf = window.matchMedia('(max-width: 1240px)');
 
     const windowDecrease = event => {
@@ -127,8 +134,6 @@ const initChart = () => {
     chartHalf.addEventListener('change', windowDecrease);
 
     windowDecrease(chartHalf);
-
-    return foodChart;
 }
 
 // updates data in the chart
