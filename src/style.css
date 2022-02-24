@@ -7,12 +7,15 @@
 }
 
 .app {
-  font: 400 1.5rem/1.6 "Poppins", sans-serif;
-  background: #5E4C5A;
-  color: #FFE2D1;
+  height: 100vh;
+  font: 500 1.25rem/1.2 "Poppins", sans-serif;
+  background: linear-gradient(to bottom, #5e4c5a, #55917f, #E1F0C4);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #ffe2d1;
 }
 .app__container {
-  height: 100vh;
+  height: 100%;
   width: min(90vw, 80em);
   margin-inline: auto;
   display: grid;
@@ -51,8 +54,7 @@
   grid-area: hero;
 }
 .hero__heading {
-  font-size: 3rem;
-  font-weight: 600;
+  font: 600 3rem "Poppins", sans-serif;
   text-align: center;
   padding: 0.5em 0;
 }
@@ -64,16 +66,14 @@
   font-size: 1.375rem;
 }
 .access__name {
-  font-family: inherit;
-  font-size: 1.25rem;
-  background: #FFE2D1;
-  font-weight: 500;
-  color: #5E4C5A;
-  border: 0.125rem solid rgba(0, 0, 0, 0.5);
+  font: inherit;
+  background: #ffe2d1;
+  color: #5e4c5a;
+  border: 0.125rem solid rgba(94, 76, 90, 0.5);
   border-radius: 0.25rem;
 }
 .access__name::placeholder {
-  color: #5E4C5A;
+  color: #5e4c5a;
 }
 
 .food {
@@ -83,16 +83,14 @@
   font-size: 1.375rem;
 }
 .food__name, .food__grams {
-  font-family: inherit;
-  font-size: 1.25rem;
-  font-weight: 500;
-  background: #FFE2D1;
-  color: #5E4C5A;
-  border: 0.125rem solid rgba(0, 0, 0, 0.5);
+  font: inherit;
+  background: #ffe2d1;
+  color: #5e4c5a;
+  border: 0.125rem solid rgba(94, 76, 90, 0.5);
   border-radius: 0.25rem;
 }
 .food__name::placeholder, .food__grams::placeholder {
-  color: #5E4C5A;
+  color: #5e4c5a;
 }
 .food__grams {
   width: 3em;
@@ -132,11 +130,12 @@
   }
 }
 .card {
-  border: 1px solid black;
+  background: rgba(85, 145, 127, 0.5);
+  padding: 0.5em 0;
   text-align: center;
   border-radius: 2em;
   margin: 0 1em;
-  box-shadow: 0 0 1rem #000;
+  box-shadow: 0 0 0.65rem #ffe2d1;
 }
 .card__heading {
   text-transform: capitalize;
@@ -152,23 +151,16 @@
 }
 .card__carbs {
   margin-left: 0.5em;
-}
-.card__carbs .card__icon {
-  color: red;
+  color: #55917f;
 }
 .card__protein {
   margin: 0 0.5em;
-}
-.card__protein .card__icon {
-  color: blue;
+  color: #6BAB90;
 }
 .card__fat {
   margin-right: 0.5em;
+  color: #E1F0C4;
 }
-.card__fat .card__icon {
-  color: yellow;
-}
-
 .calories {
   text-align: center;
 }
@@ -191,10 +183,10 @@
   cursor: pointer;
   font: inherit;
   padding: 0.25em 0.5em;
+  border-radius: 0.25rem;
 }
 .btn--delete {
   text-transform: uppercase;
-  margin-bottom: 0.5em;
   font-size: 1rem;
   font-weight: 700;
 }

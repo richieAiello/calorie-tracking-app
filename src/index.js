@@ -54,20 +54,22 @@ const initChart = () => {
                     macroData.totalFat()
                 ],
                 backgroundColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(54, 162, 235)',
-                    'rgb(255, 206, 86)'
+                    '#5E4C5A',
+                    '#55917F',
+                    '#FFE2D1'
                 ],
                 hoverBackgroundColor: [
-                    'rgba(255, 99, 132, .75)',
-                    'rgba(54, 162, 235, .75)',
-                    'rgba(255, 206, 86, .75)'
+                    'rgba(94, 76, 90, 0.75)',
+                    'rgba(85, 145, 127, 0.75)',
+                    'rgba(255, 226, 209, 0.75)'
                 ],
                 borderColor : [
-                    '#000',
-                    '#000',
-                    '#000'
-                ]
+                    '#FFE2D1',
+                    '#E1F0C4',
+                    '#5E4C5A'
+                ],
+                borderWidth: 3,
+                borderAlign: "inner"
             }]
         },
         options: {

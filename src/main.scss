@@ -1,9 +1,10 @@
 // variables
-$color-eggplant: #5E4C5A;
-$color-wintergreen-dream: #55917F;
+$color-eggplant: #5e4c5a;
+$color-wintergreen-dream: #55917f;
 $color-polished-pine: #6BAB90;
 $color-nyanza: #E1F0C4;
-$color-unbleached-silk: #FFE2D1;
+$color-unbleached-silk: #ffe2d1;
+
 
 // reset
 *,
@@ -16,12 +17,15 @@ $color-unbleached-silk: #FFE2D1;
 
 // base styles
 .app {
-    font: 400 1.5rem/1.6 'Poppins', sans-serif;
-    background: $color-eggplant;
+    height: 100vh;
+    font: 500 1.25rem/1.2 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, $color-eggplant, $color-wintergreen-dream, $color-nyanza);
+    background-repeat: no-repeat;
+    background-size: cover;
     color: $color-unbleached-silk;
 
     &__container {
-        height: 100vh;
+        height: 100%;
         width: min(90vw, 80em);
         margin-inline: auto;
         display: grid;
@@ -69,8 +73,7 @@ $color-unbleached-silk: #FFE2D1;
 
     // animate heading
     &__heading {
-        font-size: 3rem;
-        font-weight: 600;
+        font: 600 3rem 'Poppins', sans-serif;
         text-align: center;
         padding: 0.5em 0;
     }
@@ -85,12 +88,10 @@ $color-unbleached-silk: #FFE2D1;
     }
 
     &__name {
-        font-family: inherit;
-        font-size: 1.25rem;
+        font: inherit;
         background: $color-unbleached-silk;
-        font-weight: 500;
         color: $color-eggplant;
-        border: 0.125rem solid rgba(#000, 0.5);
+        border: 0.125rem solid rgba($color-eggplant, 0.5);
         border-radius: 0.25rem;
 
         &::placeholder {
@@ -110,12 +111,10 @@ $color-unbleached-silk: #FFE2D1;
 
     &__name,
     &__grams {
-        font-family: inherit;
-        font-size: 1.25rem;
-        font-weight: 500;
+        font: inherit;
         background: $color-unbleached-silk;
         color: $color-eggplant;
-        border: 0.125rem solid rgba(#000, 0.5);
+        border: 0.125rem solid rgba($color-eggplant, 0.5);
         border-radius: 0.25rem;
 
         &::placeholder {
@@ -154,7 +153,6 @@ $color-unbleached-silk: #FFE2D1;
         grid-area: bottom;
         padding: 1em 0;
         overflow-y: scroll;
-        // border: 1px solid black;
     }
 
     &__list {
@@ -162,7 +160,6 @@ $color-unbleached-silk: #FFE2D1;
         display: grid;
         grid-template-columns: 1fr 1fr;
         row-gap: 1em;
-        // place-items: center;
         @media (max-width: 1350px) {
             & {
                 grid-template-columns: 1fr;
@@ -177,11 +174,12 @@ $color-unbleached-silk: #FFE2D1;
 }
 
 .card {
-    border: 1px solid black;
+    background: rgba($color-wintergreen-dream, 0.5);
+    padding: 0.5em 0;
     text-align: center;
     border-radius: 2em;
     margin: 0 1em;
-    box-shadow: 0 0 1rem #000;
+    box-shadow: 0 0 0.65rem $color-unbleached-silk;
 
     &__heading {
         text-transform: capitalize;
@@ -204,25 +202,29 @@ $color-unbleached-silk: #FFE2D1;
 
     &__carbs {
         margin-left: 0.5em;
+        color: $color-wintergreen-dream;
 
         .card__icon {
-            color: red;
+            // color: $color-unbleached-silk;
+            // text-shadow: 0 0 .15em $color-nyanza;
         }
     }
 
     &__protein {
         margin: 0 0.5em;
+        color: $color-polished-pine;
 
         .card__icon {
-            color: blue;
+            // color: $color-polished-pine;
         }
     }
 
     &__fat {
         margin-right: 0.5em;
+        color: $color-nyanza;
 
         .card__icon {
-            color: yellow;
+            // color: $color-nyanza;
         }
     }
     
@@ -254,6 +256,7 @@ $color-unbleached-silk: #FFE2D1;
     cursor: pointer;
     font: inherit;
     padding: 0.25em 0.5em;
+    border-radius: 0.25rem;
 
     &--access {
 
@@ -269,7 +272,6 @@ $color-unbleached-silk: #FFE2D1;
     
     &--delete {
         text-transform: uppercase;
-        margin-bottom: 0.5em;
         font-size: 1rem;
         font-weight: 700;  
     }
