@@ -8,6 +8,8 @@
 
 .app {
   font: 400 1.5rem/1.6 "Poppins", sans-serif;
+  background: #5E4C5A;
+  color: #FFE2D1;
 }
 .app__container {
   height: 100vh;
@@ -45,17 +47,14 @@
   justify-content: space-around;
 }
 
-.container {
-  width: min(90vw, 75em);
-  margin-inline: auto;
-}
-
 .hero {
   grid-area: hero;
 }
 .hero__heading {
+  font-size: 3rem;
+  font-weight: 600;
   text-align: center;
-  padding: 1em 0;
+  padding: 0.5em 0;
 }
 
 .access {
@@ -67,9 +66,14 @@
 .access__name {
   font-family: inherit;
   font-size: 1.25rem;
-  color: rgba(0, 0, 0, 0.75);
+  background: #FFE2D1;
+  font-weight: 500;
+  color: #5E4C5A;
   border: 0.125rem solid rgba(0, 0, 0, 0.5);
   border-radius: 0.25rem;
+}
+.access__name::placeholder {
+  color: #5E4C5A;
 }
 
 .food {
@@ -81,9 +85,18 @@
 .food__name, .food__grams {
   font-family: inherit;
   font-size: 1.25rem;
-  color: rgba(0, 0, 0, 0.75);
+  font-weight: 500;
+  background: #FFE2D1;
+  color: #5E4C5A;
   border: 0.125rem solid rgba(0, 0, 0, 0.5);
   border-radius: 0.25rem;
+}
+.food__name::placeholder, .food__grams::placeholder {
+  color: #5E4C5A;
+}
+.food__grams {
+  width: 3em;
+  direction: rtl;
 }
 
 .pantry {

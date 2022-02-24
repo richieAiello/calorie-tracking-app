@@ -1,3 +1,11 @@
+// variables
+$color-eggplant: #5E4C5A;
+$color-wintergreen-dream: #55917F;
+$color-polished-pine: #6BAB90;
+$color-nyanza: #E1F0C4;
+$color-unbleached-silk: #FFE2D1;
+
+// reset
 *,
 *::before,
 *::after {
@@ -9,6 +17,8 @@
 // base styles
 .app {
     font: 400 1.5rem/1.6 'Poppins', sans-serif;
+    background: $color-eggplant;
+    color: $color-unbleached-silk;
 
     &__container {
         height: 100vh;
@@ -53,18 +63,16 @@
     }
 }
 
-.container {
-    width: min(90vw, 75em);
-    margin-inline: auto;
-}
-
 // section.hero
 .hero {
     grid-area: hero;
 
+    // animate heading
     &__heading {
+        font-size: 3rem;
+        font-weight: 600;
         text-align: center;
-        padding: 1em 0;
+        padding: 0.5em 0;
     }
 }
 
@@ -79,10 +87,17 @@
     &__name {
         font-family: inherit;
         font-size: 1.25rem;
-        color: rgba(#000, 0.75);
+        background: $color-unbleached-silk;
+        font-weight: 500;
+        color: $color-eggplant;
         border: 0.125rem solid rgba(#000, 0.5);
         border-radius: 0.25rem;
+
+        &::placeholder {
+            color: $color-eggplant;
+        }
     }
+
 }
 
 // section.food
@@ -97,9 +112,20 @@
     &__grams {
         font-family: inherit;
         font-size: 1.25rem;
-        color: rgba(#000, 0.75);
+        font-weight: 500;
+        background: $color-unbleached-silk;
+        color: $color-eggplant;
         border: 0.125rem solid rgba(#000, 0.5);
         border-radius: 0.25rem;
+
+        &::placeholder {
+            color: $color-eggplant;
+        }
+    }
+
+    &__grams {
+        width: 3em;
+        direction: rtl;
     }
 }
 
