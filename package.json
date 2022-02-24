@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "chart.js": "^3.7.0",
-    "sass": "^1.49.7"
+    "sass": "^1.49.7",
+    "snackbar": "^1.1.0"
   }
 }

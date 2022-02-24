@@ -1,105 +1,303 @@
+// variables
+$color-eggplant: #5e4c5a;
+$color-wintergreen-dream: #55917f;
+$color-polished-pine: #6BAB90;
+$color-nyanza: #E1F0C4;
+$color-unbleached-silk: #ffe2d1;
+
+
+// reset
 *,
 *::before,
 *::after {
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 // base styles
 .app {
-    margin: 0;
-    font: 400 1.5rem/1.6 'Poppins', sans-serif;
+    height: 100vh;
+    font: 500 1.25rem/1.2 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, $color-eggplant, $color-wintergreen-dream, $color-nyanza);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: $color-unbleached-silk;
+
+    &__container {
+        height: 100%;
+        width: min(90vw, 80em);
+        margin-inline: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: auto auto 1fr;
+        grid-template-areas: 
+            "hero hero hero hero"
+            "access food food food"
+            "pantry pantry chart chart";
+    }
 }
 
-.container {
-    width: min(90%, 75em); 
-    margin-inline: auto;
-    // border for development only
-    // border: 1px solid black;
+::-webkit-scrollbar {
+    width: 0.20em;
+    height: 0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #665555;
+    border-radius: 100vw;
 }
 
 .flex {
     display: flex;
 
+    &--access {
+        justify-content: space-around;
+        align-items: center;
+    }
+
     &--food {
         justify-content: space-around;
-    }
-    
-    &--form {
-        flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
     }
 
-    &--macros {
-        flex-flow: row wrap;
-        align-items: flex-end;
+    &--console {
+        align-items: center;
+        justify-content: space-around;
     }
-
 }
 
+// section.hero
+.hero {
+    grid-area: hero;
 
-// section.food
-.food {
+    // animate heading
+    &__heading {
+        font: 600 3rem 'Poppins', sans-serif;
+        text-align: center;
+        padding: 0.5em 0;
+    }
+}
 
-    &__form {
-        width: 20%;
+// section.access
+.access {
+    grid-area: access;
+
+    &__label {
+        font-size: 1.375rem;
     }
 
     &__name {
-        width: 100%;
         font: inherit;
+        background: $color-unbleached-silk;
+        color: $color-eggplant;
+        border: 0.125rem solid rgba($color-eggplant, 0.5);
+        border-radius: 0.25rem;
+
+        &::placeholder {
+            color: $color-eggplant;
+        }
     }
 
+}
+
+// section.food
+.food {
+    grid-area: food;
+
     &__label {
-        width: 75%;
+        font-size: 1.375rem;
+    }
+
+    &__name,
+    &__grams {
+        font: inherit;
+        background: $color-unbleached-silk;
+        color: $color-eggplant;
+        border: 0.125rem solid rgba($color-eggplant, 0.5);
+        border-radius: 0.25rem;
+
+        &::placeholder {
+            color: $color-eggplant;
+        }
     }
 
     &__grams {
-        width: 25%;
-        text-align: right;
-        font: inherit;
-        margin-top: 2em;
+        width: 3em;
+        direction: rtl;
     }
 }
 
+// section.pantry
 .pantry {
-    width: 60%;
-    border: 1px solid black;
-}
-
-// section.stats
-
-.stats {
-    min-height: 100vh;
-
-    &__container {
-        position: relative;
-        margin: auto;
-        height: calc(100vh - 10em);
-        width: 100%;
+    grid-area: pantry;
+    min-height: 100%;
+    min-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+        "top"
+        "bottom";
+    
+    &__top {
+        grid-area: top;
     }
 
-    // &__chart {
-        
-    // }
+    &__heading {
+        text-align: center;
+        text-transform: capitalize;
+    }
+
+    &__bottom {
+        grid-area: bottom;
+        padding: 1em 0;
+        overflow-y: scroll;
+    }
+
+    &__list {
+        list-style: none;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        row-gap: 1em;
+        @media (max-width: 1350px) {
+            & {
+                grid-template-columns: 1fr;
+            }
+        }
+    }
+
+    &__item {
+
+    }
+    
+}
+
+.card {
+    background: rgba($color-wintergreen-dream, 0.5);
+    padding: 0.5em 0;
+    text-align: center;
+    border-radius: 2em;
+    margin: 0 1em;
+    box-shadow: 0 0 0.65rem $color-unbleached-silk;
+
+    &__heading {
+        text-transform: capitalize;
+    }
+
+    &__text {
+        margin: 0.5em 0;
+    }
+
+    &__list {
+        list-style: none;
+        margin-bottom: 0.5em;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    &__item {
+
+    }
+
+    &__carbs {
+        margin-left: 0.5em;
+        color: $color-wintergreen-dream;
+
+        .card__icon {
+            // color: $color-unbleached-silk;
+            // text-shadow: 0 0 .15em $color-nyanza;
+        }
+    }
+
+    &__protein {
+        margin: 0 0.5em;
+        color: $color-polished-pine;
+
+        .card__icon {
+            // color: $color-polished-pine;
+        }
+    }
+
+    &__fat {
+        margin-right: 0.5em;
+        color: $color-nyanza;
+
+        .card__icon {
+            // color: $color-nyanza;
+        }
+    }
+    
 }
 
 .calories {
     text-align: center;
-    font-size: 2rem;
+}
 
-    & > p:first-child {
-        margin-bottom: 0;
-    }
 
-    & > p:last-child {
-        margin-top: 0;
+// section.stats
+.stats {
+    grid-area: chart;
+    position: relative;
+    min-height: 100%;
+    min-width: 100%;
+    padding: 1em;
+
+    @media (max-width: 800px) {
+        & {
+            min-height: 65vw;
+        }
     }
 }
 
 //buttons
 .btn {
+    border: initial;
+    cursor: pointer;
+    font: inherit;
+    padding: 0.25em 0.5em;
+    border-radius: 0.25rem;
 
-    &--clear {
-        align-self: center;
+    &--access {
+
+    }
+
+    &--food {
+
+    }
+
+    &--clear-pantry {
+
+    }
+    
+    &--delete {
+        text-transform: uppercase;
+        font-size: 1rem;
+        font-weight: 700;  
     }
 }
+
+// snackbar settings
+.snackbar {
+    display: inline-block;
+    position: fixed;
+    background: #323232;
+    color: #f1f1f1;
+    min-height: 50px;
+    min-width: 290px;
+    padding: 16px 24px 12px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    border-radius: 2px;
+    top: 2rem;
+    left: 1rem;
+    font-size: 90%;
+    transition: visibility 0.3s, transform 0.3s;
+    transform: translateY(-100px);
+    visibility: hidden;
+    will-change: transform;
+  }
+  
+  .snackbar--visible {
+    visibility: visible;
+    transform: none;
+  }

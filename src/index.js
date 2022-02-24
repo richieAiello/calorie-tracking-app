@@ -1,6 +1,3 @@
-// Install snackbar in future for notifications
-// Notify users when food is added to scroll down and view the food chart
-
 import FetchWrapper from "./fetch-wrapper.js";
 import Chart from 'chart.js/auto';
 import MacroData from "./macro-data.js";
@@ -9,10 +6,14 @@ import { tailor, displayName, cardCalories } from "./helpers.js";
 const API = new FetchWrapper(`https://firestore.googleapis.com/v1/projects/calorie-tracking-app-d89d9/databases/(default)/documents/`);
 let endpoint = null;
 
+const snackbar = require('snackbar');
+snackbar.duration = 2000;
+snackbar.gap = 500;
+
 const macroData = new MacroData();
 
-const pantryForm = document.querySelector('.access-pantry');
-const pantryId = document.querySelector('#access-pantry__name');
+const pantryForm = document.querySelector('.access__form');
+const pantryId = document.querySelector('#access__name');
 const foodForm = document.querySelector('.food__form');
 const name = document.querySelector('#food__name');
 const carbs = document.querySelector('#carbs');
@@ -20,24 +21,30 @@ const protein = document.querySelector('#protein');
 const fat = document.querySelector('#fat');
 const pantryName = document.querySelector('.pantry__heading');
 const list = document.querySelector('.pantry__list');
-const clearBtn = document.querySelector('.btn.btn--clear');
+const clearBtn = document.querySelector('.btn.btn--clear-pantry');
 const calories = document.querySelector('.calories__total');
 
-const context = document.querySelector('.stats__chart').getContext('2d');
+// Implementing a doughnut chart with chart.js
+const chart = document.querySelector('.stats__chart');
+const context = chart.getContext('2d');
 let foodChart = null;
 
-// Implementing a chart from chart.js
-// Learn how to make bigger labels
 const initChart = () => {
     foodChart?.destroy();
+
+    let circumference = 360;
+
+    if (window.innerWidth < 1241) {
+        circumference = 180;
+    }
     
     foodChart = new Chart(context, {
-        type: 'bar',
+        type: 'doughnut',
         data: {
             labels: [
-                `Carbs: ${macroData.totalCarbs()}`,
-                `Protein: ${macroData.totalProtein()}`,
-                `Fat: ${macroData.totalFat()}`
+                "Carbs",
+                "Protein",
+                "Fat"
             ],
             datasets: [{
                 label: 'Macro Nutrients',
@@ -47,10 +54,22 @@ const initChart = () => {
                     macroData.totalFat()
                 ],
                 backgroundColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(54, 162, 235)',
-                    'rgb(255, 206, 86)'
-                ]
+                    '#5E4C5A',
+                    '#55917F',
+                    '#FFE2D1'
+                ],
+                hoverBackgroundColor: [
+                    'rgba(94, 76, 90, 0.75)',
+                    'rgba(85, 145, 127, 0.75)',
+                    'rgba(255, 226, 209, 0.75)'
+                ],
+                borderColor : [
+                    '#FFE2D1',
+                    '#E1F0C4',
+                    '#5E4C5A'
+                ],
+                borderWidth: 3,
+                borderAlign: "inner"
             }]
         },
         options: {
@@ -67,10 +86,13 @@ const initChart = () => {
                     position: 0
                 },
                 x: {
+                    ticks: {
+                        display: false
+                    },
                     grid: {
                         display: false
                     },
-                    position: "top"
+                    position: 0
                 },
             },
             plugins: {
@@ -80,24 +102,47 @@ const initChart = () => {
                 legend: {
                     display: false
                 }
-            }
+            },
+            cutout: '35%',
+            radius: '100%',
+            animation: {
+                animateScale: true,
+                animateRotate: true
+            },
+            circumference: circumference
         }
     });
+
+    chartQuery1();
+    
     return foodChart;
+}
+
+// Responsive functions and media queries for chart
+const chartQuery1 = () => {
+
+    const mediaQuery = window.matchMedia('(max-width: 1240px)');
+
+    const handleChange = event => {
+        if (event.matches) {
+            return foodChart.options.circumference = 180;
+        }
+        foodChart.options.circumference = 360;
+    }
+
+    mediaQuery.addEventListener('change', handleChange);
+
+    handleChange(mediaQuery);
 }
 
 // updates data in the chart
 const updateChart = () => {
-    foodChart.data.labels = [
-        `Carbs: ${macroData.totalCarbs()}`,
-        `Protein: ${macroData.totalProtein()}`,
-        `Fat: ${macroData.totalFat()}`
-    ];
     foodChart.data.datasets[0].data = [
         macroData.totalCarbs(),
         macroData.totalProtein(),
         macroData.totalFat()
     ];
+
     foodChart.update();
 }
 
@@ -131,18 +176,20 @@ const displayFoodCard = (name, carbs, protein, fat) => {
 
     foodData.push(foodId);
 
+    // Change btn--move to appear as "X" rather than say remove. Maybe even transistion to a trash icon?
+    // Or maybe just a trash icon?
     list.insertAdjacentHTML(
         'beforeend',
         `<li id="itemId-${eventId}" class="pantry__item">
             <div class="card">
-                <h4 class="card__heading">${name}</h4>
+                <h4 class="card__heading">${displayName(name)}</h4>
                 <p class="card__text">${cardCalories(carbs, protein, fat)} calories</p>
-                <ul class="card__list flex flex--card">
-                    <li class="card__carbs">Carbs<br>${carbs}g</li>
-                    <li class="card__protein">Protein<br>${protein}g</li>
-                    <li class="card__fat">Fat<br>${fat}g</li>
+                <ul class="card__list">
+                    <li class="card__item card__carbs">Carbs<br><i class="fas fa-bread-slice card__icon"></i><br>${carbs}g</li>
+                    <li class="card__item card__protein">Protein<br><i class="fas fa-drumstick-bite card__icon"></i><br>${protein}g</li>
+                    <li class="card__item card__fat">Fat<br><i class="fas fa-cheese card__icon"></i><br>${fat}g</li>
                 </ul>
-                <button id="btnId-${eventId}" class="btn btn--remove">Remove</button>
+                <button id="btnId-${eventId}" class="btn btn--delete">delete</button>
             </div>
         </li>`);
     
@@ -157,7 +204,6 @@ const displayFoodCard = (name, carbs, protein, fat) => {
 
         API.delete(document)
             .then(data => {
-                console.log("Document deleted");
 
                 storageData.splice(foodIndex, 1);
                 macroData.spliceFood(foodIndex);
@@ -166,9 +212,12 @@ const displayFoodCard = (name, carbs, protein, fat) => {
                 currentItem.remove();
                 updateChart();
                 showTotalCalories();
+                snackbar.show('Scroll down to view your delicious statistics!');
             })
-            // snackbar notification
-            .catch(error => console.error(error));
+            .catch(error => {
+                console.error(error);
+                snackbar.show('Server communication error. Could not delete document. Refresh and try again.');
+            });
     })               
 }
 
@@ -205,6 +254,8 @@ pantryForm.addEventListener('submit', event => {
 
             pantryName.textContent = displayName(endpoint);
 
+            snackbar.show(`Successfully accessed pantry: ${displayName(endpoint)}!`);
+
             data.documents?.forEach(document => {
             
                 storageData.push(document.name);
@@ -221,8 +272,10 @@ pantryForm.addEventListener('submit', event => {
             initChart();
             showTotalCalories();
         })
-        // snackbar notification please enter a valid pantry name
-        .catch(error => console.error(error))
+        .catch(error => {
+            console.error(error);
+            snackbar.show('Please enter a valid pantry name!');
+        })
 });
 
 // Uses fetch post to create data in firebase only if endpoint is truthy.
@@ -252,7 +305,7 @@ foodForm.addEventListener('submit', event => {
 
                     clearFood();
 
-                    data.documents?.forEach(document => {
+                    data.documents.forEach(document => {
                         
                         storageData.push(document.name);
                         
@@ -266,12 +319,17 @@ foodForm.addEventListener('submit', event => {
 
                     updateChart();
                     showTotalCalories();
+                    snackbar.show('Scroll down to view your delicious statistics!');
                 })
-                // snackbar notification
-                .catch(error => console.error(error))
+                .catch(error => {
+                    console.error(error);
+                    snackbar.show('Server communication errror. Could not receive food item. Refresh and try again.');
+                });
         })
-        // snackbar pop-up please enter valid pantry name before adding food
-        .catch(error => console.error(error))  
+        .catch(error => {
+            console.error(error);
+            snackbar.show('Please access a pantry before adding food items!');
+        });  
 });
 
 // Fetch data with get, then loop through data and delete each document individually.
@@ -281,20 +339,24 @@ foodForm.addEventListener('submit', event => {
 clearBtn.addEventListener('click', event => {
     API.get(endpoint)
         .then(data => {
-            // console.log(data.documents)
             data.documents.forEach(document => {
                 
                 API.delete(document.name)
                     .then(data => {
                         console.log("Document deleted");
                     })
-                    // Replace with a snackbar pop-up
-                    .catch(error => console.error(error));
-            })
+                    .catch(error => {
+                        console.error(error);
+                        snackbar.show('Server communication error. Could not delete document. Refresh and try again.');
+                    });
+            });
             clearFood();
             updateChart();
             showTotalCalories();
+            snackbar.show(`Successfully emptied pantry: ${displayName(endpoint)}!`);
         })
-        // Replace with a snackbar pop-up
-        .catch(error => console.error(error))
+        .catch(error => {
+            console.error(error);
+            snackbar.show('Server communication error. Could not delete pantry. Refresh and try again!');
+        });
 });

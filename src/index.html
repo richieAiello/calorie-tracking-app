@@ -7,98 +7,85 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script type="module" src="index.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>Calorie Tracking App</title>
 </head>
 <body class="app">
+    <main class="app__container">
 
-    <!-- Implement nav with animated logo and hamburger bar -->
-    <!-- <nav class="nav"></nav> -->
+        <section class="hero">
+            <h1 class="hero__heading">Delicious Statistics</h1>
+        </section>
 
-    <header class="hero">
-        <h1 class="first-heading">Calorie Tracker</h1>
-    </header>
+        <!-- Alter snackbar alert reminding to remember pantry name -->
+        <section class="access">
+            <form class="access__form">
+                <label for="access__name" class="access__label">Pantry Name</label><br>
+                <input type="text" id="access__name" class="access__name" placeholder="Enter pantry name..." required><br>
+                <input type="submit" value="Access" class="btn btn--access">
+            </form>
+        </section>
 
-    <main class="main">
-        <div class="container">
-            <section class="food">
-
-                <h2 class="sub-heading">Create or access your pantry</h2>
-                <form class="access-pantry">
-                    <label for="access-pantry__name" class="access-pantry__label">Pantry Name</label>
-                    <input type="text" id="access-pantry__name" class="access-pantry__name" placeholder="enter the name of your pantry" required>
-                    <input type="submit" value="Show Pantry" class="btn btn--pantry">
-                    <p class="access-pantry__text">*Write down the name of your pantry to access your food on a later visit!*</p>
-                </form>
-
-                <h2 class="sub-heading">Manage your meals</h2>
-                <div class="flex flex--food">   
-                    <form class="food__form flex flex--form">
-                        <label for="food__name">Choose your food:</label>
-                        <select id="food__name" class="food__name" required>
-                            <option value="">Select Food</option>
-                            <option value="eggs">Eggs</option>
-                            <option value="bacon">Bacon</option>
-                            <option value="oatmeal">Oatmeal</option>
-                            <option value="porkchops">Porkchops</option>
-                            <option value="chicken-thighs">Chicken Thighs</option>
-                            <option value="salmon">Salmon</option>
-                            <option value="ground-beef">Ground Beef</option>
-                            <option value="rice">Rice</option>
-                            <option value="fruit">Fruit</option>
-                            <option value="vegetables">Vegetables</option>
-                        </select>
-                        
-                        <div class="food__macros flex flex--macros">
-                            <label for="carbs" class="food__label">Carbs:</label>
-                            <input type="number" id="carbs" class="food__grams" min="0" max="200" placeholder="0g" required>
-                            
-                            <label for="protein" class="food__label">Protein:</label>
-                            <input type="number" id="protein" class="food__grams" min="0" max="200" placeholder="0g" required>
-                            
-                            <label for="fat" class="food__label">Fat:</label>
-                            <input type="number" id="fat" class="food__grams" min="0" max="200" placeholder="0g" required>
-                        </div>
-                        <input type="submit" value="Add Meal" class="btn btn--add-food">
-                    </form>
-                    
-
-                    <!-- Disover a way to use fetch to delete data from firestore with rest API -->
-                    <!-- Possibly create a way to remove individual items as well as entire collections -->
-                    <div class="pantry">
-                        <!-- capitalize heading -->
-                        <h3 class="pantry__heading"></h3>
-                        <!-- capitalize card__heading -->
-                        <ul class="pantry__list"></ul>
-                    </div>
-                    <!-- clear button/ listen for click event/ list.innerHTML = "" && delete stored API data with fetch<-->
-                    <button class="btn btn--clear">Clear Pantry</button>
-                </div>    
-            </section>
-
-            <!-- add a placeholder image for chart before init -->
-            <section class="stats">
-                <h2 class="sub-heading">Delicious Statistics</h2>
-
-                <!-- Chart representing macro nutrients -->
-                <div class="stats__container">
-                    <canvas class="stats__chart"></canvas>
+        <section class="food">
+            <form class="food__form flex flex--food">
+                <div class="food__selection">
+                    <label for="food__name" class="food__label">Food</label><br>
+                    <select id="food__name" class="food__name" required>
+                        <option value="">Select Food</option>
+                        <option value="eggs">Eggs</option>
+                        <option value="bacon">Bacon</option>
+                        <option value="oatmeal">Oatmeal</option>
+                        <option value="porkchops">Porkchops</option>
+                        <option value="chicken-thighs">Chicken Thighs</option>
+                        <option value="salmon">Salmon</option>
+                        <option value="ground-beef">Ground Beef</option>
+                        <option value="rice">Rice</option>
+                        <option value="fruit">Fruit</option>
+                        <option value="vegetables">Vegetables</option>
+                    </select>
                 </div>
-
-                <!-- total calories logged -->
-                <div class="calories">
-                    <p>Total calories logged:</p>
-                    <p><span class="calories__total">0</span></p> 
+                <div class="food__macro">
+                    <label for="carbs" class="food__label">Carbs</label><br>
+                    <input type="number" id="carbs" class="food__grams" min="0" max="200" placeholder="0g" required>
                 </div>
-            </section>
-        </div> 
+                <div class="food__macro">
+                    <label for="protein" class="food__label">Protein</label><br>
+                    <input type="number" id="protein" class="food__grams" min="0" max="200" placeholder="0g" required>
+                </div>
+                <div class="food__macro">
+                    <label for="fat" class="food__label">Fat</label><br>
+                    <input type="number" id="fat" class="food__grams" min="0" max="200" placeholder="0g" required>
+                </div>
+                <input type="submit" value="Add Meal" class="btn btn--food">
+            </form>
+        </section>
+        
+        <!-- Add a placeholder image while pantry is empty -->
+        <!-- Display none when food is added. Animate? -->
+        <section class="pantry">
+            <div class="pantry__top">
+                <h3 class="pantry__heading"></h3>
+                <!-- Hide while pantry is empty -->
+                <div class="pantry__console  flex flex--console">
+                    <span class="calories">Total calories<br><span class="calories__total">0</span></span>
+                    <button class="btn btn--clear-pantry">Clear Pantry</button>
+                </div>
+            </div>
+            <div class="pantry__bottom">
+                <!-- Maybe change to grid -->
+                <ul class="pantry__list"></ul>
+            </div>
+        </section>
+
+        <section class="stats">
+            <!-- Add a placeholder image when space is empty. Animate? -->
+            <canvas class="stats__chart" aria-label="Doughnut chart for food macro data" role="img">
+                <!-- For accessability purposes -->
+                <p>Doughnut chart displaying food macro data to appear here!</p>
+            </canvas>
+        </section>
     </main>
-
-
-    <!-- Implement footer. Make sure footer stays locked to bottom of page. -->
-    <!-- min-height: 100vh, display: flex or grid, etc. -->
-    <!-- <footer></footer> -->
 </body>
 </html>

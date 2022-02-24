@@ -2,76 +2,215 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 .app {
-  margin: 0;
-  font: 400 1.5rem/1.6 "Poppins", sans-serif;
+  height: 100vh;
+  font: 500 1.25rem/1.2 "Poppins", sans-serif;
+  background: linear-gradient(to bottom, #5e4c5a, #55917f, #E1F0C4);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #ffe2d1;
+}
+.app__container {
+  height: 100%;
+  width: min(90vw, 80em);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas: "hero hero hero hero" "access food food food" "pantry pantry chart chart";
 }
 
-.container {
-  width: min(90%, 75em);
-  margin-inline: auto;
+::-webkit-scrollbar {
+  width: 0.2em;
+  height: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #665555;
+  border-radius: 100vw;
 }
 
 .flex {
   display: flex;
 }
+.flex--access {
+  justify-content: space-around;
+  align-items: center;
+}
 .flex--food {
   justify-content: space-around;
+  align-items: center;
 }
-.flex--form {
-  flex-direction: column;
-  align-items: flex-start;
-}
-.flex--macros {
-  flex-flow: row wrap;
-  align-items: flex-end;
+.flex--console {
+  align-items: center;
+  justify-content: space-around;
 }
 
-.food__form {
-  width: 20%;
+.hero {
+  grid-area: hero;
 }
-.food__name {
-  width: 100%;
+.hero__heading {
+  font: 600 3rem "Poppins", sans-serif;
+  text-align: center;
+  padding: 0.5em 0;
+}
+
+.access {
+  grid-area: access;
+}
+.access__label {
+  font-size: 1.375rem;
+}
+.access__name {
   font: inherit;
+  background: #ffe2d1;
+  color: #5e4c5a;
+  border: 0.125rem solid rgba(94, 76, 90, 0.5);
+  border-radius: 0.25rem;
+}
+.access__name::placeholder {
+  color: #5e4c5a;
+}
+
+.food {
+  grid-area: food;
 }
 .food__label {
-  width: 75%;
+  font-size: 1.375rem;
+}
+.food__name, .food__grams {
+  font: inherit;
+  background: #ffe2d1;
+  color: #5e4c5a;
+  border: 0.125rem solid rgba(94, 76, 90, 0.5);
+  border-radius: 0.25rem;
+}
+.food__name::placeholder, .food__grams::placeholder {
+  color: #5e4c5a;
 }
 .food__grams {
-  width: 25%;
-  text-align: right;
-  font: inherit;
-  margin-top: 2em;
+  width: 3em;
+  direction: rtl;
 }
 
 .pantry {
-  width: 60%;
-  border: 1px solid black;
+  grid-area: pantry;
+  min-height: 100%;
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "top" "bottom";
+}
+.pantry__top {
+  grid-area: top;
+}
+.pantry__heading {
+  text-align: center;
+  text-transform: capitalize;
+}
+.pantry__bottom {
+  grid-area: bottom;
+  padding: 1em 0;
+  overflow-y: scroll;
+}
+.pantry__list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 1em;
+}
+@media (max-width: 1350px) {
+  .pantry__list {
+    grid-template-columns: 1fr;
+  }
+}
+.card {
+  background: rgba(85, 145, 127, 0.5);
+  padding: 0.5em 0;
+  text-align: center;
+  border-radius: 2em;
+  margin: 0 1em;
+  box-shadow: 0 0 0.65rem #ffe2d1;
+}
+.card__heading {
+  text-transform: capitalize;
+}
+.card__text {
+  margin: 0.5em 0;
+}
+.card__list {
+  list-style: none;
+  margin-bottom: 0.5em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.card__carbs {
+  margin-left: 0.5em;
+  color: #55917f;
+}
+.card__protein {
+  margin: 0 0.5em;
+  color: #6BAB90;
+}
+.card__fat {
+  margin-right: 0.5em;
+  color: #E1F0C4;
+}
+.calories {
+  text-align: center;
 }
 
 .stats {
-  min-height: 100vh;
-}
-.stats__container {
+  grid-area: chart;
   position: relative;
-  margin: auto;
-  height: calc(100vh - 10em);
-  width: 100%;
+  min-height: 100%;
+  min-width: 100%;
+  padding: 1em;
+}
+@media (max-width: 800px) {
+  .stats {
+    min-height: 65vw;
+  }
 }
 
-.calories {
-  text-align: center;
-  font-size: 2rem;
+.btn {
+  border: initial;
+  cursor: pointer;
+  font: inherit;
+  padding: 0.25em 0.5em;
+  border-radius: 0.25rem;
 }
-.calories > p:first-child {
-  margin-bottom: 0;
-}
-.calories > p:last-child {
-  margin-top: 0;
+.btn--delete {
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
-.btn--clear {
-  align-self: center;
+.snackbar {
+  display: inline-block;
+  position: fixed;
+  background: #323232;
+  color: #f1f1f1;
+  min-height: 50px;
+  min-width: 290px;
+  padding: 16px 24px 12px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  border-radius: 2px;
+  top: 2rem;
+  left: 1rem;
+  font-size: 90%;
+  transition: visibility 0.3s, transform 0.3s;
+  transform: translateY(-100px);
+  visibility: hidden;
+  will-change: transform;
+}
+
+.snackbar--visible {
+  visibility: visible;
+  transform: none;
 }
