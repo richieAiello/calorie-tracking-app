@@ -174,7 +174,8 @@ $color-unbleached-silk: #ffe2d1;
 }
 
 .card {
-    background: rgba($color-wintergreen-dream, 0.5);
+    background: rgba($color-eggplant, 0.5);
+    color: $color-nyanza;
     padding: 0.5em 0;
     text-align: center;
     border-radius: 2em;
@@ -197,37 +198,28 @@ $color-unbleached-silk: #ffe2d1;
     }
 
     &__item {
-
+        border-radius: 1em;
+        padding: 0.25em;
     }
 
     &__carbs {
         margin-left: 0.5em;
-        color: $color-wintergreen-dream;
-
-        .card__icon {
-            // color: $color-unbleached-silk;
-            // text-shadow: 0 0 .15em $color-nyanza;
-        }
+        color: rgba($color-unbleached-silk, 0.75);
+        background: rgba($color-eggplant, 0.85);
+        
     }
 
     &__protein {
         margin: 0 0.5em;
-        color: $color-polished-pine;
-
-        .card__icon {
-            // color: $color-polished-pine;
-        }
+        color: rgba($color-nyanza, 0.75);
+        background: rgba($color-wintergreen-dream, 0.85);
     }
 
     &__fat {
         margin-right: 0.5em;
-        color: $color-nyanza;
-
-        .card__icon {
-            // color: $color-nyanza;
-        }
+        color: rgba($color-eggplant, 0.75);
+        background: rgba($color-unbleached-silk, 0.85);
     }
-    
 }
 
 .calories {

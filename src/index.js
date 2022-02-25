@@ -185,9 +185,9 @@ const displayFoodCard = (name, carbs, protein, fat) => {
                 <h4 class="card__heading">${displayName(name)}</h4>
                 <p class="card__text">${cardCalories(carbs, protein, fat)} calories</p>
                 <ul class="card__list">
-                    <li class="card__item card__carbs">Carbs<br><i class="fas fa-bread-slice card__icon"></i><br>${carbs}g</li>
-                    <li class="card__item card__protein">Protein<br><i class="fas fa-drumstick-bite card__icon"></i><br>${protein}g</li>
-                    <li class="card__item card__fat">Fat<br><i class="fas fa-cheese card__icon"></i><br>${fat}g</li>
+                    <li class="card__item card__carbs">Carbs<br><i class="fas fa-bread-slice"></i><br>${carbs}g</li>
+                    <li class="card__item card__protein">Protein<br><i class="fas fa-drumstick-bite"></i><br>${protein}g</li>
+                    <li class="card__item card__fat">Fat<br><i class="fas fa-cheese"></i><br>${fat}g</li>
                 </ul>
                 <button id="btnId-${eventId}" class="btn btn--delete">delete</button>
             </div>

@@ -130,7 +130,8 @@
   }
 }
 .card {
-  background: rgba(85, 145, 127, 0.5);
+  background: rgba(94, 76, 90, 0.5);
+  color: #E1F0C4;
   padding: 0.5em 0;
   text-align: center;
   border-radius: 2em;
@@ -149,18 +150,26 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
+.card__item {
+  border-radius: 1em;
+  padding: 0.25em;
+}
 .card__carbs {
   margin-left: 0.5em;
-  color: #55917f;
+  color: rgba(255, 226, 209, 0.75);
+  background: rgba(94, 76, 90, 0.85);
 }
 .card__protein {
   margin: 0 0.5em;
-  color: #6BAB90;
+  color: rgba(225, 240, 196, 0.75);
+  background: rgba(85, 145, 127, 0.85);
 }
 .card__fat {
   margin-right: 0.5em;
-  color: #E1F0C4;
+  color: rgba(94, 76, 90, 0.75);
+  background: rgba(255, 226, 209, 0.85);
 }
+
 .calories {
   text-align: center;
 }
