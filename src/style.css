@@ -199,11 +199,9 @@
 .btn--access, .btn--food, .btn--clear-pantry {
   background: #ffe2d1;
   color: #5e4c5a;
-  transition: all 250ms;
 }
-.btn--access:hover, .btn--food:hover, .btn--clear-pantry:hover {
-  background: #E1F0C4;
-  transform: scale(1.1);
+.btn--access:hover, .btn--access:focus, .btn--food:hover, .btn--food:focus, .btn--clear-pantry:hover, .btn--clear-pantry:focus {
+  animation: shake 750ms infinite;
 }
 .btn--delete {
   text-transform: uppercase;
@@ -212,6 +210,23 @@
   color: #5e4c5a;
 }
 
+@keyframes shake {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(5deg) scale(1.1);
+  }
+  50% {
+    transform: rotate(0deg) scale(1);
+  }
+  75% {
+    transform: rotate(-5deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
 .snackbar {
   display: inline-block;
   position: fixed;

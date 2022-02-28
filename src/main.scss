@@ -269,12 +269,10 @@ $color-unbleached-silk: #ffe2d1;
     &--clear-pantry {
         background: $color-unbleached-silk;
         color: $color-eggplant;
-        transition: all 250ms;
 
-        &:hover {
-            background: $color-nyanza;
-            transform: scale(1.1)
-            // color: $color-wintergreen-dream;
+        &:hover,
+        &:focus {
+            animation: shake 750ms infinite;
         }
     }
     
@@ -288,6 +286,13 @@ $color-unbleached-silk: #ffe2d1;
 }
 
 // keyframes
+@keyframes shake {
+    0% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(5deg) scale(1.1); }
+    50% { transform: rotate(0deg) scale(1);}
+    75% { transform: rotate(-5deg) scale(1.1);}
+    100% { transform: rotate(0deg) scale(1); }
+}
 
 // snackbar settings
 .snackbar {
