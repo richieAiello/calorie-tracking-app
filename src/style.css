@@ -193,11 +193,23 @@
   font: inherit;
   padding: 0.25em 0.5em;
   border-radius: 0.25rem;
+  font-weight: 700;
+  display: inline-block;
+}
+.btn--access, .btn--food, .btn--clear-pantry {
+  background: #ffe2d1;
+  color: #5e4c5a;
+  transition: all 250ms;
+}
+.btn--access:hover, .btn--food:hover, .btn--clear-pantry:hover {
+  background: #E1F0C4;
+  transform: scale(1.1);
 }
 .btn--delete {
   text-transform: uppercase;
   font-size: 1rem;
-  font-weight: 700;
+  background: #E1F0C4;
+  color: #5e4c5a;
 }
 
 .snackbar {

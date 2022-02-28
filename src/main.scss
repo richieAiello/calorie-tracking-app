@@ -249,6 +249,8 @@ $color-unbleached-silk: #ffe2d1;
     font: inherit;
     padding: 0.25em 0.5em;
     border-radius: 0.25rem;
+    font-weight: 700;
+    display: inline-block;
 
     &--access {
 
@@ -261,13 +263,31 @@ $color-unbleached-silk: #ffe2d1;
     &--clear-pantry {
 
     }
+
+    &--access,
+    &--food,
+    &--clear-pantry {
+        background: $color-unbleached-silk;
+        color: $color-eggplant;
+        transition: all 250ms;
+
+        &:hover {
+            background: $color-nyanza;
+            transform: scale(1.1)
+            // color: $color-wintergreen-dream;
+        }
+    }
     
     &--delete {
         text-transform: uppercase;
         font-size: 1rem;
-        font-weight: 700;  
+        
+        background: $color-nyanza;
+        color: $color-eggplant;
     }
 }
+
+// keyframes
 
 // snackbar settings
 .snackbar {
