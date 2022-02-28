@@ -15,15 +15,18 @@
 <body class="app">
     <main class="app__container">
 
+        <!-- Animate heading on page load  -->
         <section class="hero">
             <h1 class="hero__heading">Delicious Statistics</h1>
         </section>
 
         <!-- Alter snackbar alert reminding to remember pantry name -->
         <section class="access">
-            <form class="access__form">
-                <label for="access__name" class="access__label">Pantry Name</label><br>
-                <input type="text" id="access__name" class="access__name" placeholder="Enter pantry name..." required><br>
+            <form class="access__form flex flex--access">
+                <div class="access__container">
+                    <label for="access__name" class="access__label">Pantry Name</label><br>
+                    <input type="text" id="access__name" class="access__name" placeholder="Enter pantry name..." required>
+                </div>
                 <input type="submit" value="Access" class="btn btn--access">
             </form>
         </section>

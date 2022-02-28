@@ -38,12 +38,12 @@
   display: flex;
 }
 .flex--access {
-  justify-content: space-around;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 .flex--food {
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-end;
 }
 .flex--console {
   align-items: center;
@@ -101,6 +101,7 @@
   grid-area: pantry;
   min-height: 100%;
   min-width: 100%;
+  padding-top: 1.5em;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
