@@ -57,6 +57,73 @@
   font: 600 3rem "Poppins", sans-serif;
   text-align: center;
   padding: 0.5em 0;
+  letter-spacing: 0.05em;
+}
+
+.translate {
+  display: inline-block;
+  animation: slide-in 400ms backwards;
+  transition: all 250ms;
+}
+.translate:hover {
+  transform: translateY(-20px);
+}
+.translate--1 {
+  animation-delay: 0ms;
+}
+.translate--2 {
+  animation-delay: 75ms;
+}
+.translate--3 {
+  animation-delay: 150ms;
+}
+.translate--4 {
+  animation-delay: 225ms;
+}
+.translate--5 {
+  animation-delay: 300ms;
+}
+.translate--6 {
+  animation-delay: 375ms;
+}
+.translate--7 {
+  animation-delay: 450ms;
+}
+.translate--8 {
+  animation-delay: 525ms;
+}
+.translate--9 {
+  animation-delay: 600ms;
+}
+.translate--10 {
+  animation-delay: 675ms;
+}
+.translate--11 {
+  animation-delay: 750ms;
+}
+.translate--12 {
+  animation-delay: 825ms;
+}
+.translate--13 {
+  animation-delay: 900ms;
+}
+.translate--14 {
+  animation-delay: 975ms;
+}
+.translate--15 {
+  animation-delay: 1050ms;
+}
+.translate--16 {
+  animation-delay: 1125ms;
+}
+.translate--17 {
+  animation-delay: 1200ms;
+}
+.translate--18 {
+  animation-delay: 1275ms;
+}
+.translate--19 {
+  animation-delay: 1350ms;
 }
 
 .access {
@@ -180,7 +247,7 @@
   position: relative;
   min-height: 100%;
   min-width: 100%;
-  padding: 1em;
+  padding: 1.5em 1em 1em 1em;
 }
 @media (max-width: 800px) {
   .stats {
@@ -211,6 +278,14 @@
   color: #5e4c5a;
 }
 
+@keyframes slide-in {
+  0% {
+    transform: translateY(-200px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 @keyframes shake {
   0% {
     transform: rotate(0deg) scale(1);
