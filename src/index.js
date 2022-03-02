@@ -189,7 +189,7 @@ const displayFoodCard = (name, carbs, protein, fat) => {
                     <li class="card__item card__protein">Protein<br><i class="fas fa-drumstick-bite"></i><br>${protein}g</li>
                     <li class="card__item card__fat">Fat<br><i class="fas fa-cheese"></i><br>${fat}g</li>
                 </ul>
-                <button id="btnId-${eventId}" class="btn btn--delete">delete</button>
+                <button id="btnId-${eventId}" class="btn btn--delete"><i class="fas fa-trash-alt"></i></button>
             </div>
         </li>`);
     

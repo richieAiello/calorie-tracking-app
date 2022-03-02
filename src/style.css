@@ -211,11 +211,7 @@
 }
 .card:hover {
   background: rgba(94, 76, 90, 0.75);
-  color: #E1F0C4;
   box-shadow: 0 0 1.15em #E1F0C4;
-}
-.card:hover .btn--delete {
-  background-color: #E1F0C4;
 }
 .card__heading {
   text-transform: capitalize;
@@ -284,9 +280,15 @@
 }
 .btn--delete {
   text-transform: uppercase;
-  font-size: 1rem;
+  font-size: 2rem;
   background: #ffe2d1;
   color: #5e4c5a;
+  transition: all 150ms;
+}
+.btn--delete:hover, .btn--delete:focus {
+  font-size: 2.5rem;
+  background: #5e4c5a;
+  color: #ffe2d1;
 }
 
 @keyframes slide-in {

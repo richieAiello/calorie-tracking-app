@@ -275,12 +275,7 @@ $color-unbleached-silk: #ffe2d1;
 
     &:hover {
         background: rgba($color-eggplant, 0.75);
-        color: $color-nyanza;
-        box-shadow: 0 0 1.15em $color-nyanza;
-
-        .btn--delete {
-            background-color: $color-nyanza;
-        }
+        box-shadow: 0 0 1.15em $color-nyanza;                   
     }
 
     &__heading {
@@ -377,13 +372,19 @@ $color-unbleached-silk: #ffe2d1;
         }
     }
     
-    // Maybe make card disappear and a trash can icon appear on hover and focus?
     &--delete {
         text-transform: uppercase;
-        font-size: 1rem;
-        
+        font-size: 2rem;
         background: $color-unbleached-silk;
         color: $color-eggplant;
+        transition: all 150ms;
+
+        &:hover,
+        &:focus {
+            font-size: 2.5rem;
+            background: $color-eggplant;
+            color: $color-unbleached-silk;
+        }
     }
 }
 
