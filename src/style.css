@@ -64,6 +64,7 @@
   display: inline-block;
   animation: slide-in 400ms backwards;
   transition: all 250ms;
+  margin-left: -0.25em;
 }
 .translate:hover {
   transform: translateY(-20px);
@@ -93,6 +94,7 @@
   animation-delay: 525ms;
 }
 .translate--9 {
+  margin-right: 0.25em;
   animation-delay: 600ms;
 }
 .translate--10 {
