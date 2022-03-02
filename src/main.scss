@@ -264,7 +264,7 @@ $color-unbleached-silk: #ffe2d1;
 }
 
 .card {
-    background: rgba($color-eggplant, 0.5);
+    background: rgba($color-eggplant, 0.25);
     color: $color-unbleached-silk;
     padding: 0.5em 0;
     text-align: center;
@@ -274,7 +274,7 @@ $color-unbleached-silk: #ffe2d1;
     transition: all 250ms;
 
     &:hover {
-        background: rgba($color-eggplant, 0.75);
+        background: rgba($color-eggplant, 0.5);
         box-shadow: 0 0 1.15em $color-nyanza;                   
     }
 
