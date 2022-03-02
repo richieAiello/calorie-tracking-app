@@ -280,10 +280,12 @@ $color-unbleached-silk: #ffe2d1;
 
     &__heading {
         text-transform: capitalize;
+        text-shadow: 2px 2px 2px $color-eggplant;
     }
 
     &__text {
         margin: 0.5em 0;
+        text-shadow: 2px 2px 2px $color-eggplant;
     }
 
     &__list {

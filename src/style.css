@@ -215,9 +215,11 @@
 }
 .card__heading {
   text-transform: capitalize;
+  text-shadow: 2px 2px 2px #5e4c5a;
 }
 .card__text {
   margin: 0.5em 0;
+  text-shadow: 2px 2px 2px #5e4c5a;
 }
 .card__list {
   list-style: none;
