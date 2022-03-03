@@ -171,10 +171,15 @@
   min-height: 100%;
   min-width: 100%;
   padding-top: 1.5em;
-  display: grid;
+  display: flex;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas: "top" "bottom";
+}
+.pantry__placeholder {
+  font-size: 25rem;
+  align-self: center;
+  margin: 0 auto;
 }
 .pantry__top {
   display: none;
