@@ -327,16 +327,27 @@ $color-unbleached-silk: #ffe2d1;
 
 // section.stats
 .stats {
+    display: flex;
     grid-area: chart;
     position: relative;
     min-height: 100%;
     min-width: 100%;
     padding: 1.5em 1em 1em 1em;
-
+    
     @media (max-width: 800px) {
         & {
             min-height: 65vw;
         }
+    }
+
+    &__placeholder {
+        align-self: center;
+        margin:  0 auto;
+        font-size: 25rem;
+    }
+
+    &__chart {
+        display: none;
     }
 }
 

@@ -252,6 +252,7 @@
 }
 
 .stats {
+  display: flex;
   grid-area: chart;
   position: relative;
   min-height: 100%;
@@ -262,6 +263,14 @@
   .stats {
     min-height: 65vw;
   }
+}
+.stats__placeholder {
+  align-self: center;
+  margin: 0 auto;
+  font-size: 25rem;
+}
+.stats__chart {
+  display: none;
 }
 
 .btn {

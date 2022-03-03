@@ -26,10 +26,13 @@ const calories = document.querySelector('.calories__total');
 
 // Implementing a doughnut chart with chart.js
 const chart = document.querySelector('.stats__chart');
+const placeholder = document.querySelector('.stats__placeholder');
 const context = chart.getContext('2d');
 let foodChart = null;
 
 const initChart = () => {
+    placeholder.style.display = "none";
+
     foodChart?.destroy();
 
     let circumference = 360;
