@@ -20,6 +20,7 @@ const carbs = document.querySelector('#carbs');
 const protein = document.querySelector('#protein');
 const fat = document.querySelector('#fat');
 const pantryName = document.querySelector('.pantry__heading');
+const pantryTop = document.querySelector('.pantry__top');
 const list = document.querySelector('.pantry__list');
 const clearBtn = document.querySelector('.btn.btn--clear-pantry');
 const calories = document.querySelector('.calories__total');
@@ -271,6 +272,7 @@ pantryForm.addEventListener('submit', event => {
                 );
             });
 
+            pantryTop.style.display = "initial";
             pantryId.value = "";
             initChart();
             showTotalCalories();

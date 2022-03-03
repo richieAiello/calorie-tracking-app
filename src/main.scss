@@ -231,6 +231,7 @@ $color-unbleached-silk: #ffe2d1;
         "bottom";
     
     &__top {
+        display: none;
         grid-area: top;
     }
 

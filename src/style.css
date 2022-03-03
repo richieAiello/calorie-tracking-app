@@ -177,6 +177,7 @@
   grid-template-areas: "top" "bottom";
 }
 .pantry__top {
+  display: none;
   grid-area: top;
 }
 .pantry__heading {
