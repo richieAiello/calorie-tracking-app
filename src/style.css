@@ -182,8 +182,13 @@
   margin: 0 auto;
   animation: fade-in 3s;
   color: transparent;
+  background-clip: text;
   -webkit-background-clip: text;
   background-image: linear-gradient(to bottom left, #ffe2d1, #5e4c5a);
+  transition: all 2s;
+}
+.pantry__placeholder:hover {
+  transform: rotate(360deg);
 }
 .pantry__top {
   display: none;
@@ -283,8 +288,13 @@
   font-size: 25rem;
   animation: fade-in 3s;
   color: transparent;
+  background-clip: text;
   -webkit-background-clip: text;
   background-image: linear-gradient(to bottom right, #ffe2d1, #5e4c5a);
+  transition: all 2s;
+}
+.stats__placeholder:hover {
+  transform: rotate(-360deg);
 }
 .stats__chart {
   display: none;
@@ -360,7 +370,7 @@
     transform: rotate(0deg) scale(1);
   }
 }
-.snackbar {
+W .snackbar {
   display: inline-block;
   position: fixed;
   background: #323232;
