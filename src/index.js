@@ -198,8 +198,9 @@ const displayFoodCard = (name, carbs, protein, fat) => {
                 <button id="btnId-${eventId}" class="btn btn--delete"><i class="fas fa-trash-alt"></i></button>
             </div>
         </li>`);
-    
-    const currentItem = document.querySelector(`#itemId-${eventId}`);
+       
+    const currentItem = document.querySelector(`#itemId-${eventId}`);  
+
     const currentBtn = document.querySelector(`#btnId-${eventId}`);
     
     currentBtn.addEventListener('click', event => {
@@ -250,10 +251,10 @@ const clearFood = () => {
 // Clears the pantry's value. Initializes a new chart and updates total calories.
 pantryForm.addEventListener('submit', event => {
     event.preventDefault();
-
+    
     API.get(tailor(pantryId.value))
         .then(data => {
-
+            
             clearFood();
 
             endpoint = tailor(pantryId.value);
@@ -276,7 +277,7 @@ pantryForm.addEventListener('submit', event => {
 
             pantryPlaceholder.style.display = "none";
             pantry.style.display = "grid";
-            pantryTop.style.display = "initial";
+            pantryTop.style.display = "none";
             pantryId.value = "";
             initChart();
             showTotalCalories();
@@ -284,6 +285,9 @@ pantryForm.addEventListener('submit', event => {
         .catch(error => {
             console.error(error);
             snackbar.show('Please enter a valid pantry name!');
+        })
+        .finally(() => {
+            pantryTop.style.display = "initial";
         })
 });
 

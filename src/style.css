@@ -210,6 +210,7 @@
     grid-template-columns: 1fr;
   }
 }
+
 .card {
   background: rgba(94, 76, 90, 0.25);
   color: #ffe2d1;
