@@ -44,7 +44,7 @@ $color-unbleached-silk: #ffe2d1;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #665555;
+    background-image: linear-gradient(to bottom, $color-unbleached-silk, $color-eggplant);
     border-radius: 100vw;
 }
 
