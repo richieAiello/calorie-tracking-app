@@ -284,6 +284,7 @@ $color-unbleached-silk: #ffe2d1;
     margin: 0 1em;
     box-shadow: 0 0 0.65em $color-unbleached-silk;
     transition: all 250ms;
+    animation: slide-up 1s;
 
     &:hover {
         background: rgba($color-eggplant, 0.5);
