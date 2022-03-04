@@ -23,7 +23,7 @@ $color-unbleached-silk: #ffe2d1;
     background-repeat: no-repeat;
     background-size: cover;
     color: $color-unbleached-silk;
-    // Might not be the best fix for whitescpace
+    // Might not be the best fix for whitescpace, it's an issue with snackbar
     overflow-y: hidden;
 
     &__container {
@@ -232,21 +232,21 @@ $color-unbleached-silk: #ffe2d1;
         "top"
         "bottom";
 
-    &__placeholder {
-        font-size: 25rem;
-        align-self: center;
-        margin: 0 auto;
-        animation: fade-in 3s;
-        color: transparent;
-        background-clip: text;
-        -webkit-background-clip: text;
-        background-image: linear-gradient(to bottom left, $color-unbleached-silk, $color-eggplant);
-        transition: all 2s;
+    // &__placeholder {
+    //     font-size: 25rem;
+    //     align-self: center;
+    //     margin: 0 auto;
+    //     animation: fade-in 3s;
+    //     color: transparent;
+    //     background-clip: text;
+    //     -webkit-background-clip: text;
+    //     background-image: linear-gradient(to bottom left, $color-unbleached-silk, $color-eggplant);
+    //     transition: all 2s;
 
-        &:hover {
-            transform: rotate(360deg);
-        }
-    }
+    //     &:hover {
+    //         transform: rotate(360deg);
+    //     }
+    // }
     
     &__top {
         display: none;
@@ -361,22 +361,22 @@ $color-unbleached-silk: #ffe2d1;
         }
     }
 
-    &__placeholder {
-        align-self: center;
-        margin:  0 auto;
-        font-size: 25rem;
-        animation: fade-in 3s;
-        color: transparent;
-        background-clip: text;
-        -webkit-background-clip: text;
-        background-image: linear-gradient(to bottom right, $color-unbleached-silk, $color-eggplant);
+    // &__placeholder {
+    //     align-self: center;
+    //     margin:  0 auto;
+    //     font-size: 25rem;
+    //     animation: fade-in 3s;
+    //     color: transparent;
+    //     background-clip: text;
+    //     -webkit-background-clip: text;
+    //     background-image: linear-gradient(to bottom right, $color-unbleached-silk, $color-eggplant);
 
-        transition: all 2s;
+    //     transition: all 2s;
 
-        &:hover {
-            transform: rotate(-360deg);
-        }
-    }
+    //     &:hover {
+    //         transform: rotate(-360deg);
+    //     }
+    // }
 
     &__chart {
         display: none;
@@ -392,6 +392,7 @@ $color-unbleached-silk: #ffe2d1;
     border-radius: 0.25rem;
     font-weight: 700;
     display: inline-block;
+    transition: all 250ms;
 
     // &--access {
 
@@ -413,7 +414,9 @@ $color-unbleached-silk: #ffe2d1;
 
         &:hover,
         &:focus {
-            animation: shake 750ms infinite;
+            background: $color-eggplant;
+            color: $color-unbleached-silk;
+            box-shadow: 0 0 0.5em $color-unbleached-silk;
         }
     }
     
@@ -426,9 +429,9 @@ $color-unbleached-silk: #ffe2d1;
 
         &:hover,
         &:focus {
-            font-size: 2.5rem;
             background: $color-eggplant;
             color: $color-unbleached-silk;
+            padding: 0.25em 0.75em;
         }
     }
 }
@@ -449,14 +452,6 @@ $color-unbleached-silk: #ffe2d1;
     100% { transform: translateY(0); }
 }
 
-@keyframes shake {
-    0% { transform: rotate(0deg) scale(1); }
-    25% { transform: rotate(5deg) scale(1.1); }
-    50% { transform: rotate(0deg) scale(1);}
-    75% { transform: rotate(-5deg) scale(1.1);}
-    100% { transform: rotate(0deg) scale(1); }
-}
-W
 // snackbar settings
 .snackbar {
     display: inline-block;

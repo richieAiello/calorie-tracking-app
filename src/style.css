@@ -177,20 +177,6 @@
   grid-template-rows: auto 1fr;
   grid-template-areas: "top" "bottom";
 }
-.pantry__placeholder {
-  font-size: 25rem;
-  align-self: center;
-  margin: 0 auto;
-  animation: fade-in 3s;
-  color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
-  background-image: linear-gradient(to bottom left, #ffe2d1, #5e4c5a);
-  transition: all 2s;
-}
-.pantry__placeholder:hover {
-  transform: rotate(360deg);
-}
 .pantry__top {
   display: none;
   grid-area: top;
@@ -283,20 +269,6 @@
     min-height: 65vw;
   }
 }
-.stats__placeholder {
-  align-self: center;
-  margin: 0 auto;
-  font-size: 25rem;
-  animation: fade-in 3s;
-  color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
-  background-image: linear-gradient(to bottom right, #ffe2d1, #5e4c5a);
-  transition: all 2s;
-}
-.stats__placeholder:hover {
-  transform: rotate(-360deg);
-}
 .stats__chart {
   display: none;
 }
@@ -309,13 +281,16 @@
   border-radius: 0.25rem;
   font-weight: 700;
   display: inline-block;
+  transition: all 250ms;
 }
 .btn--access, .btn--food, .btn--clear-pantry {
   background: #ffe2d1;
   color: #5e4c5a;
 }
 .btn--access:hover, .btn--access:focus, .btn--food:hover, .btn--food:focus, .btn--clear-pantry:hover, .btn--clear-pantry:focus {
-  animation: shake 750ms infinite;
+  background: #5e4c5a;
+  color: #ffe2d1;
+  box-shadow: 0 0 0.5em #ffe2d1;
 }
 .btn--delete {
   text-transform: uppercase;
@@ -325,9 +300,9 @@
   transition: all 150ms;
 }
 .btn--delete:hover, .btn--delete:focus {
-  font-size: 2.5rem;
   background: #5e4c5a;
   color: #ffe2d1;
+  padding: 0.25em 0.75em;
 }
 
 @keyframes fade-in {
@@ -354,24 +329,7 @@
     transform: translateY(0);
   }
 }
-@keyframes shake {
-  0% {
-    transform: rotate(0deg) scale(1);
-  }
-  25% {
-    transform: rotate(5deg) scale(1.1);
-  }
-  50% {
-    transform: rotate(0deg) scale(1);
-  }
-  75% {
-    transform: rotate(-5deg) scale(1.1);
-  }
-  100% {
-    transform: rotate(0deg) scale(1);
-  }
-}
-W .snackbar {
+.snackbar {
   display: inline-block;
   position: fixed;
   background: #323232;
