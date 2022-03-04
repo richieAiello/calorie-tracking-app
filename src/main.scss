@@ -23,6 +23,8 @@ $color-unbleached-silk: #ffe2d1;
     background-repeat: no-repeat;
     background-size: cover;
     color: $color-unbleached-silk;
+    // Might not be the best fix for whitescpace
+    overflow-y: hidden;
 
     &__container {
         height: 100%;
