@@ -180,6 +180,10 @@
   font-size: 25rem;
   align-self: center;
   margin: 0 auto;
+  animation: fade-in 3s;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(to bottom left, #ffe2d1, #5e4c5a);
 }
 .pantry__top {
   display: none;
@@ -274,6 +278,10 @@
   align-self: center;
   margin: 0 auto;
   font-size: 25rem;
+  animation: fade-in 3s;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(to bottom right, #ffe2d1, #5e4c5a);
 }
 .stats__chart {
   display: none;
@@ -308,6 +316,14 @@
   color: #ffe2d1;
 }
 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 @keyframes slide-in {
   0% {
     transform: translateY(-200px);

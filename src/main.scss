@@ -234,6 +234,10 @@ $color-unbleached-silk: #ffe2d1;
         font-size: 25rem;
         align-self: center;
         margin: 0 auto;
+        animation: fade-in 3s;
+        color: transparent;
+        -webkit-background-clip: text;
+        background-image: linear-gradient(to bottom left, $color-unbleached-silk, $color-eggplant);
     }
     
     &__top {
@@ -351,6 +355,10 @@ $color-unbleached-silk: #ffe2d1;
         align-self: center;
         margin:  0 auto;
         font-size: 25rem;
+        animation: fade-in 3s;
+        color: transparent;
+        -webkit-background-clip: text;
+        background-image: linear-gradient(to bottom right, $color-unbleached-silk, $color-eggplant);
     }
 
     &__chart {
@@ -409,6 +417,11 @@ $color-unbleached-silk: #ffe2d1;
 }
 
 // keyframes
+@keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
 @keyframes slide-in {
     0% { transform: translateY(-200px); }
     100% { transform: translateY(0); }
