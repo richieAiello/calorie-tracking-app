@@ -62,7 +62,7 @@
 
 .translate {
   display: inline-block;
-  animation: slide-in 400ms backwards;
+  animation: slide-down 400ms backwards;
   transition: all 250ms;
   margin-left: -0.25em;
 }
@@ -188,6 +188,7 @@
 .pantry__top {
   display: none;
   grid-area: top;
+  animation: fade-in 1s;
 }
 .pantry__heading {
   text-align: center;
@@ -324,9 +325,17 @@
     opacity: 1;
   }
 }
-@keyframes slide-in {
+@keyframes slide-down {
   0% {
     transform: translateY(-200px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes slide-up {
+  0% {
+    transform: translateY(1000px);
   }
   100% {
     transform: translateY(0);

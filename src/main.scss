@@ -82,7 +82,7 @@ $color-unbleached-silk: #ffe2d1;
 
 .translate {
     display: inline-block;
-    animation: slide-in 400ms backwards;
+    animation: slide-down 400ms backwards;
     transition: all 250ms;
     margin-left: -0.25em;
 
@@ -243,6 +243,7 @@ $color-unbleached-silk: #ffe2d1;
     &__top {
         display: none;
         grid-area: top;
+        animation: fade-in 1s;
     }
 
     &__heading {
@@ -422,8 +423,13 @@ $color-unbleached-silk: #ffe2d1;
     100% { opacity: 1; }
 }
 
-@keyframes slide-in {
+@keyframes slide-down {
     0% { transform: translateY(-200px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes slide-up {
+    0% { transform: translateY(1000px); }
     100% { transform: translateY(0); }
 }
 
