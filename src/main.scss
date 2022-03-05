@@ -5,7 +5,6 @@ $color-polished-pine: #6BAB90;
 $color-nyanza: #E1F0C4;
 $color-unbleached-silk: #ffe2d1;
 
-
 // reset
 *,
 *::before,
@@ -72,10 +71,13 @@ $color-unbleached-silk: #ffe2d1;
 // section.hero
 .hero {
     grid-area: hero;
+    // change margin to 0 after pantry/chart load
+    // try to re-animate heading
+    margin-top: 25vh;
 
-    // animate heading
     &__heading {
-        font: 600 3rem 'Poppins', sans-serif;
+        // change font to 3rem after pantry/chart load
+        font: 600 4rem 'Poppins', sans-serif;
         text-align: center;
         padding: 0.5em 0;
         letter-spacing: 0.05em;
@@ -84,7 +86,7 @@ $color-unbleached-silk: #ffe2d1;
 
 .translate {
     display: inline-block;
-    animation: slide-down 400ms backwards;
+    animation: slide-up 650ms backwards;
     transition: all 250ms;
     margin-left: -0.25em;
 
@@ -173,6 +175,8 @@ $color-unbleached-silk: #ffe2d1;
 // section.access
 .access {
     grid-area: access;
+    animation: fade-in 1s backwards;
+    animation-delay: 2s;
 
     &__label {
         font-size: 1.375rem;
@@ -195,6 +199,8 @@ $color-unbleached-silk: #ffe2d1;
 // section.food
 .food {
     grid-area: food;
+    animation: fade-in 1s backwards;
+    animation-delay: 2s;
 
     &__label {
         font-size: 1.375rem;
@@ -448,7 +454,7 @@ $color-unbleached-silk: #ffe2d1;
 }
 
 @keyframes slide-up {
-    0% { transform: translateY(1000px); }
+    0% { transform: translateY(2000px); }
     100% { transform: translateY(0); }
 }
 
