@@ -53,18 +53,17 @@
 
 .hero {
   grid-area: hero;
-  margin-top: 25vh;
 }
 .hero__heading {
   font: 600 4rem "Poppins", sans-serif;
   text-align: center;
-  padding: 0.5em 0;
+  margin-top: 25vh;
   letter-spacing: 0.05em;
 }
 
 .translate {
   display: inline-block;
-  animation: slide-up 650ms backwards;
+  animation: slide-up 750ms backwards;
   transition: all 250ms;
   margin-left: -0.25em;
 }
@@ -328,10 +327,12 @@
 }
 @keyframes slide-up {
   0% {
-    transform: translateY(2000px);
+    transform: translateY(105vh) rotate(-270deg);
+    color: #5e4c5a;
   }
   100% {
-    transform: translateY(0);
+    transform: translateY(0) rotate(0deg);
+    color: #ffe2d1;
   }
 }
 .snackbar {

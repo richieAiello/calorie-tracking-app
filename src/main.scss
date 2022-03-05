@@ -71,22 +71,24 @@ $color-unbleached-silk: #ffe2d1;
 // section.hero
 .hero {
     grid-area: hero;
-    // change margin to 0 after pantry/chart load
-    // try to re-animate heading
-    margin-top: 25vh;
+    
+    
 
     &__heading {
         // change font to 3rem after pantry/chart load
         font: 600 4rem 'Poppins', sans-serif;
         text-align: center;
-        padding: 0.5em 0;
+        // change margin to 0 after pantry/chart load
+        // try to re-animate heading
+        margin-top: 25vh;
+        // add padding: 0.5em 0;
         letter-spacing: 0.05em;
     }
 }
 
 .translate {
     display: inline-block;
-    animation: slide-up 650ms backwards;
+    animation: slide-up 750ms backwards;
     transition: all 250ms;
     margin-left: -0.25em;
 
@@ -454,8 +456,8 @@ $color-unbleached-silk: #ffe2d1;
 }
 
 @keyframes slide-up {
-    0% { transform: translateY(2000px); }
-    100% { transform: translateY(0); }
+    0% { transform: translateY(105vh) rotate(-270deg); color: $color-eggplant; }
+    100% { transform: translateY(0) rotate(0deg); color: $color-unbleached-silk; }
 }
 
 // snackbar settings
