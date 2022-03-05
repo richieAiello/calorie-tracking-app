@@ -258,7 +258,6 @@ pantryForm.addEventListener('submit', event => {
 
             heroHeading.style.margin = "0";
             heroHeading.style.padding = "0.5em 0";
-            heroHeading.style.fontSize = "3.5rem";
             
             clearFood();
 
