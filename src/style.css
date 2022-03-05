@@ -57,18 +57,19 @@
 .hero__heading {
   font: 600 4rem "Poppins", sans-serif;
   text-align: center;
-  margin-top: 25vh;
+  margin: 25vh 0 0 0;
   letter-spacing: 0.05em;
+  transition: all 500ms;
 }
 
 .translate {
   display: inline-block;
-  animation: slide-up 750ms backwards;
+  animation: slide-up 1s backwards;
   transition: all 250ms;
   margin-left: -0.25em;
 }
 .translate:hover {
-  transform: translateY(-20px);
+  transform: translateY(-1.25rem);
 }
 .translate--1 {
   animation-delay: 0ms;
@@ -176,7 +177,7 @@
   min-height: 100%;
   min-width: 100%;
   padding-top: 1.5em;
-  display: flex;
+  display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas: "top" "bottom";
@@ -261,7 +262,6 @@
 }
 
 .stats {
-  display: flex;
   grid-area: chart;
   position: relative;
   min-height: 100%;
@@ -330,9 +330,12 @@
     transform: translateY(105vh) rotate(-270deg);
     color: #5e4c5a;
   }
+  50% {
+    transform: translateY(-5rem);
+    color: #ffe2d1;
+  }
   100% {
     transform: translateY(0) rotate(0deg);
-    color: #ffe2d1;
   }
 }
 .snackbar {

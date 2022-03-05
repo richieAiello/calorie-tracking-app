@@ -78,22 +78,22 @@ $color-unbleached-silk: #ffe2d1;
         // change font to 3rem after pantry/chart load
         font: 600 4rem 'Poppins', sans-serif;
         text-align: center;
-        // change margin to 0 after pantry/chart load
-        // try to re-animate heading
-        margin-top: 25vh;
-        // add padding: 0.5em 0;
+        // changes margin: 0 after pantry/chart load
+        // adds padding: 0.5em 0 after pantry/chart load;
+        margin: 25vh 0 0 0;
         letter-spacing: 0.05em;
+        transition: all 500ms;
     }
 }
 
 .translate {
     display: inline-block;
-    animation: slide-up 750ms backwards;
+    animation: slide-up 1s backwards;
     transition: all 250ms;
     margin-left: -0.25em;
 
     &:hover {
-        transform: translateY(-20px);
+        transform: translateY(-1.25rem);
     }
 
     &--1 {
@@ -233,29 +233,13 @@ $color-unbleached-silk: #ffe2d1;
     min-height: 100%;
     min-width: 100%;
     padding-top: 1.5em;
-    display: flex;
+    display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
     grid-template-areas: 
         "top"
         "bottom";
 
-    // &__placeholder {
-    //     font-size: 25rem;
-    //     align-self: center;
-    //     margin: 0 auto;
-    //     animation: fade-in 3s;
-    //     color: transparent;
-    //     background-clip: text;
-    //     -webkit-background-clip: text;
-    //     background-image: linear-gradient(to bottom left, $color-unbleached-silk, $color-eggplant);
-    //     transition: all 2s;
-
-    //     &:hover {
-    //         transform: rotate(360deg);
-    //     }
-    // }
-    
     &__top {
         display: none;
         grid-area: top;
@@ -284,11 +268,6 @@ $color-unbleached-silk: #ffe2d1;
             }
         }
     }
-
-    // &__item {
-    //     animation: slide-up 1s;
-    // }
-    
 }
 
 .card {
@@ -356,7 +335,6 @@ $color-unbleached-silk: #ffe2d1;
 
 // section.stats
 .stats {
-    display: flex;
     grid-area: chart;
     position: relative;
     min-height: 100%;
@@ -368,23 +346,6 @@ $color-unbleached-silk: #ffe2d1;
             min-height: 65vw;
         }
     }
-
-    // &__placeholder {
-    //     align-self: center;
-    //     margin:  0 auto;
-    //     font-size: 25rem;
-    //     animation: fade-in 3s;
-    //     color: transparent;
-    //     background-clip: text;
-    //     -webkit-background-clip: text;
-    //     background-image: linear-gradient(to bottom right, $color-unbleached-silk, $color-eggplant);
-
-    //     transition: all 2s;
-
-    //     &:hover {
-    //         transform: rotate(-360deg);
-    //     }
-    // }
 
     &__chart {
         display: none;
@@ -457,7 +418,8 @@ $color-unbleached-silk: #ffe2d1;
 
 @keyframes slide-up {
     0% { transform: translateY(105vh) rotate(-270deg); color: $color-eggplant; }
-    100% { transform: translateY(0) rotate(0deg); color: $color-unbleached-silk; }
+    50% { transform: translateY(-5rem); color: $color-unbleached-silk; }
+    100% { transform: translateY(0) rotate(0deg); }
 }
 
 // snackbar settings

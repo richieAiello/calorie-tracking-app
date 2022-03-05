@@ -12,6 +12,7 @@ snackbar.gap = 500;
 
 const macroData = new MacroData();
 
+const heroHeading = document.querySelector('.hero__heading');
 const pantryForm = document.querySelector('.access__form');
 const pantryId = document.querySelector('#access__name');
 const foodForm = document.querySelector('.food__form');
@@ -254,6 +255,10 @@ pantryForm.addEventListener('submit', event => {
     
     API.get(tailor(pantryId.value))
         .then(data => {
+
+            heroHeading.style.margin = "0";
+            heroHeading.style.padding = "0.5em 0";
+            heroHeading.style.fontSize = "3.5rem";
             
             clearFood();
 
@@ -275,8 +280,6 @@ pantryForm.addEventListener('submit', event => {
                 );
             });
 
-            // pantryPlaceholder.style.display = "none";
-            pantry.style.display = "grid";
             pantryTop.style.display = "none";
             pantryId.value = "";
             initChart();
