@@ -256,7 +256,7 @@ pantryForm.addEventListener('submit', event => {
     API.get(tailor(pantryId.value))
         .then(data => {
 
-            heroHeading.style.margin = "0";
+            heroHeading.style.marginTop = "0";
             heroHeading.style.padding = "0.5em 0";
             
             clearFood();

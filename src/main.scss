@@ -78,9 +78,10 @@ $color-unbleached-silk: #ffe2d1;
         // change font to 3rem after pantry/chart load
         font: 600 4rem 'Poppins', sans-serif;
         text-align: center;
-        // changes margin: 0 after pantry/chart load
-        // adds padding: 0.5em 0 after pantry/chart load;
-        margin: 25vh 0 0 0;
+        // changes (margin-top: 0) after pantry/chart load
+        margin-top: 25vh;
+        // changes (padding: 0.5em 0) after pantry/chart load
+        padding: 0 0 0.5em;
         letter-spacing: 0.05em;
         transition: all 500ms;
     }

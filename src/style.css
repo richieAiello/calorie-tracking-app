@@ -57,7 +57,8 @@
 .hero__heading {
   font: 600 4rem "Poppins", sans-serif;
   text-align: center;
-  margin: 25vh 0 0 0;
+  margin-top: 25vh;
+  padding: 0 0 0.5em;
   letter-spacing: 0.05em;
   transition: all 500ms;
 }
