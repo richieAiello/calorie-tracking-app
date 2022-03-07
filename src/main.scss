@@ -412,11 +412,6 @@ $color-unbleached-silk: #ffe2d1;
     100% { opacity: 1; }
 }
 
-@keyframes slide-down {
-    0% { transform: translateY(-200px); }
-    100% { transform: translateY(0); }
-}
-
 @keyframes slide-up {
     0% { transform: translateY(105vh) rotate(-270deg); color: $color-eggplant; }
     50% { transform: translateY(-5rem); color: $color-unbleached-silk; }
@@ -427,8 +422,8 @@ $color-unbleached-silk: #ffe2d1;
 .snackbar {
     display: inline-block;
     position: fixed;
-    background: #323232;
-    color: #f1f1f1;
+    background: $color-unbleached-silk;
+    color: $color-eggplant;
     min-height: 50px;
     min-width: 290px;
     padding: 16px 24px 12px;

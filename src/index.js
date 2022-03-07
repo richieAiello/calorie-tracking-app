@@ -22,7 +22,6 @@ const protein = document.querySelector('#protein');
 const fat = document.querySelector('#fat');
 const pantry = document.querySelector('.pantry');
 const pantryName = document.querySelector('.pantry__heading');
-// const pantryPlaceholder = document.querySelector('.pantry__placeholder');
 const pantryTop = document.querySelector('.pantry__top');
 const list = document.querySelector('.pantry__list');
 const clearBtn = document.querySelector('.btn.btn--clear-pantry');
@@ -30,12 +29,10 @@ const calories = document.querySelector('.calories__total');
 
 // Implementing a doughnut chart with chart.js
 const chart = document.querySelector('.stats__chart');
-// const chartPlaceholder = document.querySelector('.stats__placeholder');
 const context = chart.getContext('2d');
 let foodChart = null;
 
 const initChart = () => {
-    // chartPlaceholder.style.display = "none";
 
     foodChart?.destroy();
 
@@ -265,8 +262,6 @@ pantryForm.addEventListener('submit', event => {
 
             pantryName.textContent = displayName(endpoint);
 
-            snackbar.show(`Successfully accessed pantry: ${displayName(endpoint)}!`);
-
             data.documents?.forEach(document => {
             
                 storageData.push(document.name);
@@ -334,7 +329,6 @@ foodForm.addEventListener('submit', event => {
 
                     updateChart();
                     showTotalCalories();
-                    snackbar.show('Scroll down to view your delicious statistics!');
                 })
                 .catch(error => {
                     console.error(error);
@@ -368,7 +362,6 @@ clearBtn.addEventListener('click', event => {
             clearFood();
             updateChart();
             showTotalCalories();
-            snackbar.show(`Successfully emptied pantry: ${displayName(endpoint)}!`);
         })
         .catch(error => {
             console.error(error);
