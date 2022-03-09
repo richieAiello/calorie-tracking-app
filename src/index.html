@@ -72,17 +72,19 @@
                         <option value="vegetables">Vegetables</option>
                     </select>
                 </div>
-                <div class="food__macro">
-                    <label for="carbs" class="food__label">Carbs</label><br>
-                    <input type="number" id="carbs" class="food__grams" min="0" max="200" placeholder="0g" required>
-                </div>
-                <div class="food__macro">
-                    <label for="protein" class="food__label">Protein</label><br>
-                    <input type="number" id="protein" class="food__grams" min="0" max="200" placeholder="0g" required>
-                </div>
-                <div class="food__macro">
-                    <label for="fat" class="food__label">Fat</label><br>
-                    <input type="number" id="fat" class="food__grams" min="0" max="200" placeholder="0g" required>
+                <div class="food__macros flex flex--macros">
+                    <div class="food__carbs">
+                        <label for="carbs" class="food__label">Carbs</label><br>
+                        <input type="number" id="carbs" class="food__grams" min="0" max="200" placeholder="0g" required>
+                    </div>
+                    <div class="food__protein">
+                        <label for="protein" class="food__label">Protein</label><br>
+                        <input type="number" id="protein" class="food__grams" min="0" max="200" placeholder="0g" required>
+                    </div>
+                    <div class="food__fat">
+                        <label for="fat" class="food__label">Fat</label><br>
+                        <input type="number" id="fat" class="food__grams" min="0" max="200" placeholder="0g" required>
+                    </div>
                 </div>
                 <input type="submit" value="Add Meal" class="btn btn--food">
             </form>

@@ -13,6 +13,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   color: #ffe2d1;
+  overflow-y: hidden;
 }
 .app__container {
   height: 100%;
@@ -41,7 +42,17 @@
   justify-content: space-between;
   align-items: flex-end;
 }
+@media (max-width: 1300px) {
+  .flex--access {
+    flex-direction: column;
+    justify-content: initial;
+    align-items: center;
+  }
+}
 .flex--food {
+  align-items: flex-end;
+}
+.flex--macros {
   justify-content: space-around;
   align-items: flex-end;
 }
@@ -76,6 +87,7 @@
 }
 .slide-animation--1 {
   animation-delay: 0ms;
+  margin-left: 0;
 }
 .slide-animation--2 {
   animation-delay: 75ms;
@@ -143,7 +155,7 @@
 }
 .access__name {
   font: inherit;
-  width: 75%;
+  width: 7.5em;
   background: #ffe2d1;
   color: #5e4c5a;
   border: 0.125rem solid rgba(94, 76, 90, 0.5);
@@ -158,6 +170,17 @@
   grid-area: food;
   animation: fade-in 1s backwards;
   animation-delay: 2s;
+}
+.food__selection {
+  text-align: left;
+  margin-left: 2em;
+}
+.food__macros {
+  text-align: center;
+  width: 100%;
+}
+.food__macro {
+  text-align: center;
 }
 .food__label {
   font-size: 1.375rem;
@@ -292,6 +315,11 @@
   font-weight: 700;
   display: inline-block;
   transition: all 250ms;
+}
+@media (max-width: 1300px) {
+  .btn--access {
+    margin-top: 0.5em;
+  }
 }
 .btn--access, .btn--food, .btn--clear-pantry {
   background: #ffe2d1;

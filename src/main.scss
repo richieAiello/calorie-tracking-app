@@ -22,6 +22,9 @@ $color-unbleached-silk: #ffe2d1;
     background-repeat: no-repeat;
     background-size: cover;
     color: $color-unbleached-silk;
+    // Prevents scrollbar from appearing during opening animation at larger screens sizes
+    // Changes with a media query to initial at smaller screen sizes
+    overflow-y: hidden;
 
     &__container {
         height: 100%;
@@ -35,6 +38,17 @@ $color-unbleached-silk: #ffe2d1;
             "access food food food"
             "pantry pantry chart chart";
     }
+
+    // Remove 100vh and change the page display from grid to flex
+    // @media(max-width: 899px) {
+            // & {
+
+            // } 
+
+            // &__container {
+
+            // }
+    // }
 }
 
 ::-webkit-scrollbar {
@@ -53,9 +67,21 @@ $color-unbleached-silk: #ffe2d1;
     &--access {
         justify-content: space-between;
         align-items: flex-end;
+
+        @media(max-width: 1300px) {
+            & {
+                flex-direction: column;
+                justify-content: initial;
+                align-items: center;
+            }
+        }
     }
 
     &--food {
+        align-items: flex-end;
+    }
+
+    &--macros {
         justify-content: space-around;
         align-items: flex-end;
     }
@@ -100,6 +126,7 @@ $color-unbleached-silk: #ffe2d1;
 
     &--1 {
         animation-delay: 0ms;
+        margin-left: 0;
     }
 
     &--2 {
@@ -188,7 +215,7 @@ $color-unbleached-silk: #ffe2d1;
 
     &__name {
         font: inherit;
-        width: 75%;
+        width: 7.5em;
         background: $color-unbleached-silk;
         color: $color-eggplant;
         border: 0.125rem solid rgba($color-eggplant, 0.5);
@@ -199,7 +226,6 @@ $color-unbleached-silk: #ffe2d1;
             color: $color-eggplant;
         }
     }
-
 }
 
 // section.food
@@ -207,6 +233,20 @@ $color-unbleached-silk: #ffe2d1;
     grid-area: food;
     animation: fade-in 1s backwards;
     animation-delay: 2s;
+
+    &__selection {
+        text-align: left;
+        margin-left: 2em;
+    }
+
+    &__macros {
+        text-align: center;
+        width: 100%;
+    }
+
+    &__macro {
+        text-align: center;
+    }
 
     &__label {
         font-size: 1.375rem;
@@ -368,9 +408,13 @@ $color-unbleached-silk: #ffe2d1;
     display: inline-block;
     transition: all 250ms;
 
-    // &--access {
-
-    // }
+    &--access {
+        @media(max-width: 1300px) {
+            & {
+                margin-top: 0.5em;
+            }
+        }
+    }
 
     // &--food {
 
