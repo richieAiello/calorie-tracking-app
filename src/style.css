@@ -61,77 +61,75 @@
   letter-spacing: 0.05em;
   transition: all 500ms;
 }
-
-.delicious,
-.statistics {
+.hero__delicious, .hero__statistics {
   display: inline-block;
 }
 
-.translate {
+.slide-animation {
   display: inline-block;
   animation: slide-up 1s backwards;
   transition: all 250ms;
   margin-left: -0.25em;
 }
-.translate:hover {
+.slide-animation:hover {
   transform: translateY(-1.25rem);
 }
-.translate--1 {
+.slide-animation--1 {
   animation-delay: 0ms;
 }
-.translate--2 {
+.slide-animation--2 {
   animation-delay: 75ms;
 }
-.translate--3 {
+.slide-animation--3 {
   animation-delay: 150ms;
 }
-.translate--4 {
+.slide-animation--4 {
   animation-delay: 225ms;
 }
-.translate--5 {
+.slide-animation--5 {
   animation-delay: 300ms;
 }
-.translate--6 {
+.slide-animation--6 {
   animation-delay: 375ms;
 }
-.translate--7 {
+.slide-animation--7 {
   animation-delay: 450ms;
 }
-.translate--8 {
+.slide-animation--8 {
   animation-delay: 525ms;
 }
-.translate--9 {
+.slide-animation--9 {
   margin-right: 0.25em;
   animation-delay: 600ms;
 }
-.translate--10 {
+.slide-animation--10 {
   animation-delay: 675ms;
 }
-.translate--11 {
+.slide-animation--11 {
   animation-delay: 750ms;
 }
-.translate--12 {
+.slide-animation--12 {
   animation-delay: 825ms;
 }
-.translate--13 {
+.slide-animation--13 {
   animation-delay: 900ms;
 }
-.translate--14 {
+.slide-animation--14 {
   animation-delay: 975ms;
 }
-.translate--15 {
+.slide-animation--15 {
   animation-delay: 1050ms;
 }
-.translate--16 {
+.slide-animation--16 {
   animation-delay: 1125ms;
 }
-.translate--17 {
+.slide-animation--17 {
   animation-delay: 1200ms;
 }
-.translate--18 {
+.slide-animation--18 {
   animation-delay: 1275ms;
 }
-.translate--19 {
+.slide-animation--19 {
   animation-delay: 1350ms;
 }
 

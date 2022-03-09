@@ -70,8 +70,6 @@ $color-unbleached-silk: #ffe2d1;
 .hero {
     grid-area: hero;
     
-    
-
     &__heading {
         // change font to 3rem after pantry/chart load
         font: 600 4rem 'Poppins', sans-serif;
@@ -83,14 +81,14 @@ $color-unbleached-silk: #ffe2d1;
         letter-spacing: 0.05em;
         transition: all 500ms;
     }
-}
 
-.delicious,
-.statistics {
+    &__delicious,
+    &__statistics {
     display: inline-block;
+    }
 }
 
-.translate {
+.slide-animation {
     display: inline-block;
     animation: slide-up 1s backwards;
     transition: all 250ms;
