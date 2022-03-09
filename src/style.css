@@ -62,6 +62,11 @@
   transition: all 500ms;
 }
 
+.delicious,
+.statistics {
+  display: inline-block;
+}
+
 .translate {
   display: inline-block;
   animation: slide-up 1s backwards;
@@ -140,10 +145,12 @@
 }
 .access__name {
   font: inherit;
+  width: 75%;
   background: #ffe2d1;
   color: #5e4c5a;
   border: 0.125rem solid rgba(94, 76, 90, 0.5);
   border-radius: 0.25rem;
+  margin-top: 0.5em;
 }
 .access__name::placeholder {
   color: #5e4c5a;
@@ -163,6 +170,7 @@
   color: #5e4c5a;
   border: 0.125rem solid rgba(94, 76, 90, 0.5);
   border-radius: 0.25rem;
+  margin-top: 0.5em;
 }
 .food__name::placeholder, .food__grams::placeholder {
   color: #5e4c5a;

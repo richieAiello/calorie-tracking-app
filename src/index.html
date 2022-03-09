@@ -18,7 +18,7 @@
         <section class="hero">
             <h1 class="hero__heading">
                 <!-- "Delicious Statistics" wrapped in spans for animation purposes-->
-                <span>
+                <div class="delicious">
                     <span class="translate translate--1">D</span>
                     <span class="translate translate--2">e</span>
                     <span class="translate translate--3">l</span>
@@ -27,7 +27,9 @@
                     <span class="translate translate--6">i</span>
                     <span class="translate translate--7">o</span>
                     <span class="translate translate--8">u</span>
-                    <span class="translate translate--9">s</span> 
+                    <span class="translate translate--9">s</span>
+                </div>
+                <div class="statistics">
                     <span class="translate translate--10">S</span>
                     <span class="translate translate--11">t</span>
                     <span class="translate translate--12">a</span>
@@ -38,16 +40,15 @@
                     <span class="translate translate--17">i</span>
                     <span class="translate translate--18">c</span>
                     <span class="translate translate--19">s</span>
-                </span>
+                </div>
             </h1>
         </section>
 
-        <!-- Alter snackbar alert reminding to remember pantry name -->
         <section class="access">
             <form class="access__form flex flex--access">
                 <div class="access__container">
                     <label for="access__name" class="access__label">Pantry Name</label><br>
-                    <input type="text" id="access__name" class="access__name" placeholder="Enter pantry name..." required>
+                    <input type="text" id="access__name" class="access__name" placeholder="Pantry name..." required>
                 </div>
                 <input type="submit" value="Access" class="btn btn--access">
             </form>
@@ -87,11 +88,7 @@
             </form>
         </section>
         
-        <!-- Add a placeholder image while pantry is empty -->
-        <!-- Display none when food is added. Animate? -->
-        <!-- Possibly animate cards on add and remove -->
         <section class="pantry">
-            <!-- <i class="fas fa-clipboard-list pantry__placeholder"></i> -->
             <!-- Initially hidden until a pantry is accessed -->
             <div class="pantry__top">
                 <h3 class="pantry__heading"></h3>
@@ -102,15 +99,11 @@
                 </div>
             </div>
             <div class="pantry__bottom">
-                <!-- Maybe change to grid -->
                 <ul class="pantry__list"></ul>
             </div>
         </section>
 
         <section class="stats">
-            <!-- Animate? -->
-            <!-- Display changes to none upon chart creation -->
-            <!-- <i class="fas fa-chart-pie stats__placeholder"></i> -->
             <!-- Display initially  set to none, changes upon chart creation-->
             <canvas class="stats__chart" aria-label="Doughnut chart for food macro data" role="img"></canvas>
         </section>

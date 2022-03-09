@@ -20,7 +20,6 @@ const name = document.querySelector('#food__name');
 const carbs = document.querySelector('#carbs');
 const protein = document.querySelector('#protein');
 const fat = document.querySelector('#fat');
-const pantry = document.querySelector('.pantry');
 const pantryName = document.querySelector('.pantry__heading');
 const pantryTop = document.querySelector('.pantry__top');
 const list = document.querySelector('.pantry__list');
@@ -38,6 +37,7 @@ const initChart = () => {
 
     let circumference = 360;
 
+    // add a && to make chart 360 again at smaller sizes when page layout changes
     if (window.innerWidth < 1241) {
         circumference = 180;
     }
@@ -180,8 +180,6 @@ const displayFoodCard = (name, carbs, protein, fat) => {
 
     foodData.push(foodId);
 
-    // Change btn--move to appear as "X" rather than say remove. Maybe even transistion to a trash icon?
-    // Or maybe just a trash icon?
     list.insertAdjacentHTML(
         'beforeend',
         `<li id="itemId-${eventId}" class="pantry__item">
@@ -343,7 +341,6 @@ foodForm.addEventListener('submit', event => {
 
 // Fetch data with get, then loop through data and delete each document individually.
 // Runs clearFood(), then updates the chart and total calories displayed.
-
 // Have button disabled then enable button once a pantry has been accessed?
 clearBtn.addEventListener('click', event => {
     API.get(endpoint)
