@@ -24,6 +24,17 @@
   grid-template-rows: auto auto 1fr;
   grid-template-areas: "hero hero hero hero" "access food food food" "pantry pantry chart chart";
 }
+@media (max-width: 899px) {
+  .app {
+    height: initial;
+    min-height: 100vh;
+    overflow-y: initial;
+  }
+  .app__container {
+    display: flex;
+    flex-direction: column;
+  }
+}
 
 ::-webkit-scrollbar {
   width: 0.2em;
@@ -39,8 +50,9 @@
   display: flex;
 }
 .flex--access {
+  flex-direction: column;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
 }
 @media (max-width: 1300px) {
   .flex--access {
@@ -51,14 +63,21 @@
 }
 .flex--food {
   align-items: flex-end;
+  justify-content: space-between;
+}
+@media (max-width: 899px) {
+  .flex--food {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 .flex--macros {
   justify-content: space-around;
   align-items: flex-end;
 }
-.flex--console {
+.flex--pantry-top {
+  flex-direction: column;
   align-items: center;
-  justify-content: space-around;
 }
 
 .hero {
@@ -69,18 +88,27 @@
   text-align: center;
   margin-top: 25vh;
   padding: 0 0 0.5em;
-  letter-spacing: 0.05em;
   transition: all 500ms;
 }
 .hero__delicious, .hero__statistics {
   display: inline-block;
+}
+@media (max-width: 800px) {
+  .hero__heading {
+    font-size: 3rem;
+  }
+}
+@media (max-width: 600px) {
+  .hero__heading {
+    font-size: 2.25rem;
+  }
 }
 
 .slide-animation {
   display: inline-block;
   animation: slide-up 1s backwards;
   transition: all 250ms;
-  margin-left: -0.25em;
+  margin-left: -0.2em;
 }
 .slide-animation:hover {
   transform: translateY(-1.25rem);
@@ -111,7 +139,7 @@
   animation-delay: 525ms;
 }
 .slide-animation--9 {
-  margin-right: 0.25em;
+  margin-right: 0.5em;
   animation-delay: 600ms;
 }
 .slide-animation--10 {
@@ -146,7 +174,7 @@
 }
 
 .access {
-  grid-area: access;
+  grid-column: 1/-1;
   animation: fade-in 1s backwards;
   animation-delay: 2s;
 }
@@ -167,17 +195,22 @@
 }
 
 .food {
+  display: none;
   grid-area: food;
   animation: fade-in 1s backwards;
-  animation-delay: 2s;
 }
 .food__selection {
   text-align: left;
-  margin-left: 2em;
+  margin-left: 3.5em;
 }
 .food__macros {
   text-align: center;
-  width: 100%;
+  width: 50%;
+}
+@media (max-width: 899px) {
+  .food__macros {
+    margin-top: 1.5em;
+  }
 }
 .food__macro {
   text-align: center;
@@ -199,6 +232,14 @@
 .food__grams {
   width: 3em;
   direction: rtl;
+}
+@media (max-width: 899px) {
+  .food {
+    margin-top: 2em;
+  }
+  .food__selection {
+    margin-left: 0;
+  }
 }
 
 .pantry {
@@ -288,6 +329,7 @@
 
 .calories {
   text-align: center;
+  margin: 0.5em 0;
 }
 
 .stats {
@@ -316,8 +358,11 @@
   display: inline-block;
   transition: all 250ms;
 }
-@media (max-width: 1300px) {
-  .btn--access {
+.btn--access {
+  margin-top: 0.5em;
+}
+@media (max-width: 899px) {
+  .btn--food {
     margin-top: 0.5em;
   }
 }

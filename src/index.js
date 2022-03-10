@@ -15,6 +15,8 @@ const macroData = new MacroData();
 const heroHeading = document.querySelector('.hero__heading');
 const pantryForm = document.querySelector('.access__form');
 const pantryId = document.querySelector('#access__name');
+const accessSection = document.querySelector('.access');
+const foodSection = document.querySelector('.food');
 const foodForm = document.querySelector('.food__form');
 const name = document.querySelector('#food__name');
 const carbs = document.querySelector('#carbs');
@@ -240,6 +242,22 @@ const clearFood = () => {
     foodData.length = 0;
 }
 
+// Hides and re-animates pantry form. Updates layout and displays food form
+const adjustLayout = () => {
+    accessSection.style.gridColumn = "initial";
+    accessSection.style.gridArea = "access";
+    foodSection.style.display = "initial";
+    pantryTop.style.display = "none";
+}
+
+
+
+// ***********************************************
+//               EVENT LISTENERS
+// ***********************************************
+
+
+
 // If the endpoint is valid- clears all 3 food arrays and sets an endpoint for later use.
 // Displays the Pantry Name based on the endpoint.
 // Loops through the documents and pushes the document.name(string) to storageData.
@@ -272,8 +290,8 @@ pantryForm.addEventListener('submit', event => {
                 );
             });
 
-            pantryTop.style.display = "none";
             pantryId.value = "";
+            adjustLayout();
             initChart();
             showTotalCalories();
         })

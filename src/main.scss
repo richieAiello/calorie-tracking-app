@@ -40,15 +40,18 @@ $color-unbleached-silk: #ffe2d1;
     }
 
     // Remove 100vh and change the page display from grid to flex
-    // @media(max-width: 899px) {
-            // & {
+    @media(max-width: 899px) {
+            & {
+                height: initial;
+                min-height: 100vh;
+                overflow-y: initial;
+            } 
 
-            // } 
-
-            // &__container {
-
-            // }
-    // }
+            &__container {
+                display: flex;
+                flex-direction: column;
+            }
+    }
 }
 
 ::-webkit-scrollbar {
@@ -65,8 +68,9 @@ $color-unbleached-silk: #ffe2d1;
     display: flex;
 
     &--access {
+        flex-direction: column;
         justify-content: space-between;
-        align-items: flex-end;
+        align-items: center;
 
         @media(max-width: 1300px) {
             & {
@@ -79,6 +83,14 @@ $color-unbleached-silk: #ffe2d1;
 
     &--food {
         align-items: flex-end;
+        justify-content: space-between;
+
+        @media(max-width: 899px) {
+            & {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
     }
 
     &--macros {
@@ -86,9 +98,9 @@ $color-unbleached-silk: #ffe2d1;
         align-items: flex-end;
     }
 
-    &--console {
+    &--pantry-top {
+        flex-direction: column;
         align-items: center;
-        justify-content: space-around;
     }
 }
 
@@ -104,7 +116,6 @@ $color-unbleached-silk: #ffe2d1;
         margin-top: 25vh;
         // changes (padding: 0.5em 0) after pantry/chart load
         padding: 0 0 0.5em;
-        letter-spacing: 0.05em;
         transition: all 500ms;
     }
 
@@ -112,13 +123,25 @@ $color-unbleached-silk: #ffe2d1;
     &__statistics {
     display: inline-block;
     }
+
+    @media(max-width: 800px) {
+        &__heading {
+            font-size: 3rem;
+        }
+    }
+
+    @media(max-width: 600px) {
+        &__heading {
+            font-size: 2.25rem;
+        }
+    }
 }
 
 .slide-animation {
     display: inline-block;
     animation: slide-up 1s backwards;
     transition: all 250ms;
-    margin-left: -0.25em;
+    margin-left: -0.2em;
 
     &:hover {
         transform: translateY(-1.25rem);
@@ -158,7 +181,7 @@ $color-unbleached-silk: #ffe2d1;
     }
 
     &--9 {
-        margin-right: 0.25em;
+        margin-right: 0.5em;
         animation-delay: 600ms;
     }
 
@@ -205,10 +228,10 @@ $color-unbleached-silk: #ffe2d1;
 
 // section.access
 .access {
-    grid-area: access;
+    grid-column: 1 / -1;
     animation: fade-in 1s backwards;
     animation-delay: 2s;
-
+    
     &__label {
         font-size: 1.375rem;
     }
@@ -230,18 +253,24 @@ $color-unbleached-silk: #ffe2d1;
 
 // section.food
 .food {
+    display: none;
     grid-area: food;
     animation: fade-in 1s backwards;
-    animation-delay: 2s;
 
     &__selection {
         text-align: left;
-        margin-left: 2em;
+        margin-left: 3.5em;
     }
 
     &__macros {
         text-align: center;
-        width: 100%;
+        width: 50%;
+
+        @media(max-width: 899px) {
+            & {
+                margin-top: 1.5em;
+            }
+        }
     }
 
     &__macro {
@@ -269,6 +298,16 @@ $color-unbleached-silk: #ffe2d1;
     &__grams {
         width: 3em;
         direction: rtl;
+    }
+
+    @media(max-width: 899px) {
+        & {
+            margin-top: 2em;
+        }
+
+        &__selection {
+            margin-left: 0;
+        }
     }
 }
 
@@ -375,6 +414,7 @@ $color-unbleached-silk: #ffe2d1;
 
 .calories {
     text-align: center;
+    margin: 0.5em 0;
 }
 
 
@@ -409,16 +449,16 @@ $color-unbleached-silk: #ffe2d1;
     transition: all 250ms;
 
     &--access {
-        @media(max-width: 1300px) {
+        margin-top: 0.5em;
+    }
+
+    &--food {
+        @media(max-width: 899px) {
             & {
                 margin-top: 0.5em;
             }
         }
     }
-
-    // &--food {
-
-    // }
 
     // &--clear-pantry {
 
