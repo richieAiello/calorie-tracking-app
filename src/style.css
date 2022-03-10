@@ -93,16 +93,6 @@
 .hero__delicious, .hero__statistics {
   display: inline-block;
 }
-@media (max-width: 800px) {
-  .hero__heading {
-    font-size: 3rem;
-  }
-}
-@media (max-width: 600px) {
-  .hero__heading {
-    font-size: 2.25rem;
-  }
-}
 
 .slide-animation {
   display: inline-block;
@@ -207,11 +197,6 @@
   text-align: center;
   width: 50%;
 }
-@media (max-width: 899px) {
-  .food__macros {
-    margin-top: 1.5em;
-  }
-}
 .food__macro {
   text-align: center;
 }
@@ -239,6 +224,22 @@
   }
   .food__selection {
     margin-left: 0;
+  }
+  .food__macros {
+    width: min(35ch, 100%);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "carbs protein fat";
+    margin-top: 1.5em;
+  }
+  .food__carbs {
+    grid-area: carbs;
+  }
+  .food__protein {
+    grid-area: protein;
+  }
+  .food__fat {
+    grid-area: fat;
   }
 }
 
@@ -275,6 +276,13 @@
 @media (max-width: 1350px) {
   .pantry__list {
     grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 899px) {
+  .pantry__list {
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: scroll;
   }
 }
 
@@ -431,4 +439,10 @@
 .snackbar--visible {
   visibility: visible;
   transform: none;
+}
+
+@media (max-width: 899px) {
+  html {
+    font-size: 15px;
+  }
 }

@@ -124,17 +124,17 @@ $color-unbleached-silk: #ffe2d1;
     display: inline-block;
     }
 
-    @media(max-width: 800px) {
-        &__heading {
-            font-size: 3rem;
-        }
-    }
+    // @media(max-width: 800px) {
+    //     &__heading {
+    //         font-size: 3rem;
+    //     }
+    // }
 
-    @media(max-width: 600px) {
-        &__heading {
-            font-size: 2.25rem;
-        }
-    }
+    // @media(max-width: 600px) {
+    //     &__heading {
+    //         font-size: 2.25rem;
+    //     }
+    // }
 }
 
 .slide-animation {
@@ -265,12 +265,6 @@ $color-unbleached-silk: #ffe2d1;
     &__macros {
         text-align: center;
         width: 50%;
-
-        @media(max-width: 899px) {
-            & {
-                margin-top: 1.5em;
-            }
-        }
     }
 
     &__macro {
@@ -307,6 +301,27 @@ $color-unbleached-silk: #ffe2d1;
 
         &__selection {
             margin-left: 0;
+        }
+
+        // for centering purposes
+        &__macros {
+            width: min(35ch, 100%);
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-areas: "carbs protein fat";
+            margin-top: 1.5em;
+        }
+
+        &__carbs {
+            grid-area: carbs;
+        }
+
+        &__protein {
+            grid-area: protein;
+        }
+
+        &__fat {
+            grid-area: fat;
         }
     }
 }
@@ -346,9 +361,17 @@ $color-unbleached-silk: #ffe2d1;
         display: grid;
         grid-template-columns: 1fr 1fr;
         row-gap: 1em;
-        @media (max-width: 1350px) {
+        @media(max-width: 1350px) {
             & {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width: 899px) {
+            & {
+                display: flex;
+                overflow-y: hidden;
+                overflow-x: scroll;
             }
         }
     }
@@ -530,3 +553,11 @@ $color-unbleached-silk: #ffe2d1;
     visibility: visible;
     transform: none;
   }
+
+// Root Media Queries
+
+@media(max-width: 899px) {
+    html {
+        font-size: 15px;
+    }
+}
