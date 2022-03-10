@@ -28,7 +28,7 @@ $color-unbleached-silk: #ffe2d1;
 
     &__container {
         height: 100%;
-        width: min(90vw, 80em);
+        width: min(95vw, 80em);
         margin-inline: auto;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -43,7 +43,6 @@ $color-unbleached-silk: #ffe2d1;
     @media(max-width: 899px) {
             & {
                 height: initial;
-                min-height: 100vh;
             } 
 
             &__container {
@@ -69,21 +68,12 @@ $color-unbleached-silk: #ffe2d1;
 
     &--access {
         flex-direction: column;
-        justify-content: space-between;
         align-items: center;
-
-        @media(max-width: 1300px) {
-            & {
-                flex-direction: column;
-                justify-content: initial;
-                align-items: center;
-            }
-        }
     }
 
     &--food {
         align-items: flex-end;
-        justify-content: space-between;
+        justify-content: space-around;
 
         @media(max-width: 899px) {
             & {
@@ -99,8 +89,16 @@ $color-unbleached-silk: #ffe2d1;
     }
 
     &--pantry-top {
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: space-between;
         align-items: center;
+
+        @media(max-width: 899px) {
+            & {
+                flex-direction: column;
+                justify-content: initial;
+            } 
+    }
     }
 }
 
@@ -270,7 +268,6 @@ $color-unbleached-silk: #ffe2d1;
 
     &__selection {
         text-align: left;
-        margin-left: 3.5em;
     }
 
     &__macros {
@@ -312,7 +309,6 @@ $color-unbleached-silk: #ffe2d1;
 
         &__selection {
             text-align: center;
-            margin-left: 0;
         }
 
         // for centering purposes
@@ -354,6 +350,7 @@ $color-unbleached-silk: #ffe2d1;
     &__top {
         display: none;
         grid-area: top;
+        padding: 0 1em;
         animation: fade-in 1s;
     }
 
@@ -394,13 +391,15 @@ $color-unbleached-silk: #ffe2d1;
     background: rgba($color-eggplant, 0.25);
     color: $color-unbleached-silk;
     min-width: 22ch;
+    max-width: 30ch;
     padding: 0.5em 0;
     text-align: center;
     border-radius: 2em;
-    margin: 0 1em;
+    margin: 0 0.5em;
     box-shadow: 0 0 0.65em $color-unbleached-silk;
     transition: all 250ms;
     animation: slide-up 1s;
+    justify-self: center;
 
     &:hover {
         background: rgba($color-eggplant, 0.5);
@@ -447,12 +446,20 @@ $color-unbleached-silk: #ffe2d1;
         color: rgba($color-eggplant, 0.75);
         background: rgba($color-unbleached-silk, 0.85);
     }
+
+    @media(max-width: 1440px) {
+        margin: 0 auto;
+    }
+
+    @media(max-width: 899px) {
+        margin: 0 0.5em;
+    }
 }
 
 .calories {
     text-align: center;
-    margin: 1em 0;
-}
+    margin-bottom: 0.25em;
+    font-weight: 600;}
 
 
 // section.stats
@@ -461,12 +468,11 @@ $color-unbleached-silk: #ffe2d1;
     position: relative;
     min-height: 100%;
     min-width: 100%;
-    padding: 1.5em 1em 1em 1em;
+    padding: 1.5em 0 1em 1em;
     
     @media (max-width: 899px) {
         & {
-            min-height: 50%;
-            min-width: 50%;
+            height: 30ch;
             padding: 0 1em 1em 1em;
         }
     }
@@ -495,9 +501,9 @@ $color-unbleached-silk: #ffe2d1;
         }
     }
 
-    // &--clear-pantry {
-
-    // }
+    &--clear-pantry {
+        margin: 0.75em 0;
+    }
 
     &--access,
     &--food,

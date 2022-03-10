@@ -38,13 +38,6 @@ const initChart = () => {
 
     foodChart?.destroy();
 
-    let circumference = 360;
-
-    // add a && to make chart 360 again at smaller sizes when page layout changes
-    if (window.innerWidth < 1241 && window.innerWidth > 899) {
-        circumference = 180;
-    }
-    
     foodChart = new Chart(context, {
         type: 'doughnut',
         data: {
@@ -115,67 +108,11 @@ const initChart = () => {
             animation: {
                 animateScale: true,
                 animateRotate: true
-            },
-            circumference: circumference
+            }
         }
     });
-
-    chartQuery1();
-    chartQuery2();
-    chartQuery3();
-    chartQuery4();
     
     return foodChart;
-}
-
-// Media queries for chart
-const chartQuery1 = () => {
-    const mediaQuery = window.matchMedia('(max-width: 1240px)');
-
-    const handleChange = event => {
-        if (event.matches) {
-            return foodChart.options.circumference = 180;
-        }
-        foodChart.options.circumference = 360;
-    }
-    mediaQuery.addEventListener('change', handleChange);
-    handleChange(mediaQuery);
-}
-
-const chartQuery2 = () => {
-    const mediaQuery = window.matchMedia('(max-width: 899px)');
-
-    const handleChange = event => {
-        if (event.matches) {
-            return foodChart.options.circumference = 360;
-        }
-    }
-    mediaQuery.addEventListener('change', handleChange);
-    handleChange(mediaQuery);
-}
-
-const chartQuery3 = () => {
-    const mediaQuery = window.matchMedia('(min-width: 899px)');
-
-    const handleChange = event => {
-        if (event.matches) {
-            return foodChart.options.circumference = 180;
-        }
-    }
-    mediaQuery.addEventListener('change', handleChange);
-    handleChange(mediaQuery);
-}
-
-const chartQuery4 = () => {
-    const mediaQuery = window.matchMedia('(max-width: 500px)');
-
-    const handleChange = event => {
-        if (event.matches) {
-            return foodChart.options.circumference = 180;
-        }
-    }
-    mediaQuery.addEventListener('change', handleChange);
-    handleChange(mediaQuery);
 }
 
 // updates data in the chart
@@ -254,7 +191,6 @@ const displayFoodCard = (name, carbs, protein, fat) => {
                 currentItem.remove();
                 updateChart();
                 showTotalCalories();
-                snackbar.show('Scroll down to view your delicious statistics!');
             })
             .catch(error => {
                 console.error(error);
@@ -280,7 +216,7 @@ const clearFood = () => {
 }
 
 // Hides and re-animates pantry form. Updates layout and displays food form
-const adjustLayout = () => {
+const adjustLayout = () => { 
     app.style.overflow = "initial";
     accessSection.style.gridColumn = "initial";
     accessSection.style.gridArea = "access";
