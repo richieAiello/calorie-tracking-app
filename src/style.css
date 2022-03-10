@@ -13,7 +13,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   color: #ffe2d1;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 .app__container {
   height: 100%;
@@ -28,11 +28,11 @@
   .app {
     height: initial;
     min-height: 100vh;
-    overflow-y: initial;
   }
   .app__container {
     display: flex;
     flex-direction: column;
+    width: 100vw;
   }
 }
 
@@ -92,6 +92,17 @@
 }
 .hero__delicious, .hero__statistics {
   display: inline-block;
+}
+@media (max-width: 899px) {
+  .hero__heading {
+    font-size: 3.5rem;
+    padding: 0.15em 0;
+  }
+}
+@media (max-width: 520px) {
+  .hero__heading {
+    font-size: 3rem;
+  }
 }
 
 .slide-animation {
@@ -161,6 +172,14 @@
 }
 .slide-animation--19 {
   animation-delay: 1350ms;
+}
+@media (max-width: 520px) {
+  .slide-animation--9 {
+    margin-right: 0;
+  }
+  .slide-animation--10 {
+    margin-left: 0;
+  }
 }
 
 .access {
@@ -283,6 +302,7 @@
     display: flex;
     overflow-y: hidden;
     overflow-x: scroll;
+    padding: 1em 0;
   }
 }
 
@@ -337,7 +357,7 @@
 
 .calories {
   text-align: center;
-  margin: 0.5em 0;
+  margin: 1em 0;
 }
 
 .stats {
@@ -347,13 +367,12 @@
   min-width: 100%;
   padding: 1.5em 1em 1em 1em;
 }
-@media (max-width: 800px) {
+@media (max-width: 899px) {
   .stats {
-    min-height: 65vw;
+    min-height: 50%;
+    min-width: 50%;
+    padding: 0 1em 1em 1em;
   }
-}
-.stats__chart {
-  display: none;
 }
 
 .btn {
@@ -444,5 +463,10 @@
 @media (max-width: 899px) {
   html {
     font-size: 15px;
+  }
+}
+@media (max-width: 650px) {
+  html {
+    font-size: 14px;
   }
 }

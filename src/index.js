@@ -12,6 +12,7 @@ snackbar.gap = 500;
 
 const macroData = new MacroData();
 
+const app = document.querySelector('.app');
 const heroHeading = document.querySelector('.hero__heading');
 const pantryForm = document.querySelector('.access__form');
 const pantryId = document.querySelector('#access__name');
@@ -122,13 +123,13 @@ const initChart = () => {
     chartQuery1();
     chartQuery2();
     chartQuery3();
+    chartQuery4();
     
     return foodChart;
 }
 
-// Responsive functions and media queries for chart
+// Media queries for chart
 const chartQuery1 = () => {
-
     const mediaQuery = window.matchMedia('(max-width: 1240px)');
 
     const handleChange = event => {
@@ -137,14 +138,11 @@ const chartQuery1 = () => {
         }
         foodChart.options.circumference = 360;
     }
-
     mediaQuery.addEventListener('change', handleChange);
-
     handleChange(mediaQuery);
 }
 
 const chartQuery2 = () => {
-
     const mediaQuery = window.matchMedia('(max-width: 899px)');
 
     const handleChange = event => {
@@ -152,14 +150,11 @@ const chartQuery2 = () => {
             return foodChart.options.circumference = 360;
         }
     }
-
     mediaQuery.addEventListener('change', handleChange);
-
     handleChange(mediaQuery);
 }
 
 const chartQuery3 = () => {
-
     const mediaQuery = window.matchMedia('(min-width: 899px)');
 
     const handleChange = event => {
@@ -167,9 +162,19 @@ const chartQuery3 = () => {
             return foodChart.options.circumference = 180;
         }
     }
-
     mediaQuery.addEventListener('change', handleChange);
+    handleChange(mediaQuery);
+}
 
+const chartQuery4 = () => {
+    const mediaQuery = window.matchMedia('(max-width: 500px)');
+
+    const handleChange = event => {
+        if (event.matches) {
+            return foodChart.options.circumference = 180;
+        }
+    }
+    mediaQuery.addEventListener('change', handleChange);
     handleChange(mediaQuery);
 }
 
@@ -276,6 +281,7 @@ const clearFood = () => {
 
 // Hides and re-animates pantry form. Updates layout and displays food form
 const adjustLayout = () => {
+    app.style.overflow = "initial";
     accessSection.style.gridColumn = "initial";
     accessSection.style.gridArea = "access";
     foodSection.style.display = "initial";

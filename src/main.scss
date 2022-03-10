@@ -24,7 +24,7 @@ $color-unbleached-silk: #ffe2d1;
     color: $color-unbleached-silk;
     // Prevents scrollbar from appearing during opening animation at larger screens sizes
     // Changes with a media query to initial at smaller screen sizes
-    overflow-y: hidden;
+    overflow: hidden;
 
     &__container {
         height: 100%;
@@ -44,12 +44,12 @@ $color-unbleached-silk: #ffe2d1;
             & {
                 height: initial;
                 min-height: 100vh;
-                overflow-y: initial;
             } 
 
             &__container {
                 display: flex;
                 flex-direction: column;
+                width: 100vw;
             }
     }
 }
@@ -124,17 +124,18 @@ $color-unbleached-silk: #ffe2d1;
     display: inline-block;
     }
 
-    // @media(max-width: 800px) {
-    //     &__heading {
-    //         font-size: 3rem;
-    //     }
-    // }
+    @media(max-width: 899px) {
+        &__heading {
+            font-size: 3.5rem;
+            padding: 0.15em 0;
+        }
+    }
 
-    // @media(max-width: 600px) {
-    //     &__heading {
-    //         font-size: 2.25rem;
-    //     }
-    // }
+    @media(max-width: 520px) {
+        &__heading {
+            font-size: 3rem;
+        }
+    }
 }
 
 .slide-animation {
@@ -223,6 +224,16 @@ $color-unbleached-silk: #ffe2d1;
 
     &--19 {
         animation-delay: 1350ms;
+    }
+
+    @media(max-width: 520px) {
+        &--9 {
+            margin-right: 0;
+        }
+
+        &--10 {
+            margin-left: 0;
+        }
     }
 }
 
@@ -372,6 +383,7 @@ $color-unbleached-silk: #ffe2d1;
                 display: flex;
                 overflow-y: hidden;
                 overflow-x: scroll;
+                padding: 1em 0;
             }
         }
     }
@@ -437,7 +449,7 @@ $color-unbleached-silk: #ffe2d1;
 
 .calories {
     text-align: center;
-    margin: 0.5em 0;
+    margin: 1em 0;
 }
 
 
@@ -449,14 +461,12 @@ $color-unbleached-silk: #ffe2d1;
     min-width: 100%;
     padding: 1.5em 1em 1em 1em;
     
-    @media (max-width: 800px) {
+    @media (max-width: 899px) {
         & {
-            min-height: 65vw;
+            min-height: 50%;
+            min-width: 50%;
+            padding: 0 1em 1em 1em;
         }
-    }
-
-    &__chart {
-        display: none;
     }
 }
 
@@ -559,5 +569,11 @@ $color-unbleached-silk: #ffe2d1;
 @media(max-width: 899px) {
     html {
         font-size: 15px;
+    }
+}
+
+@media(max-width: 650px) {
+    html {
+        font-size: 14px;
     }
 }
