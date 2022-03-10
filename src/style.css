@@ -242,6 +242,7 @@
     margin-top: 2em;
   }
   .food__selection {
+    text-align: center;
     margin-left: 0;
   }
   .food__macros {
@@ -249,7 +250,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas: "carbs protein fat";
-    margin-top: 1.5em;
+    margin: 1.5em 0;
   }
   .food__carbs {
     grid-area: carbs;
@@ -292,7 +293,7 @@
   grid-template-columns: 1fr 1fr;
   row-gap: 1em;
 }
-@media (max-width: 1350px) {
+@media (max-width: 1440px) {
   .pantry__list {
     grid-template-columns: 1fr;
   }
@@ -309,6 +310,7 @@
 .card {
   background: rgba(94, 76, 90, 0.25);
   color: #ffe2d1;
+  min-width: 22ch;
   padding: 0.5em 0;
   text-align: center;
   border-radius: 2em;
