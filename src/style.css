@@ -426,6 +426,7 @@
 }
 .btn--delete:hover, .btn--delete:focus {
   background: #5e4c5a;
+  box-shadow: 0 0 0.25em #ffe2d1;
   color: #ffe2d1;
   padding: 0.25em 0.75em;
 }

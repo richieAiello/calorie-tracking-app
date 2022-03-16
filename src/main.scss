@@ -530,6 +530,7 @@ $color-unbleached-silk: #ffe2d1;
         &:hover,
         &:focus {
             background: $color-eggplant;
+            box-shadow: 0 0 0.25em $color-unbleached-silk;
             color: $color-unbleached-silk;
             padding: 0.25em 0.75em;
         }
