@@ -415,7 +415,7 @@
 .btn--access:hover, .btn--access:focus, .btn--food:hover, .btn--food:focus, .btn--clear-pantry:hover, .btn--clear-pantry:focus {
   background: #5e4c5a;
   color: #ffe2d1;
-  box-shadow: 0 0 0.5em #ffe2d1;
+  box-shadow: 0 0 0.35em #ffe2d1;
 }
 .btn--delete {
   text-transform: uppercase;
