@@ -17,6 +17,7 @@ $color-unbleached-silk: #ffe2d1;
 // base styles
 .app {
     height: 100vh;
+    width: 100vw;
     font: 500 1.25rem/1.2 'Poppins', sans-serif;
     background: linear-gradient(to bottom, $color-eggplant, $color-wintergreen-dream, $color-nyanza);
     background-repeat: no-repeat;

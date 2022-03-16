@@ -8,6 +8,7 @@
 
 .app {
   height: 100vh;
+  width: 100vw;
   font: 500 1.25rem/1.2 "Poppins", sans-serif;
   background: linear-gradient(to bottom, #5e4c5a, #55917f, #E1F0C4);
   background-repeat: no-repeat;

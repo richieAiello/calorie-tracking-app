@@ -230,7 +230,15 @@ const adjustLayout = () => {
 //               EVENT LISTENERS
 // ***********************************************
 
-
+/*  Brings the user to top of page on page load or refresh.
+    If the user refreshes at the bottom of page while chart and pantry are rendered,
+    this event prevents user from seeing white space at bottom of page. Ensures the 
+    user views the starting animation.
+*/
+ 
+window.addEventListener("beforeunload", e => {
+    window.scrollTo(0, 0);
+})
 
 // If the endpoint is valid- clears all 3 food arrays and sets an endpoint for later use.
 // Displays the Pantry Name based on the endpoint.
