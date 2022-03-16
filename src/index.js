@@ -14,11 +14,13 @@ const macroData = new MacroData();
 
 const app = document.querySelector('.app');
 const heroHeading = document.querySelector('.hero__heading');
-const pantryForm = document.querySelector('.access__form');
-const pantryId = document.querySelector('#access__name');
 const accessSection = document.querySelector('.access');
+const pantryForm = document.querySelector('.access__form');
+const pantryBtn = document.querySelector('.btn.btn--access');
+const pantryId = document.querySelector('#access__name');
 const foodSection = document.querySelector('.food');
 const foodForm = document.querySelector('.food__form');
+const foodBtn = document.querySelector('.btn.btn--food');
 const name = document.querySelector('#food__name');
 const carbs = document.querySelector('#carbs');
 const protein = document.querySelector('#protein');
@@ -233,9 +235,8 @@ const adjustLayout = () => {
 /*  Brings the user to top of page on page load or refresh.
     If the user refreshes at the bottom of page while chart and pantry are rendered,
     this event prevents user from seeing white space at bottom of page. Ensures the 
-    user views the starting animation.
-*/
- 
+    user views the starting animation.  */
+
 window.addEventListener("beforeunload", e => {
     window.scrollTo(0, 0);
 })
@@ -245,12 +246,14 @@ window.addEventListener("beforeunload", e => {
 // Loops through the documents and pushes the document.name(string) to storageData.
 // Displays a food card based on the information received from each document.
 // Clears the pantry's value. Initializes a new chart and updates total calories.
+
 pantryForm.addEventListener('submit', event => {
     event.preventDefault();
-    
+
+    pantryBtn.setAttribute("disabled", "disabled");
+
     API.get(tailor(pantryId.value))
         .then(data => {
-
             heroHeading.style.marginTop = "0";
             heroHeading.style.padding = "0.5em 0";
             
@@ -283,6 +286,7 @@ pantryForm.addEventListener('submit', event => {
         })
         .finally(() => {
             pantryTop.style.display = "initial";
+            pantryBtn.removeAttribute("disabled");
         })
 });
 
@@ -293,8 +297,11 @@ pantryForm.addEventListener('submit', event => {
 // Then loops through the documents and pushes document.name(string) to storageData for each document.
 // Displays a food card for each document based on the data.
 // Updates foodChart and displays total calories.
+
 foodForm.addEventListener('submit', event => {
     event.preventDefault();
+
+    foodBtn.setAttribute("disabled", "disabled");
 
     API.post(endpoint, {
         fields: {
@@ -332,10 +339,13 @@ foodForm.addEventListener('submit', event => {
                     console.error(error);
                     snackbar.show('Server communication errror. Could not receive food item. Refresh and try again.');
                 });
+            
+            foodBtn.removeAttribute("disabled");
         })
         .catch(error => {
             console.error(error);
             snackbar.show('Please access a pantry before adding food items!');
+            foodBtn.removeAttribute("disabled");
         });  
 });
 
@@ -343,6 +353,8 @@ foodForm.addEventListener('submit', event => {
 // Runs clearFood(), then updates the chart and total calories displayed.
 // Have button disabled then enable button once a pantry has been accessed?
 clearBtn.addEventListener('click', event => {
+    clearBtn.setAttribute("disabled", "disabled");
+
     API.get(endpoint)
         .then(data => {
             data.documents.forEach(document => {
@@ -359,9 +371,11 @@ clearBtn.addEventListener('click', event => {
             clearFood();
             updateChart();
             showTotalCalories();
+            clearBtn.removeAttribute("disabled");
         })
         .catch(error => {
             console.error(error);
             snackbar.show('Server communication error. Could not delete pantry. Refresh and try again!');
+            clearBtn.removeAttribute("disabled");
         });
 });
