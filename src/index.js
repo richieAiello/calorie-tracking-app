@@ -15,9 +15,9 @@ const macroData = new MacroData();
 const app = document.querySelector('.app');
 const heroHeading = document.querySelector('.hero__heading');
 const accessSection = document.querySelector('.access');
-const pantryForm = document.querySelector('.access__form');
-const pantryBtn = document.querySelector('.btn.btn--access');
-const pantryId = document.querySelector('#access__name');
+const accessForm = document.querySelector('.access__form');
+const accessBtn = document.querySelector('.btn.btn--access');
+const accessId = document.querySelector('#access__name');
 const foodSection = document.querySelector('.food');
 const foodForm = document.querySelector('.food__form');
 const foodBtn = document.querySelector('.btn.btn--food');
@@ -247,19 +247,19 @@ window.addEventListener("beforeunload", e => {
 // Displays a food card based on the information received from each document.
 // Clears the pantry's value. Initializes a new chart and updates total calories.
 
-pantryForm.addEventListener('submit', event => {
+accessForm.addEventListener('submit', event => {
     event.preventDefault();
 
-    pantryBtn.setAttribute("disabled", "disabled");
+    accessBtn.setAttribute("disabled", "disabled");
 
-    API.get(tailor(pantryId.value))
+    API.get(tailor(accessId.value))
         .then(data => {
             heroHeading.style.marginTop = "0";
             heroHeading.style.padding = "0.5em 0";
             
             clearFood();
 
-            endpoint = tailor(pantryId.value);
+            endpoint = tailor(accessId.value);
 
             pantryName.textContent = displayName(endpoint);
 
@@ -275,7 +275,7 @@ pantryForm.addEventListener('submit', event => {
                 );
             });
 
-            pantryId.value = "";
+            accessId.value = "";
             adjustLayout();
             initChart();
             showTotalCalories();
@@ -286,7 +286,7 @@ pantryForm.addEventListener('submit', event => {
         })
         .finally(() => {
             pantryTop.style.display = "initial";
-            pantryBtn.removeAttribute("disabled");
+            accessBtn.removeAttribute("disabled");
         })
 });
 
@@ -351,7 +351,7 @@ foodForm.addEventListener('submit', event => {
 
 // Fetch data with get, then loop through data and delete each document individually.
 // Runs clearFood(), then updates the chart and total calories displayed.
-// Have button disabled then enable button once a pantry has been accessed?
+
 clearBtn.addEventListener('click', event => {
     clearBtn.setAttribute("disabled", "disabled");
 
