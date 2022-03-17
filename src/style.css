@@ -28,6 +28,7 @@
 @media (max-width: 899px) {
   .app {
     height: initial;
+    min-height: 100vh;
   }
   .app__container {
     display: flex;
