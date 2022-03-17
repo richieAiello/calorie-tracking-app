@@ -307,7 +307,6 @@
 @media (max-width: 899px) {
   .pantry__list {
     display: flex;
-    padding: 1em 0;
   }
 }
 
