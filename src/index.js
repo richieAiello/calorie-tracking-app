@@ -254,7 +254,7 @@ accessForm.addEventListener('submit', event => {
 
     API.get(tailor(accessId.value))
         .then(data => {
-            heroHeading.style.marginTop = "0";
+            heroHeading.style.margin = "0 0.75em";
             heroHeading.style.padding = "0.5em 0";
             
             clearFood();
