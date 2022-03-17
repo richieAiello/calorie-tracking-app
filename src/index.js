@@ -14,10 +14,12 @@ const macroData = new MacroData();
 
 const app = document.querySelector('.app');
 const heroHeading = document.querySelector('.hero__heading');
+
 const accessSection = document.querySelector('.access');
 const accessForm = document.querySelector('.access__form');
 const accessBtn = document.querySelector('.btn.btn--access');
 const accessId = document.querySelector('#access__name');
+
 const foodSection = document.querySelector('.food');
 const foodForm = document.querySelector('.food__form');
 const foodBtn = document.querySelector('.btn.btn--food');
@@ -25,6 +27,7 @@ const name = document.querySelector('#food__name');
 const carbs = document.querySelector('#carbs');
 const protein = document.querySelector('#protein');
 const fat = document.querySelector('#fat');
+
 const pantryName = document.querySelector('.pantry__heading');
 const pantryTop = document.querySelector('.pantry__top');
 const list = document.querySelector('.pantry__list');
@@ -238,6 +241,7 @@ const adjustLayout = () => {
     user views the starting animation.  */
 
 window.addEventListener("beforeunload", event => {
+    app.style.overflowY = "hidden";
     window.scrollTo(0, 0);
 })
 
