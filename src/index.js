@@ -219,7 +219,7 @@ const clearFood = () => {
 
 // Hides and re-animates pantry form. Updates layout and displays food form
 const adjustLayout = () => { 
-    app.style.overflow = "initial";
+    app.style.overflowY = "initial";
     accessSection.style.gridColumn = "initial";
     accessSection.style.gridArea = "access";
     foodSection.style.display = "initial";
@@ -237,7 +237,7 @@ const adjustLayout = () => {
     this event prevents user from seeing white space at bottom of page. Ensures the 
     user views the starting animation.  */
 
-window.addEventListener("beforeunload", e => {
+window.addEventListener("beforeunload", event => {
     window.scrollTo(0, 0);
 })
 

@@ -14,7 +14,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   color: #ffe2d1;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 .app__container {
   height: 100%;
@@ -33,13 +34,14 @@
   .app__container {
     display: flex;
     flex-direction: column;
-    width: 100vw;
+    width: 100%;
+    min-width: 100vw;
   }
 }
 
 ::-webkit-scrollbar {
   width: 0.2em;
-  height: 0;
+  height: 0.55em;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -286,6 +288,11 @@
   padding: 1em 0;
   overflow-y: scroll;
 }
+@media (max-width: 899px) {
+  .pantry__bottom {
+    overflow-y: hidden;
+  }
+}
 .pantry__list {
   list-style: none;
   display: grid;
@@ -300,8 +307,6 @@
 @media (max-width: 899px) {
   .pantry__list {
     display: flex;
-    overflow-y: hidden;
-    overflow-x: scroll;
     padding: 1em 0;
   }
 }
