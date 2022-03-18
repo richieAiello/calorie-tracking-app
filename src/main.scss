@@ -43,7 +43,7 @@ $color-unbleached-silk: #ffe2d1;
     }
 
     // Remove 100vh and change the page display from grid to flex
-    @media(max-width: 899px) {
+    @media(max-width: 899px), (max-height: 660px) {
             & {
                 height: initial;
                 min-height: 100vh;
@@ -80,7 +80,7 @@ $color-unbleached-silk: #ffe2d1;
         align-items: flex-end;
         justify-content: space-around;
 
-        @media(max-width: 899px) {
+        @media(max-width: 899px), (max-height: 660px) {
             & {
                 flex-direction: column;
                 align-items: center;
@@ -98,12 +98,12 @@ $color-unbleached-silk: #ffe2d1;
         justify-content: space-between;
         align-items: center;
 
-        @media(max-width: 899px) {
+        @media(max-width: 899px), (max-height: 660px) {
             & {
                 flex-direction: column;
                 justify-content: initial;
             } 
-    }
+        }
     }
 }
 
@@ -307,7 +307,7 @@ $color-unbleached-silk: #ffe2d1;
         direction: rtl;
     }
 
-    @media(max-width: 899px) {
+    @media(max-width: 899px), (max-height: 660px) {
         & {
             margin-top: 2em;
         }
@@ -369,7 +369,7 @@ $color-unbleached-silk: #ffe2d1;
         padding: 1em 0;
         overflow-y: scroll;
 
-        @media(max-width: 899px) {
+        @media(max-width: 899px), (max-height: 660px) {
             & {
                 overflow-y: hidden;
             }
@@ -388,7 +388,7 @@ $color-unbleached-silk: #ffe2d1;
             }
         }
 
-        @media(max-width: 899px) {
+        @media(max-width: 899px), (max-height: 660px) {
             & {
                 display: flex;
             }
@@ -460,7 +460,7 @@ $color-unbleached-silk: #ffe2d1;
         margin: 0 auto;
     }
 
-    @media(max-width: 899px) {
+    @media(max-width: 899px), (max-height: 660px) {
         margin: 0 0.5em;
     }
 }
@@ -479,7 +479,7 @@ $color-unbleached-silk: #ffe2d1;
     min-width: 100%;
     padding: 1.5em 0 1em 2.5em;
     
-    @media (max-width: 899px) {
+    @media (max-width: 899px), (max-height: 660px) {
         & {
             height: 30ch;
             padding: 0 1em 1em 1em;
@@ -503,7 +503,7 @@ $color-unbleached-silk: #ffe2d1;
     }
 
     &--food {
-        @media(max-width: 899px) {
+        @media(max-width: 899px), (max-height: 660px) {
             & {
                 margin-top: 0.5em;
             }

@@ -26,7 +26,7 @@
   grid-template-rows: auto auto 1fr;
   grid-template-areas: "hero hero hero hero" "access food food food" "pantry pantry chart chart";
 }
-@media (max-width: 899px) {
+@media (max-width: 899px), (max-height: 660px) {
   .app {
     height: initial;
     min-height: 100vh;
@@ -60,7 +60,7 @@
   align-items: flex-end;
   justify-content: space-around;
 }
-@media (max-width: 899px) {
+@media (max-width: 899px), (max-height: 660px) {
   .flex--food {
     flex-direction: column;
     align-items: center;
@@ -75,7 +75,7 @@
   justify-content: space-between;
   align-items: center;
 }
-@media (max-width: 899px) {
+@media (max-width: 899px), (max-height: 660px) {
   .flex--pantry-top {
     flex-direction: column;
     justify-content: initial;
@@ -238,7 +238,7 @@
   width: 3em;
   direction: rtl;
 }
-@media (max-width: 899px) {
+@media (max-width: 899px), (max-height: 660px) {
   .food {
     margin-top: 2em;
   }
@@ -288,7 +288,7 @@
   padding: 1em 0;
   overflow-y: scroll;
 }
-@media (max-width: 899px) {
+@media (max-width: 899px), (max-height: 660px) {
   .pantry__bottom {
     overflow-y: hidden;
   }
@@ -304,7 +304,7 @@
     grid-template-columns: 1fr;
   }
 }
-@media (max-width: 899px) {
+@media (max-width: 899px), (max-height: 660px) {
   .pantry__list {
     display: flex;
   }
@@ -366,7 +366,7 @@
     margin: 0 auto;
   }
 }
-@media (max-width: 899px) {
+@media (max-width: 899px), (max-height: 660px) {
   .card {
     margin: 0 0.5em;
   }
@@ -385,7 +385,7 @@
   min-width: 100%;
   padding: 1.5em 0 1em 2.5em;
 }
-@media (max-width: 899px) {
+@media (max-width: 899px), (max-height: 660px) {
   .stats {
     height: 30ch;
     padding: 0 1em 1em 1em;
@@ -405,7 +405,7 @@
 .btn--access {
   margin-top: 0.5em;
 }
-@media (max-width: 899px) {
+@media (max-width: 899px), (max-height: 660px) {
   .btn--food {
     margin-top: 0.5em;
   }
